@@ -25,7 +25,6 @@ services:
     ports:
       - 8082:80
     environment:
-      PGADMIN_DEFAULT_USER: mark
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_DISABLE_POSTFIX: 1
@@ -37,25 +36,24 @@ services:
       volumes:
           - postgres-data:/var/lib/postgresql/data
       environment:
-          - POSTGRES_MULTIPLE_DATABASES= login_logout
+          - POSTGRES_MULTIPLE_DATABASES=login_logout
           - POSTGRES_PASSWORD=test-databases
       ports:
           - 15432:5432
 
 
-#ghi:
-  #image: node:lts-bullseye
-  #command: /bin/bash run.sh
-  #working_dir: /app
-  #volumes:
-  #  - ./ghi:/app
-  #ports:
-  #  - "3000:3000"
-  #environment:
-  #  HOST_OS: ${OS}
-  #  NODE_ENV: development
-  #  HOST: "0.0.0.0"
-  #  PUBLIC_URL: http://localhost:3000
-  #  REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
-
-    # other volumes...
+ghi:
+    image: node:lts-bullseye
+    command: /bin/bash run.sh
+    working_dir: /app
+    volumes:
+      - ./ghi:/app
+    ports:
+      - "3000:3000"
+    environment:
+      HOST_OS: ${OS}
+      NODE_ENV: development
+      HOST: "0.0.0.0"
+      PUBLIC_URL: http://localhost:3000
+      REACT_APP_ACCOUNTS_HOST: http://localhost:8080
+      REACT_APP_INVENTORY_HOST: http://localhost:8090
