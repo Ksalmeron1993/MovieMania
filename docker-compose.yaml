@@ -7,12 +7,12 @@ volumes:
 services:
   login_logout-fastapi:
     build:
-      context: ./Login_Logout
+      context: ./login_logout
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./Login_Logout:/app
+      - ./login_logout:/app
     environment:
       DATABASE_URL: postgresql://login_logout:password@postgres/login_logout
       WAIT_HOSTS: postgres:5432
@@ -25,6 +25,7 @@ services:
     ports:
       - 8082:80
     environment:
+      PGADMIN_DEFAULT_USER: mark
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_DISABLE_POSTFIX: 1
@@ -36,24 +37,25 @@ services:
       volumes:
           - postgres-data:/var/lib/postgresql/data
       environment:
-          - POSTGRES_MULTIPLE_DATABASES=  login_logout
+          - POSTGRES_MULTIPLE_DATABASES= login_logout
           - POSTGRES_PASSWORD=test-databases
       ports:
           - 15432:5432
-    # other services, too...
-  # ghi: # come back to
-  #   image: node:lts-bullseye
-  #   command: /bin/bash run.sh
-  #   working_dir: /app
-  #   volumes:
-  #     - ./ghi:/app
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     HOST_OS: ${OS}
-  #     NODE_ENV: development
-  #     HOST: "0.0.0.0"
-  #     PUBLIC_URL: http://localhost:3000
-  #     REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+
+
+#ghi:
+  #image: node:lts-bullseye
+  #command: /bin/bash run.sh
+  #working_dir: /app
+  #volumes:
+  #  - ./ghi:/app
+  #ports:
+  #  - "3000:3000"
+  #environment:
+  #  HOST_OS: ${OS}
+  #  NODE_ENV: development
+  #  HOST: "0.0.0.0"
+  #  PUBLIC_URL: http://localhost:3000
+  #  REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
 
     # other volumes...
