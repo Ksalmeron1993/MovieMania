@@ -1,23 +1,9 @@
 volumes:
-    postgres-data:
-        external: true
-    pg-admin:
-      external: true
-# volumes:
+  postgres-data:
+    external: true
+  pg-admin:
+    external: true
 services:
-  movie_database:
-    build:
-      context: ./movie_database
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
-    volumes:
-      - ./movie_database:/app
-    environment:
-      DATABASE_URL: postgresql://movie_database:password@postgres/movie_database
-      WAIT_HOSTS: postgres:5432
-
-
   pg-admin:
     image: dpage/pgadmin4
     volumes:
@@ -28,21 +14,30 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_DISABLE_POSTFIX: 1
-
   postgres:
-      build:
-        context: ./relational-data
-        dockerfile: ./Dockerfile.dev
-      volumes:
-          - postgres-data:/var/lib/postgresql/data
-      environment:
-          - POSTGRES_MULTIPLE_DATABASES=movie_database
-          - POSTGRES_PASSWORD=test-databases
-      ports:
-          - 15432:5432
-
-
-ghi:
+        build:
+            context: ./relational-data
+            dockerfile: ./Dockerfile.dev
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_MULTIPLE_DATABASES: movies
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: admin
+        ports:
+            - 15432:5432        
+  movies:
+    build:
+        context: ./movies
+        dockerfile: Dockerfile.dev
+    ports:
+        - 8000:8000
+    volumes:
+        - ./movies:/app
+    environment:
+      DATABASE_URL: postgresql://movies:password@postgres/movies
+      WAIT_HOSTS: postgres:5432
+  ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
     working_dir: /app
@@ -55,5 +50,5 @@ ghi:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_ACCOUNTS_HOST: http://localhost:8080
-      REACT_APP_INVENTORY_HOST: http://localhost:8090
+      REACT_APP_MOVIES_SERVICE_API_HOST: http://localhost:8000
+
