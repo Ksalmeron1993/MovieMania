@@ -1,23 +1,9 @@
 volumes:
-    postgres-data:
-        external: true
-    pg-admin:
-      external: true
-# volumes:
+  postgres-data:
+    external: true
+  pg-admin:
+    external: true
 services:
-  login_logout-fastapi:
-    build:
-      context: ./Login_Logout
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
-    volumes:
-      - ./Login_Logout:/app
-    environment:
-      DATABASE_URL: postgresql://login_logout:password@postgres/login_logout
-      WAIT_HOSTS: postgres:5432
-
-
   pg-admin:
     image: dpage/pgadmin4
     volumes:
@@ -28,32 +14,40 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_DISABLE_POSTFIX: 1
-
   postgres:
-      build:
-        context: ./relational-data
-        dockerfile: ./Dockerfile.dev
-      volumes:
-          - postgres-data:/var/lib/postgresql/data
-      environment:
-          - POSTGRES_MULTIPLE_DATABASES=  login_logout
-          - POSTGRES_PASSWORD=test-databases
-      ports:
-          - 15432:5432
-    # other services, too...
-  # ghi: # come back to
-  #   image: node:lts-bullseye
-  #   command: /bin/bash run.sh
-  #   working_dir: /app
-  #   volumes:
-  #     - ./ghi:/app
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     HOST_OS: ${OS}
-  #     NODE_ENV: development
-  #     HOST: "0.0.0.0"
-  #     PUBLIC_URL: http://localhost:3000
-  #     REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
-
-    # other volumes...
+        build:
+            context: ./relational-data
+            dockerfile: ./Dockerfile.dev
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_MULTIPLE_DATABASES: movies
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: admin
+        ports:
+            - 15432:5432
+  movies:
+    build:
+        context: ./movies
+        dockerfile: Dockerfile.dev
+    ports:
+        - 8000:8000
+    volumes:
+        - ./movies:/app
+    environment:
+      DATABASE_URL: postgresql://movies:password@postgres/movies
+      WAIT_HOSTS: postgres:5432
+  #ghi:
+    #image: node:lts-bullseye
+    #command: /bin/bash run.sh
+    #working_dir: /app
+    #volumes:
+     # - ./ghi:/app
+    #ports:
+    #  - "3000:3000"
+    #environment:
+    #  HOST_OS: ${OS}
+    #  NODE_ENV: development
+    #  HOST: "0.0.0.0"
+    #  PUBLIC_URL: http://localhost:3000
+    #  REACT_APP_MOVIES_SERVICE_API_HOST: http://localhost:8000
