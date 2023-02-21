@@ -1,7 +1,6 @@
-from psycopg_pool import ConnectionPool
 import os
+from psycopg_pool import ConnectionPool
 
-#create a pool class
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 

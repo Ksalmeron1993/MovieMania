@@ -10,8 +10,6 @@ steps = [
             duration_minutes INTEGER,
             director TEXT NOT NULL,
             imdb_rating DECIMAL(3, 1),
-            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-            updated_at TIMESTAMP NOT NULL DEFAULT NOW()
         );
         """,
         # "Down" SQL statement - Movies Table
@@ -25,8 +23,6 @@ steps = [
         CREATE TABLE movie_genres (
             id SERIAL PRIMARY KEY,
             genre_name TEXT NOT NULL,
-            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-            updated_at TIMESTAMP NOT NULL DEFAULT NOW()
         );
         """,
         # "Down" SQL statement - Genres Table
@@ -34,5 +30,4 @@ steps = [
         DROP TABLE movie_genres;
         """,
     ],
-    
-       
+];
