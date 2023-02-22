@@ -12,22 +12,20 @@ class Error(BaseModel):
 #data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
 class MovieIn(BaseModel):
     title: str
-    release_year : date 
-    genre: str 
-    duration_minutes: int
     director: str
-    imbd_rating: int  
-    where_to_watch : Optional[str] 
+    release_date : date 
+    genre: str 
+    runtime: int
+    plot_summary : str
 
 class MovieOut(BaseModel):
     id: int
     title: str
-    release_year : date 
-    genre: str 
-    duration_minutes: int
     director: str
-    imbd_rating: int  
-    where_to_watch : Optional[str] 
+    release_date : date 
+    genre: str 
+    runtime: int
+    plot_summary : str
 
 class MovieRepository: 
     def update_movie(self, movie_id: int, movie: MovieIn) -> Union[MovieOut, Error]:
@@ -40,22 +38,20 @@ class MovieRepository:
                         """
                         UPDATE movies
                         SET title = %s
-                        , release_year = %s
+                        , director = %s
+                        , release_date = %s
                         , genre = %s
-                        , duration_minutes = %s
-                        , director = %s 
-                        , imbd_rating = %s
-                        , where_to_watch = %s
+                        , runtime = %s 
+                        , plot_summary = %s
                         WHERE id = %s
                         """,
                         [
                             movie.title,
-                            movie.release_year,
-                            movie.genre,
-                            movie.duration_minutes,
                             movie.director,
-                            movie.imbd_rating,
-                            movie.where_to_watch,
+                            movie.release_date,
+                            movie.genre,
+                            movie.runtime, 
+                            movie.plot_summary,
                             movie_id
                         ]
                     )
@@ -73,7 +69,7 @@ class MovieRepository:
                     # Execute the SELECT statement 
                     db.execute(
                         """
-                        SELECT id, title, release_year, genre, duration_minutes, director, imbd_rating, where_to_watch
+                        SELECT id, title, director, release_date , genre, runtime, plot_summary
                         FROM movies 
                         ORDER BY title;
                         """
@@ -82,12 +78,11 @@ class MovieRepository:
                         MovieOut(
                             id=record[0],
                             title=record[1],
-                            release_year=record[2],
-                            genre=record[3],
-                            duration_minutes=record[4],
-                            director=record[5],
-                            imbd_rating=record[6],
-                            where_to_watch=record[7]
+                            director=record[2],
+                            release_date=record[3],
+                            genre=record[4],
+                            runtime=record[5],
+                            plot_summary=record[6]
                         )
                         for record in db 
                     ]
@@ -105,19 +100,18 @@ class MovieRepository:
                     result = db.execute(
                         """
                         INSERT INTO movies
-                            (title, release_year, genre, duration_minutes, director, imdb_rating, where_to_watch)
+                            (title, director, release_date, genre, runtime, plot_summary)
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
                             movie.title, 
-                            movie.release_year, 
-                            movie.genre, 
-                            movie.duration_minutes, 
                             movie.director, 
-                            movie.imbd_rating, 
-                            movie.where_to_watch
+                            movie.release_date, 
+                            movie.genre, 
+                            movie.runtime, 
+                            movie.plot_summary
                         ]
                     )
                     id = result.fetchone()[0]
