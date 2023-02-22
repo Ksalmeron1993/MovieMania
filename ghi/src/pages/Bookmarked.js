@@ -1,8 +1,6 @@
 //import
 
-//function
-
-
-
-
+function Bookmarked(){
+    
+}
 export default Bookmarked

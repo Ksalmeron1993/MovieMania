@@ -1,8 +1,6 @@
 //import
 
-//function
-
-
-
-
+function Mainpage(){
+    
+}
 export default Mainpage

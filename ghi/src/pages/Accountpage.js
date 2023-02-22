@@ -1,8 +1,7 @@
 //import
 
-//function
+function Accountpage (){
 
-
-
+}
 
 export default Accountpage

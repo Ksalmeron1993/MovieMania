@@ -1,8 +1,7 @@
 //import
 
-//function
+function Moviedetail(){
 
-
-
+}
 
 export default Moviedetail

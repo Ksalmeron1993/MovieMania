@@ -1,8 +1,6 @@
 //import
 
-//function
+function Homepage(){
 
-
-
-
-export default Hompage
+}
+export default Homepage

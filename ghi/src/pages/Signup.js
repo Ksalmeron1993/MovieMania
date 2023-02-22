@@ -1,8 +1,6 @@
 //import
 
-//function
-
-
-
-
+function Signup(){
+    
+}
 export default Signup

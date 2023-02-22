@@ -1,8 +1,6 @@
 //import
 
-//function
+function Login(){
 
-
-
-
+}
 export default Login

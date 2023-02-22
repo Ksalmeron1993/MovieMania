@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
-import './App.css';
+import './styles/App.css';
 import Accountpage from './pages/Accountpage.js';
 import Bookmarked from './pages/Bookmarked.js';
 import Homepage from './pages/Homepage.js';
