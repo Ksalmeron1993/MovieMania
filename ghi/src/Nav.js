@@ -3,9 +3,9 @@ import { useState } from "react"
 //Added all the pages but might only use login, signup
 //Potentially create a logout page? talk with group
 import { NavLink, Link} from "react-router-dom";
-//will make this nav look as iff all the buttons are in the main page
+//will make this nav look as if all the buttons are in the main page
 //high chance to edit it
-//just making an examole from what I used in car-car project
+//just making an example from what I used in car-car project
 
 
 function Nav() {
@@ -34,7 +34,7 @@ function Nav() {
                                 <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li>
                             </ul>
                         </li>
-//after this, these lines arent for the nav bar at the Home Page, i just dont know yet how i would incorporate them to thir respective pages
+//after this, these lines arent for the nav bar at the Home Page, i just dont know yet how i would incorporate them to their respective pages
 //placeholders for now, discuss with group
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/signup">
