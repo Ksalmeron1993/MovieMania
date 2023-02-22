@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
 import './styles/App.css';
-import Accountpage from './pages/Accountpage.js';
-import Bookmarked from './pages/Bookmarked.js';
-import Homepage from './pages/Homepage.js';
-import Mainpage from './pages/Mainpage.js';
-import Nav from './Nav.js';
+import Accountpage from './pages/Accountpage';
+import Bookmarked from './pages/Bookmarked';
+import Homepage from './pages/Homepage';
+import Mainpage from './pages/Mainpage';
+import Nav from './Nav';
 //last 3 i dont know if we would use them or how to inorporate them correctly yet
-import Login from './pages/Login.js';
-import Moviedetail from './pages/Moviedetail.js';
-import Signup from './pages/Signup.js';
+import Login from './pages/Login';
+import Moviedetail from './pages/Moviedetail';
+import Signup from './pages/Signup';
 
 
 function App() {
@@ -50,9 +50,9 @@ function App() {
 
   //this would be for the searchbox
   //still need to create the data i think *_*
-  useEffect(() => {
-    fetchMovies(searchQuery);
-  }, [searchQuery]);
+  //useEffect(() => {
+    //fetchMovies(searchQuery);
+  //}, [searchQuery]);
 
 //our JSX
 // some of these elements will contain fetchData in the future
@@ -65,7 +65,6 @@ function App() {
         </div>
         <div className="container">
           <Routes>
-            <Route path="/" element={<MovieMania />} />
             <Route path="/homepage" element={<Homepage />} />
             <Route path="/accountpage" element={<Accountpage />} />
             <Route path="/bookmarked" element={<Bookmarked />} />
@@ -76,7 +75,6 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
-
     </BrowserRouter>
   );
 }
