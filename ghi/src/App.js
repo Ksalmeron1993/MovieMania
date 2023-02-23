@@ -86,7 +86,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import React, { useState } from "react";
 import { useEffect } from "react";
-import './App.css';
+import './styles/App.css';
 import SearchIcon from './search.svg';
 import MovieCard from "./MovieCard";
 
@@ -148,8 +148,6 @@ const App =() =>{
             }
 
         </div>
-
-    </BrowserRouter>
 
   );
 }
