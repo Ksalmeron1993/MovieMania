@@ -15,6 +15,7 @@ from queries.accounts import (
     AccountOut,
     AccountOutWithPassword,
 )
+router = APIRouter()
 
 from jwtdown_fastapi.authentication import Token
 from typing import Union, Optional, List
@@ -35,7 +36,7 @@ class HttpError(BaseModel):
     detail: str
 
 
-router = APIRouter()
+
 
 
 @router.post("/api/accounts", response_model=Union[UserToken, Error])

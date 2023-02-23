@@ -33,7 +33,7 @@ class AccountQueries:
     ) -> AccountOutWithPassword:
         try:
             with pool.connection() as conn:
-                with conn.cursor() as db:
+                with conn.cursor() a
                     result = db.execute(
                         """
                         INSERT INTO users
