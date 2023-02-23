@@ -42,7 +42,7 @@ class BookmarkRepository:
                             bookmark.bookmark_date,
                         ]
                     )
-                    return self.movie_in_to_out(movie_id, movie)
+                    return self.movie_in_to_out(movie_id, bookmark)
         except Exception as e:
             print(e)
             return {"message": "Could not update that movie"}
