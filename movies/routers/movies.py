@@ -10,7 +10,7 @@ router = APIRouter()
 @router.post("/movies/", response_model=Union[MovieOut, Error])
 def create_movie(
     movie: MovieIn,
-    response: Response, 
+    response: Response,
     repo: MovieRepository = Depends(),
 ) -> Union[MovieOut, Error]:
     response.status_code = 400

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from typing import List, Optional, Union
-from datetime import date 
+from typing import List, Union
+from datetime import date
 from queries.pool import pool
 
 
@@ -8,13 +8,13 @@ class Error(BaseModel):
     message: str
 
 
-#what data do we need for submitting a movie 
+#what data do we need for submitting a movie
 #data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
 class MovieIn(BaseModel):
     title: str
     director: str
-    release_date : date 
-    genre: str 
+    release_date : date
+    genre: str
     runtime: int
     plot_summary : str
 
@@ -22,18 +22,18 @@ class MovieOut(BaseModel):
     id: int
     title: str
     director: str
-    release_date : date 
-    genre: str 
+    release_date : date
+    genre: str
     runtime: int
     plot_summary : str
 
-class MovieRepository: 
+class MovieRepository:
     def update_movie(self, movie_id: int, movie: MovieIn) -> Union[MovieOut, Error]:
         try:
-            #Connect to the database 
+            #Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
-                with conn.cursor() as db: 
+                with conn.cursor() as db:
                     db.execute(
                         """
                         UPDATE movies
@@ -41,7 +41,7 @@ class MovieRepository:
                         , director = %s
                         , release_date = %s
                         , genre = %s
-                        , runtime = %s 
+                        , runtime = %s
                         , plot_summary = %s
                         WHERE id = %s
                         """,
@@ -50,7 +50,7 @@ class MovieRepository:
                             movie.director,
                             movie.release_date,
                             movie.genre,
-                            movie.runtime, 
+                            movie.runtime,
                             movie.plot_summary,
                             movie_id
                         ]
@@ -62,15 +62,15 @@ class MovieRepository:
 
     def get_all_movies(self) -> Union[Error, List[MovieOut]]:
         try:
-            # Connect to the database 
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
-                with conn.cursor() as db: 
-                    # Execute the SELECT statement 
+                with conn.cursor() as db:
+                    # Execute the SELECT statement
                     db.execute(
                         """
                         SELECT id, title, director, release_date , genre, runtime, plot_summary
-                        FROM movies 
+                        FROM movies
                         ORDER BY title;
                         """
                     )
@@ -84,15 +84,15 @@ class MovieRepository:
                             runtime=record[5],
                             plot_summary=record[6]
                         )
-                        for record in db 
+                        for record in db
                     ]
         except Exception as e:
             print(e)
-            return {"message": "Could not get all movies"}      
-    
+            return {"message": "Could not get all movies"}
+
     def create(self, movie: MovieIn) -> Union[MovieOut, Error]:
         try:
-            # Connect to the database 
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
                 with conn.cursor() as db:
@@ -106,11 +106,11 @@ class MovieRepository:
                         RETURNING id;
                         """,
                         [
-                            movie.title, 
-                            movie.director, 
-                            movie.release_date, 
-                            movie.genre, 
-                            movie.runtime, 
+                            movie.title,
+                            movie.director,
+                            movie.release_date,
+                            movie.genre,
+                            movie.runtime,
                             movie.plot_summary
                         ]
                     )
@@ -123,6 +123,3 @@ class MovieRepository:
     def movie_in_to_out(self, id: int, movie: MovieIn) -> MovieOut:
         old_data = movie.dict()
         return MovieOut(id=id, **old_data)
-
-
-
