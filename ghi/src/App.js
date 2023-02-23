@@ -37,25 +37,22 @@ function App() {
     getData();
   }, [])
 
-  //this function app fetches all the data
-  //figure out with group what are all the data that needs to be fetched
-  //for example, one would be for the searchbox when searching a movie
-  //also when fetching effects, see if it will be an empty array which only calls on data once
-  //or a dependancy array such as the movie search box
-  function App() {
+    //this function app fetches all the data
+    //figure out with group what are all the data that needs to be fetched
+    //for example, one would be for the searchbox when searching a movie
+    //also when fetching effects, see if it will be an empty array which only calls on data once
+    //or a dependancy array such as the movie search box
 
-  }
+    //using the effect
 
-  //using the effect
+    //this would be for the searchbox
+    //still need to create the data i think *_*
+    //useEffect(() => {
+      //fetchMovies(searchQuery);
+    //}, [searchQuery]);
 
-  //this would be for the searchbox
-  //still need to create the data i think *_*
-  //useEffect(() => {
-    //fetchMovies(searchQuery);
-  //}, [searchQuery]);
-
-//our JSX
-// some of these elements will contain fetchData in the future
+  //our JSX
+  // some of these elements will contain fetchData in the future
   return (
     <BrowserRouter>
       <Nav />
