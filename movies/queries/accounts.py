@@ -50,7 +50,7 @@ class AccountQueries:
                             hashed_password,
                         ],
                     )
-                    id = resault.fetchone()[0]
+                    id = result.fetchone()[0]
                     old_data = account.dict()
 
                     return AccountOutWithPassword(
