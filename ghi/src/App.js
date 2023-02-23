@@ -66,7 +66,7 @@ function App() {
             <Route path="/accountpage" element={<Accountpage />} />
             <Route path="/bookmarked" element={<Bookmarked />} />
             <Route path="/mainpage" element={<Mainpage />} />
-            //last 3 not sure just placeholders for now
+            {/* //last 3 not sure just placeholders for now */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/moviedetail" element={<Moviedetail />} />
             <Route path="/login" element={<Login />} />
