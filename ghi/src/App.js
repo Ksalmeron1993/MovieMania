@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import React, { useEffect, useState } from 'react';
 // import Construct from './Construct.js'
 // import ErrorNotification from './ErrorNotification';
@@ -112,7 +112,7 @@ const App =() =>{
 
     return (
         <div className = 'app'>
-            <h1> Uzairs Movies</h1>
+            <h1>Movie Mania</h1>
             <div className ='search'>
                 <input
                     placeholder="Search for Movies"
