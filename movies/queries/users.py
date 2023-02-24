@@ -1,6 +1,7 @@
 from typing import Optional, Union, List
 from queries.pool import pool
 from pydantic import BaseModel
+from jwtdown_fastapi.authentication import Token
 
 class DuplicateUserError(ValueError):
     pass
@@ -15,7 +16,6 @@ class UsersIn(BaseModel):
     username: str
     password: str
 
-
 class UsersOut(BaseModel):
     user_id: int
     first_name: str
@@ -23,8 +23,10 @@ class UsersOut(BaseModel):
     email: str
     username: str
 
+class UserToken(Token):
+    user: UsersOut
 
-class UsersOutWithPassword (UsersOut):
+class UsersOutWithPassword(UsersOut):
     hashed_password: str
 
 class Userlogout(BaseModel):
@@ -39,13 +41,13 @@ class UsersRepo:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    INSERT INTO Users
+                    INSERT INTO users
                         (
                             first_name, last_name, email, username, hashed_password
                         )
                     VALUES
                         (%s,%s,%s,%s,%s)
-                    RETURNING Users_id;
+                    RETURNING id;
                     """,
                     [
                         users.first_name, users.last_name, users.email, users.username, hashed_password
@@ -92,7 +94,7 @@ class UsersRepo:
                     db.execute(
                         """
                         SELECT id, first_name, last_name, email, username, password
-                        FROM Users
+                        FROM users
                         ORDER BY title;
                         """
                     )
@@ -111,7 +113,7 @@ class UsersRepo:
             print(e)
             return {"message": "Could not get all Users"}
 
-    def create(self, Users: UsersIn) -> Union[UsersOut, Error]:
+    def create(self, Users: UsersIn, hashed_password: str) -> Union[UsersOut, Error]:
         try:
             # Connect to the database
             with pool.connection() as conn:
@@ -120,8 +122,8 @@ class UsersRepo:
                     # Run our INSERT statement
                     result = db.execute(
                         """
-                        INSERT INTO Users
-                            (first_name, last_name, email, username, password)
+                        INSERT INTO users
+                            (first_name, last_name, email, username, hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
@@ -131,7 +133,7 @@ class UsersRepo:
                             Users.last_name,
                             Users.email,
                             Users.username,
-                            Users.password,
+                            hashed_password,
                         ]
                     )
                     id = result.fetchone()[0]

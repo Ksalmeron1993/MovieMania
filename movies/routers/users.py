@@ -6,7 +6,6 @@ from fastapi import (
     HTTPException,
     status,
 )
-from authenticator import TestAuthenticator
 
 from queries.users import (
     UsersRepo,
@@ -14,14 +13,15 @@ from queries.users import (
     UsersIn,
     UsersOut,
     #UsersOutWithPassword,
-    Error
+    Error,
+    UserToken,
 
 )
 
 from jwtdown_fastapi.authentication import Token
 from typing import Union, Optional, List
 from pydantic import BaseModel
-from routers import auth
+from authenticator import authenticator
 
 
 class UserForm(BaseModel):
@@ -69,7 +69,7 @@ async def create_account(
     response: Response,
     repo: UsersRepo = Depends(),
 ):
-    hashed_password = TestAuthenticator.hash_password(info.password)
+    hashed_password = authenticator.hash_password(info.password)
     try:
         account = repo.create(info, hashed_password)
 
@@ -79,6 +79,6 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = UserForm(username=info.email, password=info.password)
-    token = await TestAuthenticator.login(response, request, form, repo)
+    token = await authenticator.login(response, request, form, repo)
     print(account)
     return UserToken(account=account, **token.dict())
