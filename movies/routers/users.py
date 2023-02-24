@@ -7,7 +7,7 @@ from fastapi import (
     status,
 )
 
-from queries.accounts import (
+from queries.users import (
     AccountQueries,
     DuplicateAccountError,
     Error,

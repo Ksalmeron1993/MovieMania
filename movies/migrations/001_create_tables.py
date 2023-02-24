@@ -3,13 +3,15 @@ steps = [
         #"Up" SQL statement - Users Table
         """
         CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL
-        );
-        """
-        # "Down" SQL statement - Users Table 
+            user_id serial not null primary key,
+            first_name varchar(20) not null,
+            last_name varchar(100) not null,
+            email varchar(50) not null,
+            username varchar(20) not null,
+            password varchar(200) not null,
+            );
+        """,
+        # "Down" SQL statement
         """
         DROP TABLE users;
         """,
@@ -30,7 +32,7 @@ steps = [
         """
         DROP TABLE movies;
         """,
-        # "up" SQL statement - Comments table 
+        # "up" SQL statement - Comments table
         """"
         CREATE TABLE comments (
             id SERIAL PRIMARY KEY,
@@ -40,11 +42,11 @@ steps = [
             comment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
                 );
         """
-        # "Down" SQL statement- Comments table 
+        # "Down" SQL statement- Comments table
         """
         DROP TABLE comments;
         """ ,
-        #"up" SQL statement- Bookmarks table 
+        #"up" SQL statement- Bookmarks table
         """
         CREATE TABLE bookmarks (
             id SERIAL PRIMARY KEY,
@@ -53,9 +55,9 @@ steps = [
             bookmark_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
         """
-        # "Down" SQL statement- Bookmarks table 
+        # "Down" SQL statement- Bookmarks table
 
-        
+
     ],
-  
-];
+
+]
