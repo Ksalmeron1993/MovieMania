@@ -44,4 +44,3 @@ class AccountRepo:
                 user_id = result.fetchone()[0]
                 old_data = users.dict()
                 return AccountOutWithPassword(user_id=user_id, hashed_password=hashed_password, **old_data)
-    

@@ -22,7 +22,6 @@ services:
             - postgres-data:/var/lib/postgresql/data
         environment:
             POSTGRES_MULTIPLE_DATABASES: movies
-            POSTGRES_USER: admin
             POSTGRES_PASSWORD: admin
         ports:
             - 15432:5432
@@ -42,12 +41,12 @@ services:
     command: /bin/bash run.sh
     working_dir: /app
     volumes:
-      - ./ghi:/app
+     - ./ghi:/app
     ports:
-      - "3000:3000"
+     - "3000:3000"
     environment:
-      HOST_OS: ${OS}
-      NODE_ENV: development
-      HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
-      REACT_APP_MOVIES_SERVICE_API_HOST: http://localhost:8000
+     HOST_OS: ${OS}
+     NODE_ENV: development
+     HOST: "0.0.0.0"
+     PUBLIC_URL: http://localhost:3000
+     REACT_APP_MOVIES_SERVICE_API_HOST: http://localhost:8000
