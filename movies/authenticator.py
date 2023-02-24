@@ -2,28 +2,43 @@
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
-from queries.user import UserRepository, UserOut, UserOutWithPassword
+from queries.users import UsersRepo, UsersOut, UsersOutWithPassword
 
-
-class UserAuthenticator(Authenticator):
-    async def get_account_data(
-        self,
-        username: str,
-        user: UserRepository,
+class TestAuthenticator(Authenticator):
+    async def get_users_data(
+            self,
+            username: str,
+            users: UsersRepo,
     ):
-        return user.get(username)
+         return users.get_one(username)
 
-    def get_account_getter(
+    def get_users_getter(
         self,
-        user: UserRepository = Depends(),
+        users: UsersRepo = Depends(),
     ):
-        return user
 
-    def get_hashed_password(self, user: UserOutWithPassword):
-        return user.hashed_password
-
-    def get_account_data_for_cookie(self, user: UserOut):
-        return user.username, UserOut(**user.dict())
+        return users
 
 
-authenticator = UserAuthenticator(os.environ["SIGNING_KEY"])
+    def get_hashed_password(self, Users: UsersOutWithPassword):
+
+        return Users.hashed_password
+
+    def get_users_data_for_cookie(self, users: UsersOut):
+
+        return users.username, UsersOut(**users.dict())
+
+
+authenticator = TestAuthenticator(os.environ["SIGNING_KEY"])
+
+
+
+
+
+
+
+
+
+
+
+authenticator = TestAuthenticator(os.environ["SIGNING_KEY"])

@@ -1,19 +1,22 @@
 steps = [
     [
-        #"Up" SQL statement - Users Table
+        # "Up" SQL statement - Users Table
         """
-         CREATE TABLE ACCOUNTS (
-            id SERIAL PRIMARY KEY NOT NULL,
-            name VARCHAR(255) NOT NULL UNIQUE,
-            hashed_password VARCHAR(250) NOT NULL,
-            email VARCHAR(255) NOT NULL
+        CREATE TABLE users (
+            user_id serial not null primary key,
+            first_name varchar(20) not null,
+            last_name varchar(100) not null,
+            email varchar(50) not null,
+            username varchar(20) not null,
+            password varchar(200) not null
         );
-
-        """
+        """,
         # "Down" SQL statement - Users Table
         """
-        DROP TABLE ACCOUNTS;
-        """,
+        DROP TABLE users;
+        """
+    ],
+    [
         # "Up" SQL statement - Movies Table
         """
         CREATE TABLE movies (
@@ -25,27 +28,30 @@ steps = [
             runtime INT,
             plot_summary TEXT
         );
-
         """,
         # "Down" SQL statement - Movies Table
         """
         DROP TABLE movies;
-        """,
-        # "up" SQL statement - Comments table
-        """"
+        """
+    ],
+    [
+        # "Up" SQL statement - Comments table
+        """
         CREATE TABLE comments (
             id SERIAL PRIMARY KEY,
             user_id INTEGER NOT NULL REFERENCES users(id),
             movie_id INTEGER NOT NULL REFERENCES movies(id),
             comment_text TEXT NOT NULL,
             comment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-                );
-        """
-        # "Down" SQL statement- Comments table
+        );
+        """,
+        # "Down" SQL statement - Comments table
         """
         DROP TABLE comments;
-        """ ,
-        #"up" SQL statement- Bookmarks table
+        """
+    ],
+    [
+        # "Up" SQL statement - Bookmarks table
         """
         CREATE TABLE bookmarks (
             id SERIAL PRIMARY KEY,
@@ -53,10 +59,10 @@ steps = [
             movie_id INTEGER NOT NULL REFERENCES movies(id),
             bookmark_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
+        """,
+        # "Down" SQL statement - Bookmarks table
         """
-        # "Down" SQL statement- Bookmarks table
-
-
-    ],
-
-];
+        DROP TABLE bookmarks;
+        """
+    ]
+]
