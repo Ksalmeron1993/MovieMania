@@ -17,7 +17,7 @@ class UsersIn(BaseModel):
     password: str
 
 class UsersOut(BaseModel):
-    user_id: int
+    id: int
     first_name: str
     last_name: str
     email: str
@@ -37,26 +37,29 @@ class Userlogout(BaseModel):
 
 class UsersRepo:
     def create(self, users: UsersIn, hashed_password: str) -> UsersOutWithPassword:
-        with pool.connection() as conn:
-            with conn.cursor() as db:
-                result = db.execute(
-                    """
-                    INSERT INTO users
-                        (
-                            first_name, last_name, email, username, hashed_password
-                        )
-                    VALUES
-                        (%s,%s,%s,%s,%s)
-                    RETURNING id;
-                    """,
-                    [
-                        users.first_name, users.last_name, users.email, users.username, hashed_password
-                     ]
-                )
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        INSERT INTO users
+                            (
+                                first_name, last_name, email, username, hashed_password
+                            )
+                        VALUES
+                            (%s,%s,%s,%s,%s)
+                        RETURNING id;
+                        """,
+                        [
+                            users.first_name, users.last_name, users.email, users.username, hashed_password
+                            ]
+                    )
 
-                user_id = result.fetchone()[0]
-                old_data = users.dict()
-                return UsersOutWithPassword(user_id=user_id, hashed_password=hashed_password, **old_data)
+                    user_id = result.fetchone()[0]
+                    old_data = users.dict()
+                    return UsersOutWithPassword(user_id=user_id, hashed_password=hashed_password, **old_data)
+        except Exception:
+            return {"message": Exception}
 
     def get_one_user(self, username: str) -> Optional[UsersOutWithPassword]:
         try:
