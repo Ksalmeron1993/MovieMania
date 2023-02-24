@@ -2,7 +2,7 @@
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
-from queries.users import UserRepository, UserOut, UserOutWithPassword
+from queries.user import UserRepository, UserOut, UserOutWithPassword
 
 
 class UserAuthenticator(Authenticator):
