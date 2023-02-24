@@ -9,21 +9,21 @@ class UserAuthenticator(Authenticator):
     async def get_account_data(
         self,
         username: str,
-        accounts: UserRepository,
+        user: UserRepository,
     ):
-        return accounts.get(username)
+        return user.get(username)
 
     def get_account_getter(
         self,
-        accounts: UserRepository = Depends(),
+        user: UserRepository = Depends(),
     ):
-        return accounts
+        return user
 
-    def get_hashed_password(self, account: UserOutWithPassword):
-        return account.hashed_password
+    def get_hashed_password(self, user: UserOutWithPassword):
+        return user.hashed_password
 
-    def get_account_data_for_cookie(self, account: UserOut):
-        return account.username, UserOut(**account.dict())
+    def get_account_data_for_cookie(self, user: UserOut):
+        return user.username, UserOut(**user.dict())
 
 
 authenticator = UserAuthenticator(os.environ["SIGNING_KEY"])

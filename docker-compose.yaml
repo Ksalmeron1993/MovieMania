@@ -22,7 +22,6 @@ services:
             - postgres-data:/var/lib/postgresql/data
         environment:
             POSTGRES_MULTIPLE_DATABASES: movies
-            POSTGRES_USER: admin
             POSTGRES_PASSWORD: admin
         ports:
             - 15432:5432
