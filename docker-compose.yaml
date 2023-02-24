@@ -35,6 +35,7 @@ services:
     volumes:
         - ./movies:/app
     environment:
+      SIGNING_KEY: ${SIGNING_KEY}
       DATABASE_URL: postgresql://movies:password@postgres/movies
       WAIT_HOSTS: postgres:5432
   ghi:

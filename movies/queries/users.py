@@ -1,7 +1,12 @@
-from typing import Optional, Union, List, Error
+from typing import Optional, Union, List
 from queries.pool import pool
 from pydantic import BaseModel
 
+class DuplicateUserError(ValueError):
+    pass
+
+class Error(BaseModel):
+    message: str
 
 class UsersIn(BaseModel):
     first_name: str
@@ -12,7 +17,7 @@ class UsersIn(BaseModel):
 
 
 class UsersOut(BaseModel):
-    id: int
+    user_id: int
     first_name: str
     last_name: str
     email: str
@@ -23,7 +28,7 @@ class UsersOutWithPassword (UsersOut):
     hashed_password: str
 
 class Userlogout(BaseModel):
-    id: str
+    id: int
     username: str
     password: str
     token: str
