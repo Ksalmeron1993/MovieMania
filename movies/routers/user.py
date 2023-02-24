@@ -60,7 +60,7 @@
 #     )
 #     return UserToken(account=account, **token.dict())
 
-from queries.users import UserIn, UserRepository, UserOut, DuplicateAccountError
+from queries.user import UserIn, UserRepository, UserOut, DuplicateAccountError
 from fastapi import (
     Depends,
     HTTPException,
