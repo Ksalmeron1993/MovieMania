@@ -21,7 +21,7 @@ from queries.users import (
 from jwtdown_fastapi.authentication import Token
 from typing import Union, Optional, List
 from pydantic import BaseModel
-from authenticator import Authenticator
+from authenticator import authenticator
 
 
 class UserForm(BaseModel):
@@ -73,19 +73,19 @@ async def create_account(
     print("info", info)
 
 
-    hashed_password = Authenticator.hashed_password(info.password)
+    hashed_password = authenticator.hashed_password(info.password)
     print("hashed_password", hashed_password)
 
-    return "Hello World"
-    # try:
-    #     account = repo.create(info, hashed_password)
+    # return "Hello World"
+    try:
+        account = repo.create(info, hashed_password)
 
-    # except DuplicateUserError:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail="Cannot create an account with those credentials",
-    #     )
-    # form = UserForm(username=info.email, password=info.password)
-    # token = await Authenticator.login(response, request, form, repo)
-    # print()
-    # return UserToken(account=account, **token.dict())
+    except DuplicateUserError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot create an account with those credentials",
+        )
+    form = UserForm(username=info.email, password=info.password)
+    token = await Authenticator.login(response, request, form, repo)
+    print()
+    return UserToken(account=account, **token.dict())
