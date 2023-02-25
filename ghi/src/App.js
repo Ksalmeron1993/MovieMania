@@ -88,7 +88,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import './styles/App.css';
 import SearchIcon from './search.svg';
-import MovieCard from "./MovieCard";
+import MovieCard from "./MovieCard.js";
 
 
 //a5371ad6
