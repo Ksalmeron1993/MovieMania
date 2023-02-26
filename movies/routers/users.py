@@ -12,8 +12,8 @@ from queries.users import (
     DuplicateUserError,
     UsersIn,
     UsersOut,
-    #UsersOutWithPassword,
-    Error,
+    # UsersOutWithPassword,
+    # Error,
     UserToken,
 
 )
@@ -30,7 +30,7 @@ class UserForm(BaseModel):
 
 
 class UserToken(Token):
-    user: UsersOut
+    user: UsersOut 
 
 
 class HttpError(BaseModel):
@@ -63,7 +63,7 @@ router = APIRouter()
 #     return UserToken(account=account, **token.dict())
 
 @router.post("/signup", tags=["Users"])
-async def create_account(
+async def create_user(
     info: UsersIn,
     request: Request,
     response: Response,
@@ -73,7 +73,7 @@ async def create_account(
     print("info", info)
 
 
-    hashed_password = authenticator.hashed_password(info.password)
+    hashed_password = authenticator.hash_password(info.password)
     print("hashed_password", hashed_password)
 
     # return "Hello World"
@@ -86,6 +86,6 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = UserForm(username=info.email, password=info.password)
-    token = await Authenticator.login(response, request, form, repo)
+    token = await authenticator.login(response, request, form, repo)
     print()
     return UserToken(account=account, **token.dict())
