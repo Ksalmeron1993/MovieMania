@@ -133,7 +133,7 @@ class UsersRepo:
                         return {f"User {id} deleted": True}
             except Exception as e:
                 print(e)
-                return {"User has been succesfully deleted": False}
+                return {"User has been not succesfully deleted": False}
     
     def update(self, user_id:int , user: UsersIn) -> UsersOut:
         try:
