@@ -18,13 +18,9 @@ class MyAuthenticator(Authenticator):
         return users
 
     def get_hashed_password(self, user: UsersOutWithPassword):
-
-        print("!!!!", user)
-
         return user.hashed_password
 
     def get_users_data_for_cookie(self, users: UsersOut):
-
         return users.username, UsersOut(**users.dict())
 
 

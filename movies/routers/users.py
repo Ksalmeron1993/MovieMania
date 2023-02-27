@@ -11,18 +11,12 @@ from queries.users import (
     UsersRepo,
     DuplicateUserError,
     UsersIn,
-    UsersOut,
-    # UsersOutWithPassword,
-    # Error,
-    UserToken,
-
+    UsersOut
 )
 
 from jwtdown_fastapi.authentication import Token
-from typing import Union, Optional, List
-from pydantic import BaseModel
 from authenticator import authenticator
-
+from pydantic import BaseModel
 
 class UserForm(BaseModel):
     username: str
@@ -39,30 +33,14 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
+@router.get("/protected", response_model=bool,tags=["Users"])
+async def protected(
+    account_data: dict = Depends(authenticator.get_current_account_data),
+    ):
+    return True
 
-# @router.post("/api/users", response_model=Union[UserToken, Error])
-# async def create_account(
-#     info: UserIn,
-#     request: Request,
-#     response: Response,
-#     account_queries: AccountQueries = Depends(),
-# ):
-#     hashed_password = auth.TestAuthenticator.hash_password(info.password)
-#     try:
-#         account = account_queries.create(info, hashed_password)
-#     except DuplicateAccountError:
-#         raise HTTPException(
-#             status_code=status.HTTP_400_BAD_REQUEST,
-#             detail="Cannot create an account with those credentials",
-#         )
 
-#     form = UserForm(username=info.username, password=info.password)
-#     token = await auth.TestAuthenticator.login(
-#         response, request, form, account_queries
-#     )
-#     return UserToken(account=account, **token.dict())
-
-@router.post("/signup", tags=["Users"])
+@router.post("/signup")
 async def create_user(
     info: UsersIn,
     request: Request,
@@ -78,7 +56,7 @@ async def create_user(
 
     # return "Hello World"
     try:
-        account = repo.create(info, hashed_password)
+        user = repo.create(info, hashed_password)
 
     except DuplicateUserError:
         raise HTTPException(
@@ -88,4 +66,4 @@ async def create_user(
     form = UserForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     print()
-    return UserToken(account=account, **token.dict())
+    return UserToken(user=user, **token.dict())
