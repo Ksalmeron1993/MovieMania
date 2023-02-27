@@ -8,7 +8,7 @@ steps = [
             last_name varchar(100) not null,
             email varchar(50) not null,
             username varchar(20) not null,
-            hashed_password varchar(200) not null,
+            hashed_password varchar(200) not null
             );
         """,
         # "Down" SQL statement
