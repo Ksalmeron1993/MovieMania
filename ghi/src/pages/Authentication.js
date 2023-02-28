@@ -8,7 +8,7 @@ export function getToken() {
 }
 
 export async function getTokenInternal() {
-  const url = `http://localhost:8000/token`
+  const url = `http://localhost:8000/token` // `${process.env.REACT_APP_MOVIE_MANIA_API}/token`
   try {
     const response = await fetch(url, {
       credentials: "include",
@@ -104,7 +104,7 @@ export function useToken() {
   }
 
   async function signup(username, password, email, firstName, lastName) {
-    const url = `http://localhost:8000/signup`;
+    const url = `http://localhost:8000/sign_up`;
     const response = await fetch(url, {
       method: "post",
       body: JSON.stringify({

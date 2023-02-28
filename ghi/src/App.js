@@ -12,7 +12,13 @@ import Nav from './Nav.js';
 import Login from './pages/Login.js';
 // import Moviedetail from './pages/Moviedetail.js';
 import Signup from './pages/Signup.js';
+// import { AuthProvider, useToken } from "./pages/Authentication.js";
 
+
+// function GetToken(){
+//   useToken()
+//   return null
+// }
 
 function App() {
 //   const [launch_info, setLaunchInfo] = useState([]);
@@ -57,15 +63,18 @@ function App() {
 //our JSX
 // some of these elements will contain fetchData in the future
   return (
-    <BrowserRouter>
-      <Nav />
-        <div className="container">
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </div>
-    </BrowserRouter>
+    // <AuthProvider>
+    //   <GetToken />
+        <BrowserRouter>
+          <Nav />
+            <div className="container">
+              <Routes>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </div>
+        </BrowserRouter>
+    // </AuthProvider>
   );
 }
 

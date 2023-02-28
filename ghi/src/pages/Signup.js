@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {useToken} from "./Authentication.js"
 
 function Signup(){
@@ -7,7 +8,8 @@ function Signup(){
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const {signup} =  useToken()
+    // const {token, signup} =  useToken()
+    const navigate = useNavigate()
 
     const handleFirstNameChange = (e) => {
         const value = e.target.value;
@@ -45,20 +47,30 @@ function Signup(){
                 'Content-Type': 'application/json',
             },
         }
-        const response = await fetch (url, fetchConfig)
-        if (response.ok) {
-            signup(
-                first_name,
-                last_name,
-                username, 
-                email, 
-                password
-            )
-            setFirstName("")
-            setLastName("")
+        // if (request.ok) {
+        //     signup(
+                // first_name,
+                // last_name,
+                // username, 
+                // email, 
+                // password
+        //     )
+        // const response = await signup(
+        //     first_name,
+        //     last_name,
+        //     username, 
+        //     email, 
+        //     password
+        // )
+        const response = await fetch(url, fetchConfig)
+        if (response.ok){
+            setFirstName('')
+            setLastName('')
             setEmail('')
             setUsername('')
             setPassword('')
+            navigate("/login")
+        }
         }
 
 
@@ -72,19 +84,12 @@ function Signup(){
         //     };
         // const response = await fetch (url, {
         //     mode: "no-cors",
-        //     method: "POST",
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
+            // method: "POST",
+            // body: JSON.stringify(data),
+        //     headers: { Authorization: `Bearer ${token}` },
         // })
-        // if (response.ok){
-        //     setSubmitted(true)
-        // }
-
 
         // navigate("/")
-    }
 
     return (
         <div className = "row">

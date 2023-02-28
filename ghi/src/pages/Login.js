@@ -5,7 +5,7 @@ import { useToken } from "./Authentication"
 function Login(){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const login = useToken()[1]
+    const {token, login} = useToken()
     // const navigate = useNavigate()
 
     const handleUsernameChange = (e) => {
@@ -19,19 +19,20 @@ function Login(){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        login(username, password)
+        // login(username, password)
+        const response = await login (username, password)
         const data = {}
         data.username = username
         data.password = password
         const url = "http://localhost:8080/login"
         const fetchConfig = {
-            method: "POST",
+            method: "POST", // should this be a get method?
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             },
         }
-        const response = await fetch (url, fetchConfig)
+        
         if (response.ok) {
             setUsername('')
             setPassword('')
