@@ -6,8 +6,7 @@
 
 
 function Accountpage (){
-    const [accountDetails, setAccountDetails] = useState({});
-    const navigate = useNavigate();
+    const [accountDetails, setAccountDetails] = useState("");
     const [username, setUsername] = useState("");
     const [updateUsername, setUpdateUsername] = useState();
     const [, token] = useToken();
@@ -21,9 +20,5 @@ function Accountpage (){
         
     }
 
-
-
-
 }
-
 export default Accountpage

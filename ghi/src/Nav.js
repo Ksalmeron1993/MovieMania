@@ -23,15 +23,15 @@ function Nav() {
                         </li>
 
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {/* <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sign in/Account
-                            </a>
+                            </a> */}
                             <ul className="dropdown-menu" aria-labelledby='navbarDarkDropdownMenuLink'>
-                                <li><Link className="dropdown-item" to="/accountpage">AccountInfo</Link></li>
+                                {/* <li><Link className="dropdown-item" to="/accountpage">AccountInfo</Link></li> */}
                                 {/* //if we make a logout it would be under "Account" dropdown */}
                                 <li><Link className="dropdown-item" to="/logout">Logout</Link></li>
-                                <li><Link className="dropdown-item" to="/bookmarked">Bookmarked Movies</Link></li>
-                                <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li>
+                                {/* <li><Link className="dropdown-item" to="/bookmarked">Bookmarked Movies</Link></li> */}
+                                {/* <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li> */}
                             </ul>
                         </li>
         {/* //after this, these lines arent for the nav bar at the Home Page, i just dont know yet how i would incorporate them to their respective pages
@@ -41,11 +41,11 @@ function Nav() {
                                 Signup
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink className="nav-link" to="/moviedetail">
                                 Movie detail
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/login">
                                 Log in
