@@ -216,10 +216,6 @@
 
 // export default App;
 
-import React, { useState } from 'react';
-import MovieCard from './MovieCard';
-import './App.css';
-
 // function App() {
 //   const [query, setQuery] = useState('');
 //   const [movies, setMovies] = useState([]);
@@ -241,6 +237,12 @@ import './App.css';
 //   };
 
 
+import React, { useState } from 'react';
+import MovieCard from './MovieCard';
+import './App.css';
+
+
+
 function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
@@ -250,16 +252,15 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/movies?query=${query}`
+        `http://localhost:8000/movies/query=${query}`
       );
 
-      const contentType = response.headers.get("content-type", "application/json");
+      const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
         throw new TypeError("Response is not JSON");
       }
 
       const data = await response.json();
-      
       console.log(data);
       if (data.results) {
         setMovies(data.results);
