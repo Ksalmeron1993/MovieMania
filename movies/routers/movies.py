@@ -52,6 +52,8 @@ router = APIRouter()
 
 API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query="
 
+
+
 # @router.get("/movies/{movie_name}")
 # async def get_movies(movie_name: str) -> List[dict]:
 #     try:
@@ -66,10 +68,10 @@ API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab5
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/movies/{id}")
-async def get_movies(id: str) -> List[dict]:
+@router.get("/movies/{movie_name}")
+async def get_movies(movie_name: str) -> List[dict]:
     try:
-        url = API_URL + id
+        url = API_URL + movie_name
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
