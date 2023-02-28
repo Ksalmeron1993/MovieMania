@@ -66,10 +66,10 @@ API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab5
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/movies/{movie_name}")
-async def get_movies(movie_name: str) -> List[dict]:
+@router.get("/movies/{id}")
+async def get_movies(id: str) -> List[dict]:
     try:
-        url = API_URL + movie_name
+        url = API_URL + id
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
