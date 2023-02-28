@@ -42,7 +42,34 @@ class Userlogout(BaseModel):
     token: str
 
 class UsersRepo:
-    def get_user(self, id: int) -> UsersOut:
+    def get_user(self, username: str) -> UsersOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                        """
+                        SELECT id
+                            , first_name
+                            , last_name
+                            , email
+                            , username
+                            , hashed_password
+                        FROM users
+                        WHERE username = %s;
+                        """,
+                        [username],
+                    )
+                record = result.fetchone()
+                if record is None:
+                    return None
+                return User (
+                        id=record[0],
+                        first_name=record[1],
+                        last_name=record[2],
+                        email=record[3],
+                        username=record[4],
+                        hashed_password=record[5],     
+                    )
+    def get_user_by_id(self, id: int) -> UsersOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -69,6 +96,9 @@ class UsersRepo:
                         username=record[4],
                         hashed_password=record[5],     
                     )
+
+
+
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:
@@ -105,7 +135,7 @@ class UsersRepo:
                     result = db.execute(
                         """
                         INSERT INTO users
-                            (first_name, last_name, email, username, password)
+                            (first_name, last_name, email, username, hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
@@ -171,5 +201,3 @@ class UsersRepo:
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()
         return UsersOut(id=id, **old_data)
-
-    

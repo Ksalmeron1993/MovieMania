@@ -62,7 +62,7 @@ async def create_user(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = UserForm(username=info.email, password=info.password)
+    form = UserForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     print()
     return UserToken(user=user, **token.dict())
@@ -92,7 +92,7 @@ def delete_a_user(
 def get_one_user(
     id: int,
     repo: UsersRepo = Depends(),) -> UsersOut:
-    return repo.get_user(id)
+    return repo.get_user_by_id(id)
 
 @router.get("/get/all",tags=["Users"])
 def get_all_users(
@@ -111,7 +111,6 @@ async def get_access_token(
             "type": "Bearer",
             "user": user , 
         }
-
 
 
 
