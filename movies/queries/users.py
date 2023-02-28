@@ -8,6 +8,15 @@ class DuplicateUserError(ValueError):
 class Error(BaseModel):
     message: str
 
+class User(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
+    username: str
+    hashed_password: str 
+    
+
 class UsersIn(BaseModel):
     first_name: str
     last_name: str
@@ -33,11 +42,10 @@ class Userlogout(BaseModel):
     token: str
 
 class UsersRepo:
-    def get_one_user(self, username: int) -> UsersOut:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    result = db.execute(
+    def get_user(self, username: str) -> UsersOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
                         """
                         SELECT id
                             , first_name
@@ -46,23 +54,51 @@ class UsersRepo:
                             , username
                             , hashed_password
                         FROM users
-                        WHERE username = %s
+                        WHERE username = %s;
                         """,
                         [username],
                     )
-                    record = result.fetchone()
-                    user = UsersOut(
+                record = result.fetchone()
+                if record is None:
+                    return None
+                return User (
                         id=record[0],
                         first_name=record[1],
                         last_name=record[2],
                         email=record[3],
                         username=record[4],
-                        hashed_password=record[5]     
+                        hashed_password=record[5],     
                     )
-                    return user
-        except Exception as e:
-            print(e)
-            return {"error message": "Could not get the user"}
+    def get_user_by_id(self, id: int) -> UsersOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                        """
+                        SELECT id
+                            , first_name
+                            , last_name
+                            , email
+                            , username
+                            , hashed_password
+                        FROM users
+                        WHERE id = %s;
+                        """,
+                        [id],
+                    )
+                record = result.fetchone()
+                if record is None:
+                    return None
+                return User (
+                        id=record[0],
+                        first_name=record[1],
+                        last_name=record[2],
+                        email=record[3],
+                        username=record[4],
+                        hashed_password=record[5],     
+                    )
+
+
+
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:
@@ -99,7 +135,7 @@ class UsersRepo:
                     result = db.execute(
                         """
                         INSERT INTO users
-                            (first_name, last_name, email, username, password)
+                            (first_name, last_name, email, username, hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
@@ -117,26 +153,18 @@ class UsersRepo:
                     # Return new data
                     return UsersOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
         
-    def delete(self, user_id: int) -> bool:
-            try:
-                with pool.connection() as conn:
-                    with conn.cursor()as db:
-                        result = db.execute(
-                            """
-                            DELETE FROM users
-                            WHERE id = %s
-                            RETURNING id
-                            """
-                            [user_id]
-                        )
-                        id = result.fetchone()[0]
-                        return {f"User {id} deleted": True}
-            except Exception as e:
-                print(e)
-                return {"User has been succesfully deleted": False}
+    def delete_account(self, user_id: int) -> bool:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    DELETE FROM users
+                    WHERE id = %s
+                    """,
+                    [user_id],
+                )
     
-    def update(self, user_id:int , user: UsersIn) -> UsersOut:
-        try:
+    def update(self, user_id: int , user: UsersIn) -> UsersOut:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
@@ -148,6 +176,7 @@ class UsersRepo:
                             , username = %s
                             , hashed_password = %s
                         WHERE id = %s
+                        RETURNING id, first_name, last_name, email, username, hashed_password
                         """,
                         [
                             user.first_name,
@@ -158,14 +187,17 @@ class UsersRepo:
                             user_id
                         ]
                     )
-                    return self.Users_in_to_out(user_id, user)
-        except Exception as e:
-            print(e)
-            return {"User did not update"}
+                    record = None
+                    row = db.fetchone()
+                    if row is not None:
+                        record = {}
+                        for i, column in enumerate(db.description):
+                            record[column.name] = row[i]
+
+                    return record
+
         
     
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()
         return UsersOut(id=id, **old_data)
-
-    

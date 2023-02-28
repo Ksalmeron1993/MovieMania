@@ -9,7 +9,7 @@ class MyAuthenticator(Authenticator):
             username: str,
             users: UsersRepo,
     ):
-         return users.get_one_user(username)
+         return users.get_user(username)
 
     def get_account_getter(
         self,
