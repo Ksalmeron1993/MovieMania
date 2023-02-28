@@ -14,7 +14,7 @@ import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
 
 
-function App() {
+// function App() {
 //   const [launch_info, setLaunchInfo] = useState([]);
 //   const [error, setError] = useState(null);
 
@@ -223,4 +223,3 @@ export default App;
 // }
 
 // export default App;
-}
