@@ -67,29 +67,37 @@ async def create_user(
     print()
     return UserToken(user=user, **token.dict())
 
-@router.put("/users/{user_id}", response_model=bool)
+@router.put("/users/{id}", response_model=UsersOut)
 def update_a_user(
-    user_id: int,
+    id: int,
     user: UsersIn,
-    repo: UsersRepo = Depends(),) -> UsersOut:
-    return repo.update(user_id, user)
+    response: Response,
+    repo: UsersRepo = Depends(),
+):
+    record = repo.update(id, user)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
 
-@router.delete("/users/delete/{user_id}", tags=["Users"])
+
+@router.delete("/users/delete/{id}", tags=["Users"])
 def delete_a_user(
-    user_id: int, 
+    id: int, 
     repo: UsersRepo = Depends(),):
-    return repo.delete(user_id)
+    repo.delete_account(id)
+    return True
 
-@router.get("/users/get/{user_id}", tags=["Users"])
-def get_user(
-    user_id: str,
+@router.get("/users/get/{id}", tags=["Users"])
+def get_one_user(
+    id: int,
     repo: UsersRepo = Depends(),) -> UsersOut:
-    return repo.get(user_id)
+    return repo.get_user(id)
 
 @router.get("/get/all",tags=["Users"])
 def get_all_users(
     repo:UsersRepo = Depends (), ):
-    return repo.get_all()
+    return repo.get_all_users()
 
 
 @router.get("/token", response_model=UserToken | None, tags=["Users"])
