@@ -24,7 +24,7 @@ class UserForm(BaseModel):
 
 
 class UserToken(Token):
-    user: UsersOut
+    user: UsersOut 
 
 
 class HttpError(BaseModel):

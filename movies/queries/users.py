@@ -105,7 +105,7 @@ class UsersRepo:
                     result = db.execute(
                         """
                         INSERT INTO users
-                            (first_name, last_name, email, username, hashed_password)
+                            (first_name, last_name, email, username, password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
