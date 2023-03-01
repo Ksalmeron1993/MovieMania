@@ -68,7 +68,7 @@ function App() {
   return (
     // <AuthProvider>
     //   <GetToken />
-        <BrowserRouter>
+        <BrowserRouter> 
         <AuthProvider>
           <GetToken />
           <Nav />
