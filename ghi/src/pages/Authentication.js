@@ -8,7 +8,7 @@ export function getToken() {
 }
 
 export async function getTokenInternal() {
-  const url = `http://localhost:8000/token`
+  const url = `http://localhost:8000/token`; // `${process.env.REACT_APP_MOVIE_MANIA_API}/token`
   try {
     const response = await fetch(url, {
       credentials: "include",
@@ -103,16 +103,17 @@ export function useToken() {
     return handleErrorMessage(error);
   }
 
-  async function signup(username, password, email, firstName, lastName) {
+  async function signup(firstName, lastName, email, username, password ) {
     const url = `http://localhost:8000/signup`;
     const response = await fetch(url, {
+      // mode: "no-cors",
       method: "post",
       body: JSON.stringify({
-        username,
-        password,
-        email,
-        first_name: firstName,
-        last_name: lastName,
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "username": username,
+        "password": password
       }),
       headers: {
         "Content-Type": "application/json",
@@ -120,6 +121,7 @@ export function useToken() {
     });
     if (response.ok) {
       await login(username, password);
+      return true;
     }
     return false;
   }
@@ -145,7 +147,7 @@ export function useToken() {
     return false;
   }
 
-  return { token, login, logout, signup, update };
+  return [ token, login, logout, signup, update ];
 }
 
 export const useUser = (token) => {
@@ -172,4 +174,3 @@ export const useUser = (token) => {
 
   return user;
 }
-

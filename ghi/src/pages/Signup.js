@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {useToken} from "./Authentication.js"
 
 function Signup(){
@@ -7,7 +8,8 @@ function Signup(){
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const {signup} =  useToken()
+    const signup =  useToken()[3]
+    const navigate = useNavigate()
 
     const handleFirstNameChange = (e) => {
         const value = e.target.value;
@@ -25,41 +27,55 @@ function Signup(){
         const value = e.target.value
         setUsername(value)
     }
-    const handlePasswordChange = e => {
+    const handlePasswordChange = (e) => {
         const value = e.target.value
         setPassword(value)
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = {}
-        data.first_name = first_name
-        data.last_name = last_name
-        data.email = email
-        data.username = username
-        data.password = password
-        const url = "http://localhost:8000/signup"
-        const fetchConfig = {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
-        const response = await fetch (url, fetchConfig)
-        if (response.ok) {
-            signup(
-                first_name,
-                last_name,
-                username, 
-                email, 
-                password
-            )
-            setFirstName("")
-            setLastName("")
-            setEmail('')
-            setUsername('')
-            setPassword('')
-        }
+
+        // const data = {}
+        // data.first_name = first_name
+        // data.last_name = last_name
+        // data.email = email
+        // data.username = username
+        // data.password = password
+        // console.log(data)
+        // const url = "http://localhost:8000/signup"
+        // const fetchConfig = {
+        //     mode: "no-cors",
+        //     method: "POST",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // }
+        // if (request.ok) {
+        //     signup(
+                // first_name,
+                // last_name,
+                // username,
+                // email,
+                // password
+        //     )
+        const response = await signup(
+            first_name,
+            last_name,
+            email,
+            username,
+            password
+        )
+        console.log(response)
+    }
+        // const response = await fetch(url, fetchConfig)
+        // if (response.ok){
+        //     setFirstName('')
+        //     setLastName('')
+        //     setEmail('')
+        //     setUsername('')
+        //     setPassword('')
+        // }
+        // }
 
 
         // const url = 'http://localhost:8000/signup'
@@ -72,19 +88,12 @@ function Signup(){
         //     };
         // const response = await fetch (url, {
         //     mode: "no-cors",
-        //     method: "POST",
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
+            // method: "POST",
+            // body: JSON.stringify(data),
+        //     headers: { Authorization: `Bearer ${token}` },
         // })
-        // if (response.ok){
-        //     setSubmitted(true)
-        // }
-
 
         // navigate("/")
-    }
 
     return (
         <div className = "row">
@@ -117,6 +126,6 @@ function Signup(){
                 </div>
             </div>
         </div>
-    );    
+    );
 }
-export default Signup
+export default Signup;
