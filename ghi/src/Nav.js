@@ -7,14 +7,10 @@ import { NavLink, Link} from "react-router-dom";
 //high chance to edit it
 //just making an example from what I used in car-car project
 
-
 function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div className="container-fluid">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <NavLink className="nav-link active" aria-current="page" to="/homepage">
@@ -29,7 +25,7 @@ function Nav() {
                             <ul className="dropdown-menu" aria-labelledby='navbarDarkDropdownMenuLink'>
                                 {/* <li><Link className="dropdown-item" to="/accountpage">AccountInfo</Link></li> */}
                                 {/* //if we make a logout it would be under "Account" dropdown */}
-                                <li><Link className="dropdown-item" to="/logout">Logout</Link></li>
+                            <li><Link className="dropdown-item" to="/logout">Logout</Link></li>
                                 {/* <li><Link className="dropdown-item" to="/bookmarked">Bookmarked Movies</Link></li> */}
                                 {/* <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li> */}
                             </ul>
