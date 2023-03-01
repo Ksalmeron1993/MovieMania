@@ -10,31 +10,32 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8000/movies/${movieName}`);
+      const response = await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
 
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new TypeError("Response is not JSON");
-      }
 
-      const data = await response.json();
+      // const contentType = response.headers.get("content-type");
+      // if (!contentType || !contentType.includes("application/json")) {
+      //   throw new TypeError("Response is not JSON");
+      // }
 
-      if (data.results) {
-        setMovies(data.results);
-      } else {
-        setMovies([]);
-        console.log(data);
-      }
+      // const data = await response.json();
+
+      // if (data.results) {
+      //   setMovies(data.results);
+      // } else {
+      //   setMovies([]);
+      //   console.log(movies);
+      // }
     } catch (error) {
       console.log(error);
       setMovies([]);
     }
   };
-  useEffect(() => {
-    searchMovies({ preventDefault: () => {} }, "Marvel");
-    // eslint-disable-next-line
-  }, []);
- 
+  // useEffect(() => {
+  //   searchMovies({ preventDefault: () => {} }, "Marvel");
+  //   // eslint-disable-next-line
+  // }, []);
+
 
   return (
     <div className="container">
@@ -56,7 +57,8 @@ function App() {
         </button>
       </form>
       <div className="card-list">
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
+          // <div> {movie.id} </div>
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>

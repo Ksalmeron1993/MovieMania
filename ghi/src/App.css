@@ -90,7 +90,7 @@ h1 {
   cursor: pointer;
 }
 
-/* .search button {
+.search button {
   padding: 20px 40px;
   border-radius: 0.5rem;
   margin-left: 15px;
@@ -103,9 +103,9 @@ h1 {
   background: #1f2123;
   -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
-} */
+}
 
-.empty {
+/* .empty {
   width: 100%;
   margin-top: 3rem;
 
@@ -118,7 +118,7 @@ h1 {
   font-size: 1.25rem;
   color: #f9d3b4;
   font-family: var(--font-raleway);
-}
+} */
 
 .container {
   width: 100%;
@@ -207,7 +207,7 @@ h1 {
   opacity: 1;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .app {
     padding: 4rem 2rem;
   }
@@ -244,4 +244,4 @@ h1 {
     width: "100%";
     margin: 1rem;
   }
-}
+} */

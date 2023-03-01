@@ -1,27 +1,33 @@
-import React from "react";
+import react from "react";
 
-const MovieCard = ({ movie }) => {
+
+function MovieCard ( props ) {
+  const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`;
+
   return (
     <div className="movie">
+      {props.movie.id}
       <div>
-        <p>{movie.popularity}</p>
+        <p>{props.movie.release_date}</p>
       </div>
-      {/* <div>
+      <div>
         <img
-          src={
-            movie.Poster !== "N/A"
-              ? movie.Poster
-              : "https://via.placeholder.com/400"
-          }
-          alt={movie.Title}
+          src={imageUrl}
+          // alt={props.movie.title}
         />
-      </div> */}
-      {/* <div>
-        <span>{movie.Type}</span>
-        <h3>{movie.Title}</h3>
-      </div> */}
+      </div>
+      <div>
+        <h3>{props.movie.title}</h3>
+        <h4>{props.movie.overview}</h4>
+        <h5>{props.movie.adult}</h5>
+        <h6>{props.movie.vote_average}</h6>
+        <h4>{props.movie.vote_count}</h4>
+        <h4>{props.movie.video}</h4>
+      </div>
     </div>
   );
 };
-
 export default MovieCard;
+
+
+// adult, vote_average, vote_count, video
