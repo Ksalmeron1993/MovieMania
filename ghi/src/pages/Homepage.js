@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import MovieCard from "./MovieCard";
-import "/app/src/App.css";
+import MovieCard from "../MovieCard";
+import "../App.css"
 
 function HomePage() {
   const [movieName, setmovieName] = useState("");
