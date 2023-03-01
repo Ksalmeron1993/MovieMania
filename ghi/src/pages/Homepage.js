@@ -11,28 +11,24 @@ function HomePage() {
 
     try {
       const response = await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
-
-
-      // const contentType = response.headers.get("content-type");
-      // if (!contentType || !contentType.includes("application/json")) {
-      //   throw new TypeError("Response is not JSON");
-      // }
-
-      // const data = await response.json();
-
-      // if (data.results) {
-      //   setMovies(data.results);
-      // } else {
-      //   setMovies([]);
-      //   console.log(movies);
-      // }
     } catch (error) {
       console.log(error);
       setMovies([]);
     }
   };
 
+  useEffect(() => {
+    const getPopularMovies = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+      } catch (error) {
+        console.log(error);
+        setMovies([]);
+      }
+    }
 
+    getPopularMovies();
+  }, []);
 
   return (
     <div className="container">
