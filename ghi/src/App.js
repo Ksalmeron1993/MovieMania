@@ -11,6 +11,7 @@ import Nav from './Nav.js';
 //last 3 i dont know if we would use them or how to inorporate them correctly yet
 import Login from './pages/Login.js';
 // import Moviedetail from './pages/Moviedetail.js';
+import Logout from "./pages/Logout.js";
 import Signup from './pages/Signup.js';
 import { AuthProvider, useToken } from "./pages/Authentication.js";
 
@@ -71,6 +72,7 @@ function App() {
           <Nav />
             <div className="container">
               <Routes>
+                <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
               </Routes>

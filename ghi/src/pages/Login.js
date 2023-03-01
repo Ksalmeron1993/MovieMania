@@ -25,12 +25,12 @@ function Login(){
         if (error) {
             isLoggedIn(false)
         } else {
-            navigate("/signup") // change navigate to homepage
+            navigate("/logout") // change navigate to homepage
         }
 
 
         await login (
-            username, 
+            username,
             password
         )
         console.log("You logged in!!")
@@ -41,7 +41,7 @@ function Login(){
 
 
         // const response = await login(
-        //     username, 
+        //     username,
         //     password
         //     )
         // if (response.ok) {

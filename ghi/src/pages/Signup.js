@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {useToken} from "./Authentication.js"
+import { useAuthContext } from "./Authentication"
 
 function Signup(){
     const [first_name, setFirstName] = useState("")
@@ -10,6 +11,7 @@ function Signup(){
     const [password, setPassword] = useState("")
     const signup =  useToken()[3]
     const navigate = useNavigate()
+    const {isLoggedIn} = useAuthContext()
 
     const handleFirstNameChange = (e) => {
         const value = e.target.value;
@@ -65,7 +67,11 @@ function Signup(){
             username,
             password
         )
-        console.log(response)
+        if (response) {
+            navigate("/login")
+        } else {
+            isLoggedIn(false) // change navigate to homepage
+        }
     }
         // const response = await fetch(url, fetchConfig)
         // if (response.ok){
