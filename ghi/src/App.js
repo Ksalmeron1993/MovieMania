@@ -12,13 +12,13 @@ import Nav from './Nav.js';
 import Login from './pages/Login.js';
 // import Moviedetail from './pages/Moviedetail.js';
 import Signup from './pages/Signup.js';
-// import { AuthProvider, useToken } from "./pages/Authentication.js";
+import { AuthProvider, useToken } from "./pages/Authentication.js";
 
 
-// function GetToken(){
-//   useToken()
-//   return null
-// }
+function GetToken(){
+  useToken()
+  return null
+}
 
 function App() {
 //   const [launch_info, setLaunchInfo] = useState([]);
@@ -66,6 +66,8 @@ function App() {
     // <AuthProvider>
     //   <GetToken />
         <BrowserRouter>
+        <AuthProvider>
+          <GetToken />
           <Nav />
             <div className="container">
               <Routes>
@@ -73,6 +75,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
               </Routes>
             </div>
+        </AuthProvider>
         </BrowserRouter>
     // </AuthProvider>
   );

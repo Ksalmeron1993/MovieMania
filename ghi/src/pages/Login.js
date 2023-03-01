@@ -12,7 +12,7 @@ function Login(){
         const value = e.target.value
         setUsername(value)
     }
-    const handlePasswordChange = e => {
+    const handlePasswordChange = (e) => {
         const value = e.target.value
         setPassword(value)
     }
@@ -32,7 +32,7 @@ function Login(){
                 'Content-Type': 'application/json',
             },
         }
-        
+
         if (response.ok) {
             setUsername('')
             setPassword('')
@@ -43,7 +43,7 @@ function Login(){
 
     // function handleClick() {
     //     navigate("/signup")
-    // } to go to /sign up link 
+    // } to go to /sign up link
 
 
     return (

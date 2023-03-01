@@ -14,8 +14,7 @@ class User(BaseModel):
     last_name: str
     email: str
     username: str
-    hashed_password: str 
-    
+    hashed_password: str
 
 class UsersIn(BaseModel):
     first_name: str
@@ -30,7 +29,7 @@ class UsersOut(BaseModel):
     last_name: str
     email: str
     username: str
-    hashed_password: str
+    # hashed_password: str
 
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
@@ -67,7 +66,7 @@ class UsersRepo:
                         last_name=record[2],
                         email=record[3],
                         username=record[4],
-                        hashed_password=record[5],     
+                        hashed_password=record[5],
                     )
     def get_user_by_id(self, id: int) -> UsersOut:
         with pool.connection() as conn:
@@ -94,7 +93,7 @@ class UsersRepo:
                         last_name=record[2],
                         email=record[3],
                         username=record[4],
-                        hashed_password=record[5],     
+                        hashed_password=record[5],
                     )
 
 
@@ -116,16 +115,16 @@ class UsersRepo:
                     result = db.fetchall()
                     return [UsersOut(
                             id=id ,
-                            first_name=first_name, 
+                            first_name=first_name,
                             last_name=last_name,
-                            email=email, 
+                            email=email,
                             username=username,
                             hashed_password=hashed_password)
                             for id, first_name, last_name, email, username, hashed_password in result]
         except Exception as e:
             print(e)
             return {"Users list could not be found, try again"}
-     
+
     def create(self, user: UsersIn, hashed_password: str) -> UsersOutWithPassword:
             # Connect to the database
             with pool.connection() as conn:
@@ -145,14 +144,14 @@ class UsersRepo:
                             user.last_name,
                             user.email,
                             user.username,
-                            hashed_password,
+                            hashed_password
                         ]
                     )
                     id = result.fetchone()[0]
                     old_data = user.dict()
                     # Return new data
                     return UsersOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
-        
+
     def delete_account(self, user_id: int) -> bool:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -163,13 +162,13 @@ class UsersRepo:
                     """,
                     [user_id],
                 )
-    
+
     def update(self, user_id: int , user: UsersIn) -> UsersOut:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        UPDATE users 
+                        UPDATE users
                         SET first_name = %s
                             , last_name = %s
                             , email = %s
@@ -196,8 +195,8 @@ class UsersRepo:
 
                     return record
 
-        
-    
+
+
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()
         return UsersOut(id=id, **old_data)
