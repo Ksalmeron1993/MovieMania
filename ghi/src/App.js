@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import './App.css';
 // import Accountpage from './pages/Accountpage.js';
 // import Bookmarked from './pages/Bookmarked.js';
-// import Homepage from './pages/Homepage.js';
+import Homepage from './pages/Homepage.js';
 // import Mainpage from './pages/Mainpage.js';
 import Nav from './Nav.js';
 //last 3 i dont know if we would use them or how to inorporate them correctly yet
@@ -73,6 +73,7 @@ function App() {
               <Routes>
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/homepage" element={<Homepage />} />
               </Routes>
             </div>
         </AuthProvider>
