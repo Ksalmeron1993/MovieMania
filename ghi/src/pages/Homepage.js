@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import MovieCard from "../MovieCard";
+import React, { useState, useEffect } from "react";
+import MovieCard from "./MovieCard";
 import "../App.css"
 
 function HomePage() {
