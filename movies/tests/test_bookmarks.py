@@ -1,42 +1,28 @@
-from fastapi.testclient import TestClient # check fast api documentation for overrides
+from fastapi.testclient import TestClient 
 from main import app
-from queries.users import UsersRepo
-# from queries.bookmarks import BookmarkRepository
+from queries.bookmarks import BookmarkRepository
 
 client = TestClient(app)
-
-class EmptyUserQueries:
-    def get_all(self):
-        return []
     
-# class EmptyBookmarkQueries:
-#     def get_all(self):
-#         return []
+class EmptyBookmarkQueries:
+    def get_all_bookmarks(self):
+        return []
     
 # class CreateBookmark:
 #     def create(self, bookmark):
 #         result = {
-#             "id":
-#             ""
+#             "user_id": 1,
+#             "movie_id": 1,
+#             "bookmark_date": "2023-03-01"
 #         }
 #         return result
 
-def test_get_all_users():
+def test_get_all_movies():
     # Arrange
-    app.dependency_overrides[UsersRepo] = EmptyUserQueries
-    response = client.get("/get/all")
+    app.dependency_overrides[BookmarkRepository] = EmptyBookmarkQueries
+    response = client.get("/movies/bookmarks/")
     # Act 
     app.dependency_overrides = {}
     # Assert
     assert response.status_code == 200
-    assert response.json() == {"users": []}
-
-# def test_get_all_bookmarks():
-#     # Arrange
-#     app.dependency_overrides[BookmarkRepository] = EmptyBookmarkQueries
-#     response = client.get("/movies/bookmarks/")
-#     # Act 
-#     app.dependency_overrides = {}
-#     # Assert
-#     assert response.status_code == 200
-#     assert response.json() == {"bookmarks": []}
+    assert response.json() == {"bookmarks": []}
