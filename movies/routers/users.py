@@ -4,7 +4,7 @@ from fastapi import (
     Request,
     Response,
     HTTPException,
-    status,
+    status
 )
 
 from queries.users import (
@@ -24,7 +24,7 @@ class UserForm(BaseModel):
 
 
 class UserToken(Token):
-    user: UsersOut 
+    user: UsersOut
 
 
 class HttpError(BaseModel):
@@ -35,7 +35,7 @@ router = APIRouter()
 
 @router.get("/protected", response_model=bool,tags=["Users"])
 async def protected(
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.get_account_data),
     ):
     return True
 
@@ -83,7 +83,7 @@ def update_a_user(
 
 @router.delete("/users/delete/{id}", tags=["Users"])
 def delete_a_user(
-    id: int, 
+    id: int,
     repo: UsersRepo = Depends(),):
     repo.delete_account(id)
     return True
@@ -103,38 +103,11 @@ def get_all_users(
 @router.get("/token", response_model=UserToken | None, tags=["Users"])
 async def get_access_token(
     request: Request,
-    user : UsersOut = Depends(authenticator.try_get_current_account_data)
+    user : UsersOut = Depends(authenticator.get_account_data)
 ) -> UserToken | None:
     if user and authenticator.cookie_name in request.cookies:
         return {
             "access_token" : request.cookies[authenticator.cookie_name],
             "type": "Bearer",
-            "user": user , 
+            "user": user
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
