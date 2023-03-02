@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ErrorNotification from './ErrorNotification';
 // import './App.css';
 // import Accountpage from './pages/Accountpage.js';
-// import Bookmarked from './pages/Bookmarked.js';
+import Bookmarked from './pages/Bookmarked.js';
 import HomePage from "./pages/Homepage.js";
 // import Mainpage from './pages/Mainpage.js';
 import Nav from './Nav.js';
@@ -75,6 +75,8 @@ function App() {
           <Nav />
             <div className="container">
               <Routes>
+                <Route path="/Bookmarked/:id" component={Moviedetail} />
+                <Route path="/Bookmarked" element={<Bookmarked />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
