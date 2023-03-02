@@ -75,7 +75,7 @@ function App() {
           <Nav />
             <div className="container">
               <Routes>
-                <Route path="/Bookmarked/:id" component={Moviedetail} />
+                {/* <Route path="/Bookmarked/:id" component={Moviedetail} /> */}
                 <Route path="/Bookmarked" element={<Bookmarked />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />

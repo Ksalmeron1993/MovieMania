@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext, useToken } from "./Authentication";
 
 
@@ -7,8 +7,9 @@ import { useAuthContext, useToken } from "./Authentication";
 function AccountDetailView () {
 //   const { user } = useAuthContext();
     const token = useToken()[0]
-    const [user, setUser] = useState()
-    // const {isLoggedIn} = useAuthContext()
+    const [user, setUser] = useState([])
+    const navigate = useNavigate()
+    const {isLoggedIn} = useAuthContext()
     const fetchUser = async () => {
       const url = `http://localhost:8000/users/get/${user.id}`
       const fetchConfig = {
@@ -18,12 +19,12 @@ function AccountDetailView () {
         }
       }
       const response = await fetch(url, fetchConfig)
-      if (response.ok) {
+      // if (isLoggedIn) {
         const data = await response.json()
         setUser(data)
-        }else {
-          navigate("/login")
-        }
+      // }else {
+      //   navigate("/login")
+      // }
     }
     useEffect(() => {
       fetchUser()
@@ -53,8 +54,17 @@ function AccountDetailView () {
           </tr>
         </tbody>
       </table>
+      {/* <div className="buttons-wrapper">
+        <Link to={"/AccountEditForm"}>Edit Profile</Link>
+      </div> */}
     </div>
-    // <div className="accountwrapper">
+
+  );
+};
+
+export default AccountDetailView;
+
+// <div className="accountwrapper">
     //   {user && (
     //     <>
     //       <h2>First Name: {user.first_name}</h2>
@@ -67,10 +77,6 @@ function AccountDetailView () {
     //     </>
     //   )}
     // </div>
-  );
-};
-
-export default AccountDetailView;
 
 // function Accountpage (){
 // //     const [accountDetails, setAccountDetails] = useState("");
