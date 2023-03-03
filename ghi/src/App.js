@@ -17,6 +17,7 @@ import Signup from './pages/Signup.js';
 import { AuthProvider, useToken } from "./pages/Authentication.js";
 // import MovieCard2 from "./MovieCard 2.js";
 import AccountDetailView from "./pages/Accountpage.js";
+import AccountEditForm from "./pages/Accounteditpage.js";
 
 
 function GetToken(){
@@ -82,6 +83,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/AccountDetails" element={<AccountDetailView />} />
+                <Route path="/AccountEdit" element={<AccountEditForm />} />
               </Routes>
             </div>
         </AuthProvider>
