@@ -27,3 +27,22 @@ async def get_movies(movie_name: str) -> List[dict]:
         raise HTTPException(status_code=response.status_code, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@router.get("/popular/")
+def get_popular_movies():
+    API_URL = "https://api.themoviedb.org/3"
+    API_KEY = "7d055fdafcdf398aab55d81760d1c151"
+    try:
+        url = f"{API_URL}/movie/popular?api_key={API_KEY}"
+        response = requests.get(url)
+
+        if response.status_code < 200 or response.status_code >= 300:
+            raise Exception(response.json())
+
+        results = response.json()["results"]
+        return results
+
+    except Exception as e:
+        raise Exception(str(e))

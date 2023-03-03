@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ErrorNotification from './ErrorNotification';
 // import './App.css';
 // import Accountpage from './pages/Accountpage.js';
-// import Bookmarked from './pages/Bookmarked.js';
+import Bookmarked from './pages/Bookmarked.js';
 import HomePage from "./pages/Homepage.js";
 // import Mainpage from './pages/Mainpage.js';
 import Nav from './Nav.js';
@@ -16,6 +16,7 @@ import Logout from "./pages/Logout.js";
 import Signup from './pages/Signup.js';
 import { AuthProvider, useToken } from "./pages/Authentication.js";
 // import MovieCard2 from "./MovieCard 2.js";
+import AccountDetailView from "./pages/Accountpage.js";
 
 
 function GetToken(){
@@ -74,10 +75,13 @@ function App() {
           <Nav />
             <div className="container">
               <Routes>
+                {/* <Route path="/Bookmarked/:id" component={Moviedetail} /> */}
+                <Route path="/Bookmarked" element={<Bookmarked />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/homepage" element={<HomePage />} />
+                <Route path="/AccountDetailView" element={<AccountDetailView />} />
               </Routes>
             </div>
         </AuthProvider>
