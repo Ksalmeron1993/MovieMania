@@ -174,8 +174,7 @@ function MovieCard(props) {
       </div>
       <div>
         <h3>{props.movie.title}</h3>
-        <h3>Popularity {props.movie.popularity}</h3>
-        <h3>id {props.movie.id}</h3>
+        
 
 
         {showOverview && <h4>{props.movie.overview}</h4>}
