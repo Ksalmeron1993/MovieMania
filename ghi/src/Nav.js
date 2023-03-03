@@ -26,7 +26,7 @@ function Nav() {
               <NavLink
                 className="nav-link active"
                 aria-current="page"
-                to="AccountDetailView"
+                to="AccountDetails"
               >
                 Account info
               </NavLink>
