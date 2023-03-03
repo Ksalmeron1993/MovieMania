@@ -9,7 +9,7 @@ import HomePage from "./pages/Homepage.js";
 import Nav from './Nav.js';
 //last 3 i dont know if we would use them or how to inorporate them correctly yet
 import Login from './pages/Login.js';
-// import Moviedetail from './pages/Moviedetail.js';
+import Moviedetail from './pages/Moviedetail.js';
 // import MovieCard2 from "./MovieCard 2.js";
 import Logout from "./pages/Logout.js";
 import Signup from './pages/Signup.js';
@@ -82,6 +82,8 @@ function App() {
                 <Route path="/AccountDetails" element={<AccountDetailView />} />
                 <Route path="/AccountDetailView" element={<AccountDetailView />} />
                 <Route path="/Bookmarkedmovies" element={<Bookmarkedmovies />} />
+                <Route path="/movies/:id/detail" element={<Moviedetail />} /> // add a new Route for the Moviedetail component
+
               </Routes>
             </div>
         </AuthProvider>
