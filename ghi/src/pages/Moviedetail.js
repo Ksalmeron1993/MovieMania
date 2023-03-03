@@ -139,8 +139,9 @@ import { useParams } from "react-router-dom";
 import MovieCard from "../MovieCard";
 import "../styles/Moviedetail.css";
 
-function MovieDetail() {
-  const { movieId } = useParams();
+function MovieDetail(props) {
+  const {id} = useParams();
+  console.log("movie id" ,id)
   const [movie, setMovie] = useState({
     title: "",
     overview: "",
@@ -155,7 +156,7 @@ function MovieDetail() {
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
-        const response = await fetch(`http://localhost:8000/movies/${movieId}/`);
+        const response = await fetch(`http://localhost:8000/movies/${id}/detail`);
         const data = await response.json();
         setMovie(data);
       } catch (error) {
@@ -164,8 +165,10 @@ function MovieDetail() {
     }
 
     fetchMovieDetails();
-  }, [movieId]);
-
+  }, [id]);
+  useEffect(() => {
+    console.log(id);
+  }, [movie]);
   useEffect(() => {
     console.log(movie);
   }, [movie]);
