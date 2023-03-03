@@ -1,77 +1,95 @@
-// import React, { useState, useEffect } from "react";
-// import { useNavigate, Link } from "react-router-dom";
-// import { useAuthContext } from "./Authentication";
-// import { Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useAuthContext, useToken } from "./Authentication";
+import { useNavigate } from "react-router-dom";
+import MovieCard from "./MovieCard";
+//import "./PostList.css";
 
-// function AllBookmarked() {
-//   const { isLoggedIn } = useAuthContext();
-//   const navigate = useNavigate();
-//   const[movies, setMovies] = useState([]);
+function Bookmarkedmovies() {
+  const [bookmarks, setBookmarks] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const { token } = useAuthContext();
+  const navigate = useNavigate();
 
+  const fetchData = async () => {
+    const url = `http://localhost:8000/users/get/${token.user.id}`;
+    const fetchConfig = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-//   useEffect(() => {
-//     if (!isLoggedIn) {
-//       navigate("/login"); // Redirect to login page if user is not logged in
-//     }
-//   }, [isLoggedIn, navigate]);
+    const response = await fetch(url, fetchConfig);
+    if (response.ok) {
+      const data = await response.json();
+      setMovies(data);
+      console.log(data)
+    }
+  };
+  console.log(response)
 
-// const deleteSavedMovies = async (movieId) => {
-//         try {
-//             const deletedMovie = movies.filter((i) => i.id !== movieId);
-//             await updateDoc(movieRef, {
-//                 savedMovies: deletedMovie
-//             });
-//         } catch (err) {
-//             console.log(err);a
-//         }
-//     };
+  const getBookmarks = async () => {
+    const url = "http://localhost:8000/movies";
+    const response = await fetch(url);
+    if (response.ok) {
+      const bookmark = await response.json();
+      setBookmarks(bookmark);
+      console.log(bookmark, "bookmark")
+    }
+  };
+  console.log("bookmark", bookmarks)
 
-// //
-// return (
-//     isLoggedIn (
-//         <>
-//             {movies.map((bookmarked, id) => {
-//                 return (
-//                     <div className='bookmarked--movie--container'>
-//                                             {/* HERE WILL GO OUR 3RD PARTY API URL */}
-//                         <img key={id} src={`https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query=/${bookmarked?.img}`} alt={bookmarked.title} />
+  const handleBookmark = (movie) => {
+    if (!bookmarks.includes(movie)) {
+      setBookmarks([...bookmarks, movie]);
+    }
+  };
 
-//                         <div className='bookmarked--movie--btn'>
+  const handleRemoveBookmark = (movie) => {
+    setBookmarks(bookmarks.filter((bookmark) => bookmark !== movie));
+  };
 
-//                             <FaInfoCircle title='More Info' onClick={() => navigate(`/movie/${bookmarked?.id}`)} />
-//                             {/* DELETE BY MOVIE_ID */}
-//                             <FaRegFrown
-//                                 onClick={() => deleteBookmarked(bookmarked.id)}
-//                                 title='Remove'
-//                             />
+  useEffect(() => {
+    fetchData();
+    getBookmarks();
+    if (token === false) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
 
-//                         </div>
+  return (
+    <div>
+      <h1>Movie Bookmarks</h1>
 
-//                     </div>
-//                 )
+      <div className="movies-container">
+        {bookmarks.length > 0 ? (
+          bookmarks.map((movie) => (
+            <div key={movie.id}>
+              <MovieCard movie={movie} />
+              <button onClick={() => handleRemoveBookmark(movie)}>
+                Remove Bookmark
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No bookmarks yet!</p>
+        )}
+      </div>
 
-//             })}
-//         </>
-//     )
-// );
-//         }
+      <h2>Discover Movies</h2>
 
-// // API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query="
+      <div className="movies-container">
+        {movies.map((movie) => (
+          <div key={movie.id}>
+            <MovieCard movie={movie} />
+            <button onClick={() => handleBookmark(movie)}>
+              Add Bookmark
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-
-
-// //   return (
-// //     <Container>
-// //       {isLoggedIn (
-// //         <>
-// //           <h1>All Bookmarked Movies</h1>
-// //           <p>Click on a movie to see details:</p>
-// //           <Link to="/moviedetail">Movie 1</Link>
-// //           <Link to="/moviedetail">Movie 2</Link>
-// //           <Link to={`/moviedetail/${movie.id}`}>{movie.title}</Link>
-// //         </>
-// //       )}
-// //     </Container>
-// //   );
-// // }
-// export default AllBookmarked;
+export default Bookmarkedmovies;

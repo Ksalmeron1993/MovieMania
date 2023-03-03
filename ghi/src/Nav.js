@@ -47,7 +47,7 @@ function Nav() {
                     Logout
                   </Link>
                 </li>
-                {/* <li><Link className="dropdown-item" to="/bookmarked">Bookmarked Movies</Link></li> */}
+                <li><Link className="dropdown-item" to="/Bookmarkedmovies">Bookmarked Movies</Link></li>
                 {/* <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li> */}
               </ul>
             </li>
