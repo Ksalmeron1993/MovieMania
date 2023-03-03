@@ -76,12 +76,12 @@ function App() {
             <div className="container">
               <Routes>
                 {/* <Route path="/Bookmarked/:id" component={Moviedetail} /> */}
-                <Route path="/Bookmarked" element={<Bookmarked />} />
+                {/* <Route path="/Bookmarked" element={<Bookmarked />} /> */}
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/homepage" element={<HomePage />} />
-                <Route path="/AccountDetailView" element={<AccountDetailView />} />
+                <Route path="/AccountDetails" element={<AccountDetailView />} />
               </Routes>
             </div>
         </AuthProvider>

@@ -15,8 +15,9 @@ export async function getTokenInternal() {
     });
     if (response.ok) {
       const data = await response.json()
-      internalToken = data.access_token
-      return internalToken
+      // internalToken = data.access_token
+      // return internalToken
+      return data
     }
   } catch (e) {}
   return false
