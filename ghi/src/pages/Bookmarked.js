@@ -6,7 +6,6 @@ import MovieCard from "./MovieCard";
 
 function Bookmarkedmovies() {
   const [bookmarks, setBookmarks] = useState([]);
-  const [movies, setMovies] = useState([]);
   const { token } = useAuthContext();
   const navigate = useNavigate();
 
@@ -22,14 +21,13 @@ function Bookmarkedmovies() {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       const data = await response.json();
-      setMovies(data);
+      setBookmarks(data);
       console.log(data)
     }
   };
-  console.log(response)
 
   const getBookmarks = async () => {
-    const url = "http://localhost:8000/movies";
+    const url = "http://localhost:8000/movies/bookmarks";
     const response = await fetch(url);
     if (response.ok) {
       const bookmark = await response.json();
@@ -39,12 +37,7 @@ function Bookmarkedmovies() {
   };
   console.log("bookmark", bookmarks)
 
-  const handleBookmark = (movie) => {
-    if (!bookmarks.includes(movie)) {
-      setBookmarks([...bookmarks, movie]);
-    }
-  };
-
+  
   const handleRemoveBookmark = (movie) => {
     setBookmarks(bookmarks.filter((bookmark) => bookmark !== movie));
   };
@@ -74,19 +67,6 @@ function Bookmarkedmovies() {
         ) : (
           <p>No bookmarks yet!</p>
         )}
-      </div>
-
-      <h2>Discover Movies</h2>
-
-      <div className="movies-container">
-        {movies.map((movie) => (
-          <div key={movie.id}>
-            <MovieCard movie={movie} />
-            <button onClick={() => handleBookmark(movie)}>
-              Add Bookmark
-            </button>
-          </div>
-        ))}
       </div>
     </div>
   );
