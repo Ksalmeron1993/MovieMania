@@ -78,6 +78,7 @@ function Signup(){
                         <button className="btn btn-primary" type="submit">Sign Up</button>
                     </form>
                 </div>
+                <button className="link-btn" onClick={() => navigate('/login')}>Already have an account? Login here.</button>
             </div>
         </div>
     );

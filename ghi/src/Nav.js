@@ -3,7 +3,7 @@
 //Added all the pages but might only use login, signup
 //Potentially create a logout page? talk with group
 import { NavLink, Link} from "react-router-dom";
-import { useAuthContext, useToken } from "./pages/Authentication";
+// import { useAuthContext, useToken } from "./pages/Authentication";
 //will make this nav look as if all the buttons are in the main page
 //high chance to edit it
 //just making an example from what I used in car-car project
