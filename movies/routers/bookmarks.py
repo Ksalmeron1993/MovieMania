@@ -17,7 +17,7 @@ class BookmarkForm(BaseModel):
 def create_a_bookmark(
     bookmark_in: BookmarkIn,
     repo: BookmarkRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.create_a_bookmark(bookmark_in)
 

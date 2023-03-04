@@ -103,11 +103,12 @@ def get_all_users(
 @router.get("/token", response_model=UserToken | None, tags=["Users"])
 async def get_access_token(
     request: Request,
-    user : UsersOut = Depends(authenticator.get_account_data)
+    user : UsersOut = Depends(authenticator.try_get_current_account_data)
 ) -> UserToken | None:
     if user and authenticator.cookie_name in request.cookies:
-        return {
+        token_data = {
             "access_token" : request.cookies[authenticator.cookie_name],
             "type": "Bearer",
             "user": user
         }
+        return UserToken(**token_data)

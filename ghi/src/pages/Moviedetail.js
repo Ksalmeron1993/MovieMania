@@ -136,7 +136,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MovieCard from "../MovieCard";
+import MovieCard from "./MovieCard";
 import "../styles/Moviedetail.css";
 import { useAuthContext, useToken } from "./Authentication";
 
