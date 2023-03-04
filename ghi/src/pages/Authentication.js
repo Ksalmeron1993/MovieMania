@@ -127,17 +127,20 @@ export function useToken() {
     return false;
   }
 
-  async function update(username, firstName, lastName, password) {
+  async function update(firstName, lastName, email, username, password) {
     const url = `http://localhost:8000/users/${token.user.id}`;
     const response = await fetch (url, {
-      method: "patch",
+      method: "put",
       body: JSON.stringify({
-        username,
         first_name: firstName,
         last_name: lastName,
+        email: email,
+        username: username,
+        password: password,
       }),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
     });
     // console.log(response)
@@ -148,6 +151,7 @@ export function useToken() {
     // }
     // return false;
     if (response.ok) {
+      console.log("update", "successful")
       await login(username, password);
       return true;
     }

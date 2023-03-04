@@ -39,8 +39,8 @@ function AccountDetailView () {
       // else{
       //   console.log('user:', user)
       // }
-      
-      
+
+
     }, [user, token])
 
   return (
@@ -50,7 +50,7 @@ function AccountDetailView () {
       <p>Last Name: {userData.last_name}</p>
       <p>Email: {userData.email}</p>
       <p>Username: {userData.username}</p>
-      {/* <p>Password: {userData.password}</p> */}
+      <p>Password: {userData.password}</p>
     </div>
   );
 };

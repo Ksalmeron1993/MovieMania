@@ -6,8 +6,11 @@ function AccountEditForm() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const update = useToken()[4];
   const navigate = useNavigate();
+  const {token} = useAuthContext();
 //   const { isLoggedIn } = useAuthContext();
 
   const handleFirstNameChange = (e) => {
@@ -22,9 +25,18 @@ function AccountEditForm() {
     const value = e.target.value;
     setUsername(value);
   };
+   const handlePasswordChange = (e) => {
+     const value = e.target.value;
+     setPassword(value);
+   };
+   const handleEmail = (e) => {
+     const value = e.target.value;
+     setEmail(value);
+   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await update(first_name, last_name, username);
+      e.preventDefault();
+    console.log(first_name, last_name, email, username, password);
+    const response = await update(first_name, last_name, email, username, password );
     if (!response) {
       navigate("/AccountDetails/edit");
       console.log("Reponse error here")
@@ -62,6 +74,34 @@ function AccountEditForm() {
           className="form-control"
           id="last_name"
           placeholder="Last name"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">
+          Email
+        </label>
+        <input
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          className="form-control"
+          id="email"
+          placeholder="email"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
+        <input
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          className="form-control"
+          id="password"
+          placeholder="Password"
         />
       </div>
       <div className="mb-3">

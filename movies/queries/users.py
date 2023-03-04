@@ -163,7 +163,7 @@ class UsersRepo:
                     [user_id],
                 )
 
-    def update(self, user_id: int , user: UsersIn) -> UsersOut:
+    def update(self, user_id: int , user: UsersIn, hashed_password: str) -> UsersOut:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
@@ -182,7 +182,7 @@ class UsersRepo:
                             user.last_name,
                             user.email,
                             user.username,
-                            user.password,
+                            hashed_password,
                             user_id
                         ]
                     )
@@ -192,8 +192,9 @@ class UsersRepo:
                         record = {}
                         for i, column in enumerate(db.description):
                             record[column.name] = row[i]
-
                     return record
+
+                    # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
 
 
 
