@@ -127,7 +127,7 @@ export function useToken() {
     return false;
   }
 
-  async function update(username, firstName, lastName) {
+  async function update(username, firstName, lastName, password) {
     const url = `http://localhost:8000/users/${token.user.id}`;
     const response = await fetch (url, {
       method: "patch",
@@ -140,8 +140,16 @@ export function useToken() {
         "Content-Type": "application/json",
       },
     });
+    // console.log(response)
+    // if (response.ok) {
+    //   const updatedToken = await getTokenInternal();
+    //   setToken(updatedToken);
+    //   return true;
+    // }
+    // return false;
     if (response.ok) {
-      await login(username, );
+      await login(username, password);
+      return true;
     }
     return false;
   }
