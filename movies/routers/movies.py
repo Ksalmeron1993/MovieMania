@@ -46,3 +46,22 @@ def get_popular_movies():
 
     except Exception as e:
         raise Exception(str(e))
+
+
+
+
+@router.get("/movies/{movie_id}/detail")
+async def get_movie_detail(movie_id: int) -> dict:
+    try:
+        url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=7d055fdafcdf398aab55d81760d1c151"
+        response = requests.get(url)
+
+        if response.status_code < 200 or response.status_code >= 300:
+            raise HTTPException(status_code=response.status_code, detail=response.json())
+
+        return response.json()
+
+    except requests.exceptions.HTTPError as e:
+        raise HTTPException(status_code=response.status_code, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

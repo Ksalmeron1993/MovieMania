@@ -1,3 +1,26 @@
-/* decide on how to style pages when finished with project
-/*should be done last i believe as told by instructors
-/*but could still be used prior to style our website just a bit
+.movie-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+.movie-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.movie-detail-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-detail-info-container h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.movie-detail-info-container p {
+  font-size: 24px;
+  margin-bottom: 5px;
+}

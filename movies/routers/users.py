@@ -24,7 +24,7 @@ class UserForm(BaseModel):
 
 
 class UserToken(Token):
-    user: UsersOut 
+    user: UsersOut
 
 
 class HttpError(BaseModel):
@@ -74,7 +74,16 @@ def update_a_user(
     response: Response,
     repo: UsersRepo = Depends(),
 ):
-    record = repo.update(id, user)
+    hashed_password = authenticator.hash_password(user.password)
+
+    # try:
+    record = repo.update(id, user, hashed_password)
+
+    # except DuplicateUserError:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_400_BAD_REQUEST,
+    #         detail="Cannot create an account with those credentials",
+    #     )
     if record is None:
         response.status_code = 404
     else:
@@ -83,7 +92,7 @@ def update_a_user(
 
 @router.delete("/users/delete/{id}", tags=["Users"])
 def delete_a_user(
-    id: int, 
+    id: int,
     repo: UsersRepo = Depends(),):
     repo.delete_account(id)
     return True
@@ -109,32 +118,5 @@ async def get_access_token(
         return {
             "access_token" : request.cookies[authenticator.cookie_name],
             "type": "Bearer",
-            "user": user , 
+            "user": user ,
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

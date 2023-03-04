@@ -40,8 +40,8 @@ function Nav() {
                 className="dropdown-menu"
                 aria-labelledby="navbarDarkDropdownMenuLink"
               >
-                {/* <li><Link className="dropdown-item" to="/accountpage">AccountInfo</Link></li> */}
-                {/* //if we make a logout it would be under "Account" dropdown */}
+                <li><Link className="dropdown-item" to="/AccountDetails/edit">Edit account</Link></li>
+                {/* //if we make a logout it would be under "Account" dropdown
                 <li>
                   <Link className="dropdown-item" to="/logout">
                     Logout
