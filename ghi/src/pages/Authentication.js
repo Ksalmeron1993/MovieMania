@@ -127,10 +127,10 @@ export function useToken() {
     return false;
   }
 
-  async function update(firstName, lastName, email, username, password) {
+  async function update(username, password, email, firstName, lastName) {
     const url = `http://localhost:8000/users/${token.user.id}`;
-    const response = await fetch (url, {
-      method: "put",
+    const response = await fetch(url, {
+      method: "patch",
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,

@@ -44,6 +44,7 @@ function App() {
                 <Route path="/AccountDetails" element={<AccountDetailView />} />
                 <Route path="/movies/:id/detail" element={<Moviedetail />} /> // add a new Route for the Moviedetail component
                 <Route path="/AccountDetails/edit" element={<AccountEditForm />} />
+                <Route path="/AccountEdit" element={<AccountEditForm />} />
               </Routes>
             </div>
         </AuthProvider>
