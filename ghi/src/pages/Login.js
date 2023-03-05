@@ -25,7 +25,7 @@ function Login(){
         if (error) {
             isLoggedIn(false)
         } else {
-            navigate("/AccountDetails") // change navigate to homepage
+            navigate("/Homepage") // change navigate to homepage
         }
 
 

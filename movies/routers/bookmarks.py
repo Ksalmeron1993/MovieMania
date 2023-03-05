@@ -1,33 +1,43 @@
-from fastapi import APIRouter, Depends, Response
-from typing import Union, List
-from queries.bookmarks import Error, BookmarkIn, BookmarkRepository, BookmarkOut
+from fastapi import (
+APIRouter, Depends, APIRouter,)
+from queries.bookmarks import (BookmarkIn, BookmarkRepository, BookmarkOut)
+from authenticator import authenticator
+from pydantic import BaseModel
 
 router = APIRouter()
 
 # This is where our bookmarks endpoints will go
 # Our GETs and POSTs
 
-@router.post("/movies/bookmarks", response_model=Union[BookmarkOut, Error])
-def create_bookmark(
-    bookmark: BookmarkIn,
-    response: Response, 
+class BookmarkForm(BaseModel):
+    user_id: int
+    movie_id :int
+
+@router.post("/movies/bookmarks/", response_model=BookmarkOut)
+def create_a_bookmark(
+    bookmark_in: BookmarkIn,
     repo: BookmarkRepository = Depends(),
-) -> Union[BookmarkOut, Error]:
-    response.status_code = 400
-    return repo.create(bookmark)
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    return repo.create_a_bookmark(bookmark_in)
 
 
-@router.get("/movies/bookmarks/", response_model=Union[Error, List[BookmarkOut]])
+
+@router.get("/movies/bookmarks/all",tags=["bookmarks"])
 def get_all_bookmarks(
-    repo: BookmarkRepository = Depends(),
-) -> Union[Error, List[BookmarkOut]]:
+    repo:BookmarkRepository = Depends(), ):
     return repo.get_all_bookmarks()
 
-
-@router.put("/movies/bookmarks/{movie_id}/", response_model=Union[Error, BookmarkOut])
-def update_bookmark(
+@router.get("/bookmarks/get/{movie_id}", tags=["bookmarks"])
+def get_one_user(
     movie_id: int,
-    bookmark: BookmarkIn,
-    repo: BookmarkRepository = Depends(),
-) -> Union[Error, BookmarkOut]:
-    return repo.update_bookmark(movie_id, bookmark)
+    repo: BookmarkRepository = Depends(),) -> BookmarkOut:
+    return repo.get_bookmark_by_id(movie_id)
+
+
+@router.delete("/bookmarks/delete/{movie_id}", tags=["bookmarks"])
+def delete_a_bookmark(
+    movie_id: int,
+    repo: BookmarkRepository = Depends(),):
+    repo.delete_a_bookmark(movie_id)
+    return True

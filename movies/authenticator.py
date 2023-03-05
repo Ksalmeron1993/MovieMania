@@ -8,7 +8,7 @@ class MyAuthenticator(Authenticator):
     async def get_account_data(
             self,
             username: str,
-            users: UsersRepo,
+            users: UsersRepo= Depends(),
     ):
          return users.get_user(username)
 

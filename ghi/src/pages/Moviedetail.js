@@ -138,6 +138,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import "../styles/Moviedetail.css";
+import { useAuthContext, useToken } from "./Authentication";
+
 
 function MovieDetail(props) {
   const {id} = useParams();
@@ -152,7 +154,26 @@ function MovieDetail(props) {
     runtime: 0,
     genres: [],
   });
+  const { token } = useAuthContext();
 
+  const handleBookmark = async (movie) => {
+    const url = "http://localhost:8000/movies/bookmarks";
+    const fetchConfig = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(movie),
+    };
+
+    const response = await fetch(url, fetchConfig);
+    if (response.ok) {
+      alert("Movie bookmarked!");
+    } else {
+      alert("Error adding movie to bookmarks.");
+    }
+  };
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
@@ -188,6 +209,9 @@ function MovieDetail(props) {
           />
         )}
         <p>Release date: {movie.release_date}</p>
+         {token && (
+          <button onClick={() => handleBookmark(movie)}>Bookmark Movie</button>
+        )}
       </div>
     </div>
   );

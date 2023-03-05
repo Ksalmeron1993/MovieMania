@@ -29,7 +29,7 @@ class UsersOut(BaseModel):
     last_name: str
     email: str
     username: str
-    # hashed_password: str
+    #hashed_password: str
 
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
@@ -68,6 +68,7 @@ class UsersRepo:
                         username=record[4],
                         hashed_password=record[5],
                     )
+
     def get_user_by_id(self, id: int) -> UsersOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -95,9 +96,6 @@ class UsersRepo:
                         username=record[4],
                         hashed_password=record[5],
                     )
-
-
-
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:

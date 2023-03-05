@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ErrorNotification from './ErrorNotification';
 // import './App.css';
 // import Accountpage from './pages/Accountpage.js';
-import Bookmarked from './pages/Bookmarked.js';
 import HomePage from "./pages/Homepage.js";
 import Mainpage from './pages/Mainpage.js';
 import Nav from './Nav.js';
@@ -20,6 +19,7 @@ import AccountDetailView from "./pages/Accountpage.js";
 import AccountEditForm from "./pages/Accounteditpage.js";
 
 
+import Bookmarkedmovies from "./pages/Bookmarked.js";
 function GetToken(){
   useToken()
   return null
@@ -42,9 +42,10 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/AccountDetails" element={<AccountDetailView />} />
-                <Route path="/movies/:id/detail" element={<Moviedetail />} /> // add a new Route for the Moviedetail component
+                <Route path="/movies/:id/detail" element={<Moviedetail />} /> 
                 <Route path="/AccountDetails/edit" element={<AccountEditForm />} />
-                <Route path="/AccountEdit" element={<AccountEditForm />} />
+                <Route path="/Bookmarkedmovies" element={<Bookmarkedmovies />} />
+
               </Routes>
             </div>
         </AuthProvider>

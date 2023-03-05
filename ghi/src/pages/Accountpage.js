@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuthContext, useToken } from "./Authentication";
+import { useAuthContext } from "./Authentication";
 
 function AccountDetailView () {
     //const [token] = useToken()[0]
