@@ -10,6 +10,7 @@ function AccountDetailView () {
       if (!token) {
         //console.log('Token is missing')
         console.log('token error:', token)
+        console.log('user error:', user)
         return;
       }else{
         const fetchUserData = async () => {
@@ -50,7 +51,7 @@ function AccountDetailView () {
       <p>Last Name: {userData.last_name}</p>
       <p>Email: {userData.email}</p>
       <p>Username: {userData.username}</p>
-      {/* <p>Password: {userData.password}</p> */}
+      <p>Password: {userData.password}</p>
     </div>
   );
 };
