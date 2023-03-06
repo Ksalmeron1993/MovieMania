@@ -45,7 +45,8 @@ function Signup(){
         if (response) {
             navigate("/login")
         } else {
-            isLoggedIn(false) // change navigate to homepage
+            //isLoggedIn(false) // change navigate to homepage
+            navigate("/");
         }
     }
 

@@ -155,12 +155,12 @@ export const useUser = (token) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    if (!token) {
+    if (!token || !token.user_id) {
       return;
     }
 
     async function getUser() {
-      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/current_user`;
+      const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/current_user/${token.user_id}`;
       const response = await fetch(url, {
         credentials: "include",
       });

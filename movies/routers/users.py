@@ -4,7 +4,7 @@ from fastapi import (
     Request,
     Response,
     HTTPException,
-    status
+    status,
 )
 
 from queries.users import (
@@ -35,7 +35,7 @@ router = APIRouter()
 
 @router.get("/protected", response_model=bool,tags=["Users"])
 async def protected(
-    account_data: dict = Depends(authenticator.get_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
     ):
     return True
 
@@ -74,7 +74,16 @@ def update_a_user(
     response: Response,
     repo: UsersRepo = Depends(),
 ):
-    record = repo.update(id, user)
+    hashed_password = authenticator.hash_password(user.password)
+
+    # try:
+    record = repo.update(id, user, hashed_password)
+
+    # except DuplicateUserError:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_400_BAD_REQUEST,
+    #         detail="Cannot create an account with those credentials",
+    #     )
     if record is None:
         response.status_code = 404
     else:
@@ -106,9 +115,8 @@ async def get_access_token(
     user : UsersOut = Depends(authenticator.try_get_current_account_data)
 ) -> UserToken | None:
     if user and authenticator.cookie_name in request.cookies:
-        token_data = {
+        return {
             "access_token" : request.cookies[authenticator.cookie_name],
             "type": "Bearer",
-            "user": user
+            "user": user ,
         }
-        return UserToken(**token_data)
