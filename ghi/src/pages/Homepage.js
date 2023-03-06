@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
-import "../App.css"
+import "../App.css";
+import "../styles/Homepage.css"
 
 function HomePage() {
   const [movieName, setmovieName] = useState("");
@@ -31,7 +32,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="home-page">
       <h1 className="title">React Movie Search</h1>
       <form className="form" onSubmit={searchMovies}>
         <label className="label" htmlFor="movieName">
