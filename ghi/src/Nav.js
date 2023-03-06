@@ -1,13 +1,6 @@
-// import react from "react"
-// import { useState } from "react"
-//Added all the pages but might only use login, signup
-//Potentially create a logout page? talk with group
-import { NavLink, Link} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuthContext, useToken } from "./pages/Authentication";
-import "./navbar.css"
-//will make this nav look as if all the buttons are in the main page
-//high chance to edit it
-//just making an example from what I used in car-car project
+import "./navbar.css";
 
 function Nav() {
   return (
@@ -32,7 +25,6 @@ function Nav() {
               Account info
             </NavLink>
           </li>
-
           <li className="nav-item dropdown">
             <ul
               className="dropdown-menu"
@@ -50,17 +42,27 @@ function Nav() {
               </li>
             </ul>
           </li>
-
           <li className="nav-item">
             <NavLink className="nav-link" to="/signup">
               Signup
             </NavLink>
           </li>
-
           <li className="nav-item">
             <NavLink className="nav-link" to="/login">
               Log in
             </NavLink>
+          </li>
+          <li className="nav-item dropdown">
+            <ul
+              className="dropdown-menu"
+              aria-labelledby="navbarDarkDropdownMenuLink"
+            >
+              <li>
+                <Link className="dropdown-item" to="/AccountDetails/edit">
+                  Edit account
+                </Link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

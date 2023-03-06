@@ -39,8 +39,8 @@ function AccountDetailView () {
       // else{
       //   console.log('user:', user)
       // }
-      
-      
+
+
     }, [user, token])
 
   return (

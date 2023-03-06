@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
+<<<<<<< HEAD
 import "../App.css";
 import "../styles/Homepage.css"
+=======
+// import MovieCard from "../MovieCard";
+
+import "../App.css"
+>>>>>>> accountdetail
 
 function HomePage() {
   const [movieName, setmovieName] = useState("");

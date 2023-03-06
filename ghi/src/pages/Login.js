@@ -91,6 +91,7 @@ function Login(){
                         <button className="btn btn-primary" type="submit">Login</button>
                     </form>
                 </div>
+                <button className="link-btn" onClick={() => navigate('/signup')}>Don't have an account? Sign up here.</button>
             </div>
         </div>
     );
