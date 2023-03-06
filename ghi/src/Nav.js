@@ -41,28 +41,15 @@ function Nav() {
                 aria-labelledby="navbarDarkDropdownMenuLink"
               >
                 <li><Link className="dropdown-item" to="/AccountDetails/edit">Edit account</Link></li>
-                {/* //if we make a logout it would be under "Account" dropdown
-                <li>
-                  <Link className="dropdown-item" to="/logout">
-                    Logout
-                  </Link>
-                </li>
-                <li><Link className="dropdown-item" to="/Bookmarkedmovies">Bookmarked Movies</Link></li>
-                {/* <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li> */}
+                
               </ul>
             </li>
-            {/* //after this, these lines arent for the nav bar at the Home Page, i just dont know yet how i would incorporate them to their respective pages
-        //placeholders for now, discuss with group */}
+            
             <li className="nav-item">
               <NavLink className="nav-link" to="/signup">
                 Signup
               </NavLink>
             </li>
-            {/* <li className="nav-item">
-                            <NavLink className="nav-link" to="/moviedetail">
-                                Movie detail
-                            </NavLink>
-                        </li> */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">
                 Log in
