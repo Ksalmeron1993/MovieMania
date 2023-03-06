@@ -28,7 +28,7 @@ function GetToken(){
 function App() {
 
   return (
-        <BrowserRouter>
+        <BrowserRouter> 
         <AuthProvider>
           <GetToken />
           <Nav />

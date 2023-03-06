@@ -30,7 +30,7 @@ function HomePage() {
     }
 
     getPopularMovies();
-  }, []);
+  }, [movies]); 
 
   return (
     <div className="container">

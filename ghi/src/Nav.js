@@ -68,6 +68,11 @@ function Nav() {
                 Log in
               </NavLink>
             </li>
+            <li>
+              <Link className="dropdown-item" to="/logout">
+                Logout
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
