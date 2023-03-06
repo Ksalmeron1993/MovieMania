@@ -1,57 +1,54 @@
 import { useEffect, useState } from "react";
-import { useAuthContext, useToken } from "./Authentication";
+import { useAuthContext } from "./Authentication";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "./MovieCard";
-//import "./PostList.css";
 
-function Bookmarkedmovies() {
+function Bookmarkedmovies({ user_id }) {
   const [bookmarks, setBookmarks] = useState([]);
   const { token } = useAuthContext();
   const navigate = useNavigate();
-
+  
+  console.log("USERID" , user_id)
   const fetchData = async () => {
-    const url = `http://localhost:8000/users/get/${token}`;
-    console.log(token)
+    const url = `http://localhost:8000/users/get/${user_id}`;
     const fetchConfig = {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-  }
-  //   const response = await fetch(url, fetchConfig);
-  //   if (response.ok) {
-  //     const data = await response.json();
-  //     setBookmarks(data);
-  //     console.log(data)
-  //   }
-  // };
+    const response = await fetch(url, fetchConfig);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+    }
+  };
 
   const getBookmarks = async () => {
-    const url = "http://localhost:8000/movies/bookmarks";
+    console.log("USERIDDDDDD", user_id);
+    const url = `http://localhost:8000/movies/bookmarks/get/${user_id}`;
     const response = await fetch(url);
     if (response.ok) {
       const bookmark = await response.json();
       setBookmarks(bookmark);
-      console.log(bookmark, "bookmark")
+      console.log(bookmark, "bookmark");
     }
   };
-  console.log("bookmark", bookmarks)
-
 
   const handleRemoveBookmark = (movie) => {
     setBookmarks(bookmarks.filter((bookmark) => bookmark !== movie));
   };
 
-  useEffect(() => {
+ useEffect(() => {
   if (token === false) {
     navigate("/login");
-    console.log("not logged in")
+    console.log("not logged in");
   } else {
-    fetchData();
-    getBookmarks();
+    fetchData().then(() => {
+      getBookmarks();
+    });
   }
-}, [token]);
+}, [token, user_id, navigate, fetchData, getBookmarks]);
 
   return (
     <div>

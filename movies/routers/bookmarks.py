@@ -1,38 +1,50 @@
 from fastapi import (
-APIRouter, Depends, APIRouter,)
-from queries.bookmarks import (BookmarkIn, BookmarkRepository, BookmarkOut)
-from authenticator import authenticator
+    APIRouter,
+    Depends,
+    HTTPException,
+    status,
+    Response,
+)
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
+from queries.bookmarks import BookmarkIn, BookmarkRepository, BookmarkOut
+from authenticator import authenticator
 
 router = APIRouter()
-
-# This is where our bookmarks endpoints will go
-# Our GETs and POSTs
+auth = HTTPBearer()
 
 class BookmarkForm(BaseModel):
     user_id: int
     movie_id :int
-
-@router.post("/movies/bookmarks/", response_model=BookmarkOut)
+    
+@router.post("/movies/bookmarks/{user_id}", response_model=BookmarkOut)
 def create_a_bookmark(
-    bookmark_in: BookmarkIn,
+    user_id: int,
+    bookmark_form: BookmarkForm,
     repo: BookmarkRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.try_get_current_account_data),
 ):
-    return repo.create_a_bookmark(bookmark_in)
+    bookmark_data = bookmark_form.dict()
+    bookmark_data["user_id"] = user_id
+    return repo.create_a_bookmark(BookmarkIn(**bookmark_data), user_id)
 
+# @router.get("/movies/bookmarks/all",tags=["bookmarks"])
+# def get_all_bookmarks(
+#     repo:BookmarkRepository = Depends(), ):
+#     return repo.get_all_bookmarks()
 
+@router.get("/bookmarks/get/{user_id}", tags=["bookmarks"])
+def get_a_bookmark(
+    user_id: int,
+    repo: BookmarkRepository = Depends()) -> BookmarkOut:
+    return repo.get_bookmark_by_id(user_id)
 
-@router.get("/movies/bookmarks/all",tags=["bookmarks"])
-def get_all_bookmarks(
-    repo:BookmarkRepository = Depends(), ):
-    return repo.get_all_bookmarks()
-
-@router.get("/bookmarks/get/{movie_id}", tags=["bookmarks"])
-def get_one_user(
-    movie_id: int,
-    repo: BookmarkRepository = Depends(),) -> BookmarkOut:
-    return repo.get_bookmark_by_id(movie_id)
+# @router.get("/bookmarks/get/{bookmark_id}", tags=["bookmarks"])
+# def get_a_bookmark(
+#     bookmark_id: int,
+#     repo: BookmarkRepository = Depends(),
+# ) -> BookmarkOut:
+#     return repo.get_bookmark_by_id(bookmark_id)
 
 
 @router.delete("/bookmarks/delete/{movie_id}", tags=["bookmarks"])
