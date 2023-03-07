@@ -3,7 +3,7 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Response,
+    Response
 )
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
@@ -28,16 +28,16 @@ def create_a_bookmark(
     bookmark_data["user_id"] = user_id
     return repo.create_a_bookmark(BookmarkIn(**bookmark_data), user_id)
 
-# @router.get("/movies/bookmarks/all",tags=["bookmarks"])
-# def get_all_bookmarks(
-#     repo:BookmarkRepository = Depends(), ):
-#     return repo.get_all_bookmarks()
+@router.get("/movies/bookmarks/all",tags=["bookmarks"])
+def get_all_bookmarks(
+    repo:BookmarkRepository = Depends(), ):
+    return repo.get_all_bookmarks()
 
-@router.get("/bookmarks/get/{user_id}", tags=["bookmarks"])
+@router.get("/bookmarks/get/{id}", tags=["bookmarks"])
 def get_a_bookmark(
-    user_id: int,
+    id: int,
     repo: BookmarkRepository = Depends()) -> BookmarkOut:
-    return repo.get_bookmark_by_id(user_id)
+    return repo.get_bookmark_by_id(id)
 
 # @router.get("/bookmarks/get/{bookmark_id}", tags=["bookmarks"])
 # def get_a_bookmark(
@@ -45,7 +45,11 @@ def get_a_bookmark(
 #     repo: BookmarkRepository = Depends(),
 # ) -> BookmarkOut:
 #     return repo.get_bookmark_by_id(bookmark_id)
-
+@router.get("/bookmarks/get/all/{user_id}/",  tags=["bookmarks"])
+def get_all_user_bookmarks(
+    user_id: int,
+    repo: BookmarkRepository = Depends()) -> BookmarkOut:
+    return repo.get_all_user_bookmarks(user_id)
 
 @router.delete("/bookmarks/delete/{movie_id}", tags=["bookmarks"])
 def delete_a_bookmark(

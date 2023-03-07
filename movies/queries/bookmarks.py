@@ -60,27 +60,34 @@ class BookmarkRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all bookmarked movies"}
+    
+    def get_all_user_bookmarks(self, user_id: int) -> Union[Error, List[BookmarkOut]]:
+        try:
+                # Connect to the database
+                with pool.connection() as conn:
+                    # Get a cursor to run SQL with
+                    with conn.cursor() as db:
+                        # Execute the SELECT statement
+                        db.execute(
+                             """
+                            SELECT id
+                                , user_id
+                                , movie_id
+                            FROM bookmarks
+                            WHERE user_id = %s;
+                        """,
+                        [user_id],
+                        )
+                        result = db.fetchall()
+                        return [BookmarkOut(
+                                id=id,
+                                user_id=user_id,
+                                movie_id=movie_id)
+                                for id, user_id, movie_id in result]
+        except Exception as e:
+                print(e)
+                return {"message": "Could not get all users bookmarked movies"}
    
-    # def create_a_bookmark(self, movie_id:int, account_data: dict) -> Union[BookmarkOut, Error]:
-    #     user_id = account_data["id"]
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as db:
-    #             result = db.execute(
-    #                 """
-    #                 INSERT INTO bookmarks
-    #                     (user_id, movie_id)
-    #                 VALUES
-    #                     (%s, %s)
-    #                 RETURNING id;
-    #                 """,
-    #                 (
-    #                     user_id,
-    #                     movie_id
-    #                 )
-    #             )
-    #             id = result.fetchone()[0]
-    #             bookmark = BookmarkIn(user_id=user_id, movie_id=movie_id)
-    #             return self.bookmark_in_to_out(id, bookmark)
     def create_a_bookmark(self, bookmark: BookmarkIn, user_id: int) -> Union[BookmarkOut, Error]:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -103,8 +110,7 @@ class BookmarkRepository:
                     user_id=user_id,
                     movie_id=bookmark.movie_id,
                 )
-
-            
+  
     def delete_a_bookmark(self, bookmark_id: int) -> bool:
         with pool.connection() as conn:
             with conn.cursor() as db:

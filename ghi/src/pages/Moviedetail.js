@@ -4,7 +4,8 @@ import MovieCard from "./MovieCard";
 import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
 
-function MovieDetail(props) {
+
+function Moviedetail(props) {
   const {id} = useParams();
   console.log("movie id" ,id)
   const [movie, setMovie] = useState({
@@ -104,113 +105,4 @@ function MovieDetail(props) {
     </div>
   );
 }
-export default Moviedetail
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { useParams } from "react-router-dom";
-
-// function MovieDetail() {
-//   const { movieId } = useParams();
-
-//   return (
-//     <div>
-//       <h1>Movie Detail</h1>
-//       <p>Movie ID: {movieId}</p>
-//     </div>
-//   );
-// }
-
-// export default Moviedetail;
-=========
-export default MovieDetail;
+export default Moviedetail;

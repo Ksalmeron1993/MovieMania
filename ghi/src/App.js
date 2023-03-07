@@ -16,7 +16,8 @@ import Signup from './pages/Signup.js';
 import { AuthProvider, useToken } from "./pages/Authentication.js";
 // import MovieCard2 from "./MovieCard 2.js";
 import AccountDetailView from "./pages/Accountpage.js";
-
+import AccountEditForm from "./pages/Accounteditpage.js";
+import Bookmarkedmovies from "./pages/Bookmarked.js";
 
 function GetToken(){
   useToken()
@@ -33,14 +34,13 @@ function App() {
             <div className="container">
               <Routes>
                 {/* <Route path="/Bookmarked/:id" component={Moviedetail} /> */}
-                {/* <Route path="/Bookmarked" element={<Bookmarked />} /> */}
+                <Route path="/Bookmarkedmovies" element={<Bookmarkedmovies />} />
                 <Route path="/" element={<Mainpage/>} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/AccountDetails" element={<AccountDetailView />} />
-=========
                 <Route path="/movies/:id/detail" element={<Moviedetail />} /> // add a new Route for the Moviedetail component
                 <Route path="/AccountDetails/edit" element={<AccountEditForm />} />
               </Routes>
