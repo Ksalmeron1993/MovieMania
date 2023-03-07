@@ -19,6 +19,7 @@ import AccountDetailView from "./pages/Accountpage.js";
 import AccountEditForm from "./pages/Accounteditpage.js";
 import Bookmarkedmovies from "./pages/Bookmarked.js";
 
+
 function GetToken(){
   useToken()
   return null
