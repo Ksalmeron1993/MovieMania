@@ -233,9 +233,7 @@ import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
 
 
-function MovieDetail(props) {
-  const [videos, setVideos] = useState([]);
-  const [watchProviders, setWatchProviders] = useState([]);
+function Moviedetail(props) {
   const {id} = useParams();
   console.log("movie id" ,id)
   const [movie, setMovie] = useState({
@@ -264,34 +262,55 @@ function MovieDetail(props) {
     fetchMovieDetails();
   }, [id]);
 
+  const handleBookmark = async (token) => {
+  console.log("TOKEN" , token);
+  if (!token) {
+    alert("Please log in to bookmark a movie.");
+    return;
+  }
+
+  console.log("id:", id);
+  console.log("user_id:", token.user.id);
+
+  const bookmarkData = {
+    movie_id: id,
+    user_id: token.user.id
+  };
+  console.log("BOOKMARK DATA", bookmarkData);
+
+  const url = `http://localhost:8000/movies/bookmarks/${token.user.id}`;
+  if (!token.user.id) {
+    alert("User ID is undefined.");
+    return;
+  }
+  console.log("URL", url);
+
+  const fetchConfig = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token.access_token}`,
+    },
+    body: JSON.stringify(bookmarkData),
+  };
+  console.log("FETCHCONFIG", fetchConfig);
+
+  const response = await fetch(url, fetchConfig);
+  console.log("response", response)
+  if (response.ok) {
+    alert("Movie bookmarked!");
+  } else {
+    alert("Error adding movie to bookmarks.");
+  }
+};
+
+
   useEffect(() => {
-    async function fetchVideos() {
-      try {
-        const response = await fetch(`http://localhost:8000/movies/${id}/videos`);
-        const data = await response.json();
-        setVideos(data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchVideos();
-  }, [id]);
-
+    console.log(id);
+  }, [movie]);
   useEffect(() => {
-    async function fetchWatchProviders() {
-      try {
-        const response = await fetch(`http://localhost:8000/movies/${id}/watch-providers`);
-        const data = await response.json();
-        setWatchProviders(data.results.US?.flatrate.slice(0, 5) || []);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchWatchProviders();
-  }, [id]);
-
+    console.log(movie);
+  }, [movie]);
   return (
     <div className="movie-detail-container">
       <div className="movie-detail-card">
@@ -310,36 +329,9 @@ function MovieDetail(props) {
          {token && (
           <button onClick={() => handleBookmark(token)}>Bookmark Movie</button>
         )}
-        <div>
-          <h3>Videos</h3>
-          {videos.map((video) => (
-            <div key={video.id}>
-              <p>{video.name}</p>
-              <iframe
-                src={`https://www.youtube.com/embed/${video.key}`}
-                title={video.name}
-                width="560"
-                height="315"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h3>Where to Watch</h3>
-          {watchProviders.length > 0 ? (
-            <ul>
-              {watchProviders.map((provider) => (
-                <li key={provider.provider_id}>{provider.provider_name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No watch providers available.</p>
-          )}
-        </div>
       </div>
     </div>
   );
 }
 export default Moviedetail;
+
