@@ -11,7 +11,7 @@ function AccountEditForm() {
   const update = useToken()[4];
   const navigate = useNavigate();
   // const {token} = useAuthContext();
-//   const { isLoggedIn } = useAuthContext();
+  //   const { isLoggedIn } = useAuthContext();
 
   // const handleFirstNameChange = (e) => {
   //   const value = e.target.value;
@@ -34,18 +34,24 @@ function AccountEditForm() {
   //    setEmail(value);
   //  };
   const handleSubmit = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
     console.log(first_name, last_name, email, username, password);
-    const response = await update(first_name, last_name, email, username, password );
+    const response = await update(
+      first_name,
+      last_name,
+      email,
+      username,
+      password
+    );
     if (!response) {
       navigate("/AccountDetails/edit");
-      console.log("Reponse error here")
+      console.log("Reponse error here");
     } else {
-    //   isLoggedIn(false); // change navigate to homepage
-        console.log("response:", response)
+      //   isLoggedIn(false); // change navigate to homepage
+      console.log("response:", response);
     }
   };
-    // console.log(response)
+  // console.log(response)
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
