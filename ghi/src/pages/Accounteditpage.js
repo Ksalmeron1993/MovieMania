@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext, useToken } from "./Authentication";
+import { useToken } from "./Authentication";
 
 function AccountEditForm() {
   const [first_name, setFirstName] = useState("");

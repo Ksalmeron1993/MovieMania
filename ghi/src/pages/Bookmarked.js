@@ -30,7 +30,7 @@ function Bookmarkedmovies(props) {
         return data;
       }
     }
-  }, []);
+  }, [id, token]);
 
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
@@ -42,7 +42,7 @@ function Bookmarkedmovies(props) {
         console.log(bookmark, "BOOKMARK!!!!");
       }
     }
-  }, [id, token]);
+  }, [token]);
 
   const handleRemoveBookmark = async (movie) => {
     const url = `http://localhost:8000/bookmarks/delete/${movie.id}`;
