@@ -13,6 +13,9 @@ from authenticator import authenticator
 router = APIRouter()
 auth = HTTPBearer()
 
+API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query="
+
+
 class BookmarkForm(BaseModel):
     user_id: int
     movie_id :int

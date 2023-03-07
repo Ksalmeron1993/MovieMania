@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import MovieDetail from "./Moviedetail";
+import MovieDetail from "./Moviedetail";
 
-function MovieCard(props) {
+function MovieCard2(props) {
   const [showOverview, setShowOverview] = useState(false);
 
   const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`;
@@ -18,7 +18,7 @@ function MovieCard(props) {
         <p>{props.movie.release_date}</p>
       </div>
       <div>
-        <Link to={`/movies/${props.movie.id}/detail`}>
+        <Link to={`/movies/${props.movie.movie_id}/detail`}>
           <img src={imageUrl} alt={props.movie.title} />
         </Link>
       </div>
@@ -37,4 +37,4 @@ function MovieCard(props) {
   );
 }
 
-export default MovieCard;
+export default MovieCard2;

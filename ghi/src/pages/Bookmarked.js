@@ -1,13 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAuthContext } from "./Authentication";
 import { useNavigate } from "react-router-dom";
-import MovieCard from "./MovieCard";
+import MovieCard2 from "./MovieCard2";
 import { useParams } from "react-router-dom";
 
-
-function Bookmarkedmovies( props ) {
+function Bookmarkedmovies(props) {
   const [bookmarks, setBookmarks] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
   const [movie, setMovie] = useState({
     title: "",
     overview: "",
@@ -20,53 +19,53 @@ function Bookmarkedmovies( props ) {
   });
   const { token } = useAuthContext();
   const navigate = useNavigate();
-  
-  console.log("USERID" , id)
-  console.log("TOKEN", token)
 
-  const fetchData = useCallback(async() => {
-    if(token?.user?.id){
-    const url = `http://localhost:8000/users/get/${token.user.id}`;
-    //const url = `http://localhost:8000/users/get/${id}`;
-    const fetchConfig = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await fetch(url, fetchConfig);
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      return data;
-    }
-  }
-  }, []);
-  useEffect(() => {
-    async function fetchMovieDetails() {
-      try {
-        const response = await fetch(`http://localhost:8000/movies/${id}/detail`);
+  console.log("USERID", id);
+  console.log("TOKEN", token);
+
+  const fetchData = useCallback(async () => {
+    if (token?.user?.id) {
+      //const url = `http://localhost:8000/users/get/${token.user.id}`;
+      const url = `http://localhost:8000/users/get/${id}`;
+      const fetchConfig = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.ok) {
         const data = await response.json();
-        setMovie(data);
-      } catch (error) {
-        console.error(error);
+        console.log(data);
+        return data;
       }
     }
-    fetchMovieDetails();
-    console.log("MOVIE ID", id)
+  }, []);
+  // useEffect(() => {
+  //   async function fetchMovieDetails() {
+  //     try {
+  //       const response = await fetch(`http://localhost:8000/movies/${id}/detail`);
+  //       const data = await response.json();
+  //       setMovie(data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   fetchMovieDetails();
+  //   console.log("MOVIE ID", id)
 
-  }, [id]);
+  // }, [id]);
 
-  const getBookmarks = useCallback(async() => {
-    if(token?.user?.id){
-    const url = `http://localhost:8000/bookmarks/get/all/${token.user.id}`;
-    const response = await fetch(url);
-    if (response.ok) {
-      const bookmark = await response.json();
-      setBookmarks(bookmark);
-      console.log(bookmark, "BOOKMARK!!!!");
+  const getBookmarks = useCallback(async () => {
+    if (token?.user?.id) {
+      const url = `http://localhost:8000/bookmarks/get/all/${token.user.id}`;
+      const response = await fetch(url);
+      if (response.ok) {
+        const bookmark = await response.json();
+        setBookmarks(bookmark);
+        console.log(bookmark, "BOOKMARK!!!!");
+      }
     }
-  }
   }, [token, id]);
 
   const handleRemoveBookmark = async (movie) => {
@@ -83,16 +82,16 @@ function Bookmarkedmovies( props ) {
     }
   };
 
- useEffect(() => {
-  if (token === false) {
-    navigate("/login");
-    console.log("not logged in");
-  } else {
-    fetchData(token).then(() => {
-      getBookmarks();
-    });
-  }
-}, [token, id, navigate, fetchData, getBookmarks]);
+  useEffect(() => {
+    if (token === false) {
+      navigate("/login");
+      console.log("not logged in");
+    } else {
+      fetchData(token).then(() => {
+        getBookmarks();
+      });
+    }
+  }, [token, id, navigate, fetchData, getBookmarks]);
 
   return (
     <div>
@@ -102,7 +101,8 @@ function Bookmarkedmovies( props ) {
         {bookmarks.length > 0 ? (
           bookmarks.map((movie) => (
             <div key={movie.id}>
-              <MovieCard movie={movie} />
+              <MovieCard2 movie={movie} />
+
               <button onClick={() => handleRemoveBookmark(movie)}>
                 Remove Bookmark
               </button>

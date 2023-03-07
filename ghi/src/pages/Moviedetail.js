@@ -95,3 +95,4 @@ function Moviedetail(props) {
   );
 }
 export default Moviedetail;
+
