@@ -91,6 +91,7 @@
 //   const handleClick = () => {
 //     setShowOverview(!showOverview);
 //   };
+// whats up
 
 //   return (
 //     <div className="movie">
@@ -174,7 +175,7 @@ function MovieCard(props) {
       </div>
       <div>
         <h3>{props.movie.title}</h3>
-        
+
 
 
         {showOverview && <h4>{props.movie.overview}</h4>}
