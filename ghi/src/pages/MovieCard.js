@@ -7,6 +7,12 @@ function MovieCard(props) {
 
   const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`;
 
+  // const handleBookmark = () => {
+  //   props.handleBookmark(props.movie.id);
+  // }
+  //      <button onClick={handleBookmark}>Bookmark Movie</button>
+
+
   return (
     <div className="movie">
       <div>
@@ -28,6 +34,7 @@ function MovieCard(props) {
         <h6>Rating: {props.movie.vote_average}/10</h6>
 
         <h4>{props.movie.video}</h4>
+
       </div>
     </div>
   );
