@@ -10,7 +10,7 @@ function AccountEditForm() {
   const [email, setEmail] = useState("");
   const update = useToken()[4];
   const navigate = useNavigate();
-  const {token} = useAuthContext();
+  // const {token} = useAuthContext();
 //   const { isLoggedIn } = useAuthContext();
 
   // const handleFirstNameChange = (e) => {

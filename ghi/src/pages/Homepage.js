@@ -14,7 +14,7 @@ function HomePage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+       await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
     } catch (error) {
       console.log(error);
       setMovies([]);
@@ -24,7 +24,7 @@ function HomePage() {
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+         await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
       } catch (error) {
         console.log(error);
         setMovies([]);

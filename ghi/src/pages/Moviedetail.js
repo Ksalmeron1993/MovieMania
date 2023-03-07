@@ -233,7 +233,7 @@ import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
 
 
-function MovieDetail(props) {
+function Moviedetail(props) {
   const [videos, setVideos] = useState([]);
   const [watchProviders, setWatchProviders] = useState([]);
   const {id} = useParams();

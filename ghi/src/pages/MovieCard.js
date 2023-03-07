@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import MovieDetail from "./Moviedetail";
+// import MovieDetail from "./Moviedetail";
 
 function MovieCard(props) {
   const [showOverview, setShowOverview] = useState(false);
