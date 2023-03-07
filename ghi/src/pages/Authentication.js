@@ -15,8 +15,9 @@ export async function getTokenInternal() {
     });
     if (response.ok) {
       const data = await response.json()
-      internalToken = data.access_token
-      return internalToken
+      // internalToken = data.access_token
+      // return internalToken
+      return data
     }
   } catch (e) {}
   return false
@@ -126,23 +127,33 @@ export function useToken() {
     return false;
   }
 
-  async function update(username, password, email, firstName, lastName) {
-    const url = `http://localhost:8000/accounts`;
-    const response = await fetch(url, {
-      method: "patch",
+  async function update(firstName, lastName, email, username, password) {
+    const url = `http://localhost:8000/users/${token.user.id}`;
+    const response = await fetch (url, {
+      method: "put",
       body: JSON.stringify({
-        username,
-        password,
-        email,
         first_name: firstName,
         last_name: lastName,
+        email: email,
+        username: username,
+        password: password,
       }),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
     });
+    // console.log(response)
+    // if (response.ok) {
+    //   const updatedToken = await getTokenInternal();
+    //   setToken(updatedToken);
+    //   return true;
+    // }
+    // return false;
     if (response.ok) {
+      console.log("update", "successful")
       await login(username, password);
+      return true;
     }
     return false;
   }

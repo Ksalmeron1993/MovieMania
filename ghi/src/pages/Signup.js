@@ -35,31 +35,6 @@ function Signup(){
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        // const data = {}
-        // data.first_name = first_name
-        // data.last_name = last_name
-        // data.email = email
-        // data.username = username
-        // data.password = password
-        // console.log(data)
-        // const url = "http://localhost:8000/signup"
-        // const fetchConfig = {
-        //     mode: "no-cors",
-        //     method: "POST",
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // }
-        // if (request.ok) {
-        //     signup(
-                // first_name,
-                // last_name,
-                // username,
-                // email,
-                // password
-        //     )
         const response = await signup(
             first_name,
             last_name,
@@ -70,36 +45,11 @@ function Signup(){
         if (response) {
             navigate("/login")
         } else {
-            isLoggedIn(false) // change navigate to homepage
+            isLoggedIn(false) 
+            //isLoggedIn(false) // change navigate to homepage
+            navigate("/");
         }
     }
-        // const response = await fetch(url, fetchConfig)
-        // if (response.ok){
-        //     setFirstName('')
-        //     setLastName('')
-        //     setEmail('')
-        //     setUsername('')
-        //     setPassword('')
-        // }
-        // }
-
-
-        // const url = 'http://localhost:8000/signup'
-        // const data = {
-        //         first_name,
-        //         last_name,
-        //         username,
-        //         email,
-        //         password,
-        //     };
-        // const response = await fetch (url, {
-        //     mode: "no-cors",
-            // method: "POST",
-            // body: JSON.stringify(data),
-        //     headers: { Authorization: `Bearer ${token}` },
-        // })
-
-        // navigate("/")
 
     return (
         <div className = "row">
@@ -130,6 +80,7 @@ function Signup(){
                         <button className="btn btn-primary" type="submit">Sign Up</button>
                     </form>
                 </div>
+                <button className="link-btn" onClick={() => navigate('/login')}>Already have an account? Login here.</button>
             </div>
         </div>
     );

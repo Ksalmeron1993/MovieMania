@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import MovieCard from "../MovieCard";
+import React, { useState, useEffect } from "react";
+import MovieCard from "./MovieCard";
+import "../App.css";
+import "../styles/Homepage.css"
+
+
 import "../App.css"
 
 function HomePage() {
@@ -10,7 +14,7 @@ function HomePage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+       await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
     } catch (error) {
       console.log(error);
       setMovies([]);
@@ -20,7 +24,7 @@ function HomePage() {
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+         await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
       } catch (error) {
         console.log(error);
         setMovies([]);
@@ -28,10 +32,10 @@ function HomePage() {
     }
 
     getPopularMovies();
-  }, []);
+  }, []); 
 
   return (
-    <div className="container">
+    <div className="home-page">
       <h1 className="title">React Movie Search</h1>
       <form className="form" onSubmit={searchMovies}>
         <label className="label" htmlFor="movieName">

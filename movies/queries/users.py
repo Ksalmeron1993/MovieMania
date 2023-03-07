@@ -29,7 +29,7 @@ class UsersOut(BaseModel):
     last_name: str
     email: str
     username: str
-    # hashed_password: str
+    #hashed_password: str
 
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
@@ -68,6 +68,7 @@ class UsersRepo:
                         username=record[4],
                         hashed_password=record[5],
                     )
+
     def get_user_by_id(self, id: int) -> UsersOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -95,9 +96,6 @@ class UsersRepo:
                         username=record[4],
                         hashed_password=record[5],
                     )
-
-
-
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:
@@ -163,7 +161,7 @@ class UsersRepo:
                     [user_id],
                 )
 
-    def update(self, user_id: int , user: UsersIn) -> UsersOut:
+    def update(self, user_id: int , user: UsersIn, hashed_password: str) -> UsersOut:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
@@ -182,7 +180,7 @@ class UsersRepo:
                             user.last_name,
                             user.email,
                             user.username,
-                            user.password,
+                            hashed_password,
                             user_id
                         ]
                     )
@@ -192,8 +190,9 @@ class UsersRepo:
                         record = {}
                         for i, column in enumerate(db.description):
                             record[column.name] = row[i]
-
                     return record
+
+                    # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
 
 
 

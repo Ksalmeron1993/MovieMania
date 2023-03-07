@@ -34,35 +34,19 @@ steps = [
         DROP TABLE movies;
         """
     ],
+
     [
-        # "Up" SQL statement - Comments table
-        """
-        CREATE TABLE comments (
-            id SERIAL PRIMARY KEY,
-            user_id INTEGER NOT NULL REFERENCES users(id),
-            movie_id INTEGER NOT NULL REFERENCES movies(id),
-            comment_text TEXT NOT NULL,
-            comment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        """,
-        # "Down" SQL statement - Comments table
-        """
-        DROP TABLE comments;
-        """
-    ],
-    [
-        # "Up" SQL statement - Bookmarks table
-        """
-        CREATE TABLE bookmarks (
-            id SERIAL PRIMARY KEY,
-            user_id INTEGER NOT NULL REFERENCES users(id),
-            movie_id INTEGER NOT NULL REFERENCES movies(id),
-            bookmark_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-        """,
-        # "Down" SQL statement - Bookmarks table
-        """
-        DROP TABLE bookmarks;
-        """
+    # "Up" SQL statement - Bookmarks table
+    """
+    CREATE TABLE bookmarks (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id),
+        movie_id INTEGER NOT NULL
+    );
+    """,
+    # "Down" SQL statement - Bookmarks table
+    """
+    DROP TABLE bookmarks;
+    """
     ]
 ]

@@ -1,3 +1,7 @@
-/* decide on how to style pages when finished with project
-/*should be done last i believe as told by instructors
-/*but could still be used prior to style our website just a bit
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
