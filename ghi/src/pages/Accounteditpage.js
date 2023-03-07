@@ -13,26 +13,26 @@ function AccountEditForm() {
   const {token} = useAuthContext();
 //   const { isLoggedIn } = useAuthContext();
 
-  const handleFirstNameChange = (e) => {
-    const value = e.target.value;
-    setFirstName(value);
-  };
-  const handleLastNameChange = (e) => {
-    const value = e.target.value;
-    setLastName(value);
-  };
-  const handleUsernameChange = (e) => {
-    const value = e.target.value;
-    setUsername(value);
-  };
-   const handlePasswordChange = (e) => {
-     const value = e.target.value;
-     setPassword(value);
-   };
-   const handleEmail = (e) => {
-     const value = e.target.value;
-     setEmail(value);
-   };
+  // const handleFirstNameChange = (e) => {
+  //   const value = e.target.value;
+  //   setFirstName(value);
+  // };
+  // const handleLastNameChange = (e) => {
+  //   const value = e.target.value;
+  //   setLastName(value);
+  // };
+  // const handleUsernameChange = (e) => {
+  //   const value = e.target.value;
+  //   setUsername(value);
+  // };
+  //  const handlePasswordChange = (e) => {
+  //    const value = e.target.value;
+  //    setPassword(value);
+  //  };
+  //  const handleEmail = (e) => {
+  //    const value = e.target.value;
+  //    setEmail(value);
+  //  };
   const handleSubmit = async (e) => {
       e.preventDefault();
     console.log(first_name, last_name, email, username, password);

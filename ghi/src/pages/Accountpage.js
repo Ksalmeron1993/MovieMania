@@ -10,10 +10,11 @@ function AccountDetailView () {
       if (!token) {
         //console.log('Token is missing')
         console.log('token error:', token)
+        // console.log('user error:', user)
         return;
       }else{
         const fetchUserData = async () => {
-        console.log('Fetching user data...')
+        // console.log('Fetching user data...')
         const url = `http://localhost:8000/users/get/${token.user.id}`
         const response = await fetch(url, {
           method: "GET",
@@ -23,7 +24,7 @@ function AccountDetailView () {
         });
         if (response.ok) {
           const data = await response.json()
-          console.log('User data:', data)
+          // console.log('User data:', data)
           setUserData(data)
         } else {
           console.log(response)
@@ -31,11 +32,11 @@ function AccountDetailView () {
       };
       fetchUserData()
       }
-      if (!user) {
-        // console.log('User is not logged in')
-        console.log('user error:', user)
-        // return
-      }
+      // if (!user) {
+      //   // console.log('User is not logged in')
+      //   console.log('user error:', user)
+      //   // return
+      // }
       // else{
       //   console.log('user:', user)
       // }
