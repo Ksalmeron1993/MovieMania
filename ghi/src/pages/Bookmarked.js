@@ -26,8 +26,8 @@ function Bookmarkedmovies( props ) {
 
   const fetchData = useCallback(async() => {
     if(token?.user?.id){
-    //const url = `http://localhost:8000/users/get/${token.user.id}`;
-    const url = `http://localhost:8000/users/get/${id}`;
+    const url = `http://localhost:8000/users/get/${token.user.id}`;
+    //const url = `http://localhost:8000/users/get/${id}`;
     const fetchConfig = {
       method: "GET",
       headers: {
