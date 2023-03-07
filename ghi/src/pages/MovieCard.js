@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import MovieDetail from "./Moviedetail";
 
 function MovieCard(props) {
-  const [showOverview, setShowOverview] = useState(false);
+  const [showOverview] = useState(false);
 
   const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`;
 

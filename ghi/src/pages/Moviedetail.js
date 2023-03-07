@@ -105,7 +105,7 @@ function MovieDetail(props) {
   };
   useEffect(() => {
     console.log(id);
-  }, [movie]);
+  }, [movie, id]);
   useEffect(() => {
     console.log(movie);
   }, [movie]);

@@ -7,16 +7,6 @@ import { useParams } from "react-router-dom";
 function Bookmarkedmovies(props) {
   const [bookmarks, setBookmarks] = useState([]);
   const { id } = useParams();
-  const [movie, setMovie] = useState({
-    title: "",
-    overview: "",
-    release_date: "",
-    poster_path: "",
-    backdrop_path: "",
-    vote_average: 0,
-    runtime: 0,
-    genres: [],
-  });
   const { token } = useAuthContext();
   const navigate = useNavigate();
 
@@ -41,20 +31,6 @@ function Bookmarkedmovies(props) {
       }
     }
   }, []);
-  // useEffect(() => {
-  //   async function fetchMovieDetails() {
-  //     try {
-  //       const response = await fetch(`http://localhost:8000/movies/${id}/detail`);
-  //       const data = await response.json();
-  //       setMovie(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   fetchMovieDetails();
-  //   console.log("MOVIE ID", id)
-
-  // }, [id]);
 
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
@@ -66,7 +42,7 @@ function Bookmarkedmovies(props) {
         console.log(bookmark, "BOOKMARK!!!!");
       }
     }
-  }, [token, id]);
+  }, [id, token]);
 
   const handleRemoveBookmark = async (movie) => {
     const url = `http://localhost:8000/bookmarks/delete/${movie.id}`;

@@ -32,7 +32,7 @@ function HomePage() {
     }
 
     getPopularMovies();
-  }, []); 
+  }, [movies]); 
 
   return (
     <div className="home-page">

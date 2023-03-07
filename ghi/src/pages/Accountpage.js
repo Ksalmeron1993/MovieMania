@@ -46,7 +46,7 @@ function AccountDetailView () {
       // }
 
 
-    }, [user, token])
+    }, [user, token, navigate])
 
   return (
     <div>
