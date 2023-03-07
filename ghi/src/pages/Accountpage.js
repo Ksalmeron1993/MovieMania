@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "./Authentication";
 
 function AccountDetailView () {
     //const [token] = useToken()[0]
     const { user, token } = useAuthContext()
     const [userData, setUserData] = useState({})
+    const navigate = useNavigate()
 
     useEffect(() => {
       if (!token) {
         //console.log('Token is missing')
         console.log('token error:', token)
+        navigate("/")
         // console.log('user error:', user)
         return;
       }else{
@@ -28,6 +31,7 @@ function AccountDetailView () {
           setUserData(data)
         } else {
           console.log(response)
+          
         }
       };
       fetchUserData()
