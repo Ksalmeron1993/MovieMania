@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
 import requests
-from queries.movies import Movie, MovieSearchResult
 
 
 router = APIRouter()
@@ -121,4 +120,3 @@ async def get_movie_videos(movie_id: int) -> dict:
         raise HTTPException(status_code=response.status_code, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-

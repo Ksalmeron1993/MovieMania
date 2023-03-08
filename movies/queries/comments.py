@@ -9,7 +9,7 @@
 
 
 # # what data do we need for submitting a movie
-# # data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
+# # data coming IN & and out of our endpoints in fastAPI
 # class CommentIn(BaseModel):
 #     user_id: int
 #     movie_id: int
