@@ -1,5 +1,6 @@
-import react from "react"
-import { useState } from "react"
+/* eslint-disable jsx-a11y/anchor-is-valid */
+// import react from "react"
+// import { useState } from "react"
 //Added all the pages but might only use login, signup
 //Potentially create a logout page? talk with group
 import { NavLink, Link} from "react-router-dom";
@@ -28,14 +29,11 @@ function Nav() {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby='navbarDarkDropdownMenuLink'>
                                 <li><Link className="dropdown-item" to="/accountpage">AccountInfo</Link></li>
-                                //if we make a logout it would be under "Account" dropdown
                                 <li><Link className="dropdown-item" to="/logout">Logout</Link></li>
                                 <li><Link className="dropdown-item" to="/bookmarked">Bookmarked Movies</Link></li>
                                 <li><Link className="dropdown-item" to="/mainpage">Sign In</Link></li>
                             </ul>
                         </li>
-//after this, these lines arent for the nav bar at the Home Page, i just dont know yet how i would incorporate them to their respective pages
-//placeholders for now, discuss with group
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/signup">
                                 Signup

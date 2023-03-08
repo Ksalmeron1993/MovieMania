@@ -42,9 +42,6 @@ function App() {
   //for example, one would be for the searchbox when searching a movie
   //also when fetching effects, see if it will be an empty array which only calls on data once
   //or a dependancy array such as the movie search box
-  function App() {
-
-  }
 
   //using the effect
 
@@ -69,7 +66,6 @@ function App() {
             <Route path="/accountpage" element={<Accountpage />} />
             <Route path="/bookmarked" element={<Bookmarked />} />
             <Route path="/mainpage" element={<Mainpage />} />
-            //last 3 not sure just placeholders for now
             <Route path="/signup" element={<Signup />} />
             <Route path="/moviedetail" element={<Moviedetail />} />
             <Route path="/login" element={<Login />} />
