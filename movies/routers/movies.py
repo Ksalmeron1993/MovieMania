@@ -5,13 +5,19 @@ import requests
 
 router = APIRouter()
 
-API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query="
+API_URL = (
+    "https://api.themoviedb.org/3/search/movie?"
+    "api_key=7d055fdafcdf398aab55d81760d1c151&query="
+)
 
 
 @router.get("/movies/{movie_id}/videos")
 async def get_movie_videos(movie_id: int) -> dict:
     try:
-        url = f"https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=7d055fdafcdf398aab55d81760d1c151"
+        url = (
+            f"https://api.themoviedb.org/3/movie/{movie_id}/"
+            "videos?api_key=7d055fdafcdf398aab55d81760d1c151"
+        )
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -30,7 +36,10 @@ async def get_movie_videos(movie_id: int) -> dict:
 @router.get("/movies/{movie_id}/watch-providers")
 async def get_movie_watch_providers(movie_id: int) -> dict:
     try:
-        url = f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?api_key=7d055fdafcdf398aab55d81760d1c151"
+        url = (
+            f"https://api.themoviedb.org/3/movie/{movie_id}/"
+            "watch/providers?api_key=7d055fdafcdf398aab55d81760d1c151"
+        )
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -87,7 +96,10 @@ def get_popular_movies():
 @router.get("/movies/{movie_id}/detail")
 async def get_movie_detail(movie_id: int) -> dict:
     try:
-        url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=7d055fdafcdf398aab55d81760d1c151"
+        url = (
+            f"https://api.themoviedb.org/3/movie/{movie_id}?"
+            "api_key=7d055fdafcdf398aab55d81760d1c151"
+        )
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
