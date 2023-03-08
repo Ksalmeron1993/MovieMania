@@ -3,7 +3,7 @@ from fastapi.testclient import (
 )  # check fast api documentation for overrides
 from main import app
 from queries.bookmarks import BookmarkRepository
-from authenticator import authenticator
+
 
 client = TestClient(app)
 
