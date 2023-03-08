@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends  #, HTTPException, status, Response
-from fastapi.security import HTTPBearer #, HTTPAuthorizationCredentials
+from fastapi import APIRouter, Depends
+from fastapi.security import HTTPBearer
 from pydantic import BaseModel
 from queries.bookmarks import BookmarkIn, BookmarkRepository, BookmarkOut
 from authenticator import authenticator
