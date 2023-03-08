@@ -114,11 +114,11 @@ class UsersRepo:
                     # Execute the SELECT statement
                     db.execute(
                         """
-                        SELECT id, 
-                        first_name, 
-                        last_name, 
-                        email, 
-                        username, 
+                        SELECT id,
+                        first_name,
+                        last_name,
+                        email,
+                        username,
                         hashed_password
                         FROM users
                         """
@@ -133,7 +133,12 @@ class UsersRepo:
                             username=username,
                             hashed_password=hashed_password,
                         )
-                        for id, first_name, last_name, email, username, hashed_password in result
+                        for id,
+                        first_name,
+                        last_name,
+                        email,
+                        username,
+                        hashed_password in result
                     ]
         except Exception as e:
             print(e)
@@ -150,10 +155,10 @@ class UsersRepo:
                 result = db.execute(
                     """
                         INSERT INTO users
-                            (first_name, 
-                            last_name, 
-                            email, 
-                            username, 
+                            (first_name,
+                            last_name,
+                            email,
+                            username,
                             hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
@@ -199,11 +204,11 @@ class UsersRepo:
                             , username = %s
                             , hashed_password = %s
                         WHERE id = %s
-                        RETURNING id, 
-                        first_name, 
-                        last_name, 
-                        email, 
-                        username, 
+                        RETURNING id,
+                        first_name,
+                        last_name,
+                        email,
+                        username,
                         hashed_password
                         """,
                     [
