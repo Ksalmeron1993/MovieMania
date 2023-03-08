@@ -4,10 +4,10 @@ import requests
 from queries.movies import Movie, MovieSearchResult
 
 
-
 router = APIRouter()
 
 API_URL = "https://api.themoviedb.org/3/search/movie?api_key=7d055fdafcdf398aab55d81760d1c151&query="
+
 
 @router.get("/movies/{movie_id}/videos")
 async def get_movie_videos(movie_id: int) -> dict:
@@ -16,7 +16,9 @@ async def get_movie_videos(movie_id: int) -> dict:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         return response.json()
 
@@ -33,7 +35,9 @@ async def get_movie_watch_providers(movie_id: int) -> dict:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         return response.json()
 
@@ -42,6 +46,7 @@ async def get_movie_watch_providers(movie_id: int) -> dict:
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @router.get("/movies/{movie_name}")
 async def get_movies(movie_name: str) -> List[dict]:
     try:
@@ -49,7 +54,9 @@ async def get_movies(movie_name: str) -> List[dict]:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         results = response.json()["results"]
         return results
@@ -58,7 +65,6 @@ async def get_movies(movie_name: str) -> List[dict]:
         raise HTTPException(status_code=response.status_code, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 
 @router.get("/popular/")
@@ -79,8 +85,6 @@ def get_popular_movies():
         raise Exception(str(e))
 
 
-
-
 @router.get("/movies/{movie_id}/detail")
 async def get_movie_detail(movie_id: int) -> dict:
     try:
@@ -88,7 +92,9 @@ async def get_movie_detail(movie_id: int) -> dict:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         return response.json()
 
@@ -105,7 +111,9 @@ async def get_movie_videos(movie_id: int) -> dict:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         return response.json()
 
@@ -122,7 +130,9 @@ async def get_movie_watch_providers(movie_id: int) -> dict:
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HTTPException(status_code=response.status_code, detail=response.json())
+            raise HTTPException(
+                status_code=response.status_code, detail=response.json()
+            )
 
         return response.json()
 

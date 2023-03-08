@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union
-from datetime import date 
+from datetime import date
 from queries.pool import pool
 
 
@@ -8,28 +8,32 @@ class Error(BaseModel):
     message: str
 
 
-#what data do we need for submitting a movie 
-#data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
+# what data do we need for submitting a movie
+# data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
 class CommentIn(BaseModel):
     user_id: int
-    movie_id : int 
-    comment_text: str 
+    movie_id: int
+    comment_text: str
     comment_date: date
+
 
 class CommentOut(BaseModel):
     id: int
     user_id: int
-    movie_id : int 
-    comment_text: str 
+    movie_id: int
+    comment_text: str
     comment_date: date
 
-class CommentRepository: 
-    def update_comment(self, user_id: int, comment: CommentIn) -> Union[CommentOut, Error]:
+
+class CommentRepository:
+    def update_comment(
+        self, user_id: int, comment: CommentIn
+    ) -> Union[CommentOut, Error]:
         try:
-            #Connect to the database 
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
-                with conn.cursor() as db: 
+                with conn.cursor() as db:
                     db.execute(
                         """
                         UPDATE comments
@@ -44,8 +48,7 @@ class CommentRepository:
                             comment.movie_id,
                             comment.comment_text,
                             comment.comment_date,
-                            
-                        ]
+                        ],
                     )
                     return self.movie_in_to_out(user_id, comment)
         except Exception as e:
@@ -54,11 +57,11 @@ class CommentRepository:
 
     def get_all_comments(self) -> Union[Error, List[CommentOut]]:
         try:
-            # Connect to the database 
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
-                with conn.cursor() as db: 
-                    # Execute the SELECT statement 
+                with conn.cursor() as db:
+                    # Execute the SELECT statement
                     db.execute(
                         """
                         SELECT user_id, movie_id, comment_text, comment_date
@@ -71,17 +74,17 @@ class CommentRepository:
                             user_id=record[0],
                             movie_id=record[1],
                             comment_text=record[2],
-                            comment_date=record[3]
+                            comment_date=record[3],
                         )
-                        for record in db 
+                        for record in db
                     ]
         except Exception as e:
             print(e)
-            return {"message": "Could not get all comments"}      
-    
+            return {"message": "Could not get all comments"}
+
     def create(self, comment: CommentIn) -> Union[CommentOut, Error]:
         try:
-            # Connect to the database 
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
                 with conn.cursor() as db:
@@ -95,12 +98,11 @@ class CommentRepository:
                         RETURNING id;
                         """,
                         [
-                            comment.user_id, 
-                            comment.movie_id, 
-                            comment.comment_text, 
-                            comment.comment_date
-                          
-                        ]
+                            comment.user_id,
+                            comment.movie_id,
+                            comment.comment_text,
+                            comment.comment_date,
+                        ],
                     )
                     id = result.fetchone()[0]
                     # Return new data

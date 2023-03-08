@@ -2,11 +2,14 @@ from typing import Union, List
 from queries.pool import pool
 from pydantic import BaseModel
 
+
 class DuplicateUserError(ValueError):
     pass
 
+
 class Error(BaseModel):
     message: str
+
 
 class User(BaseModel):
     id: int
@@ -16,6 +19,7 @@ class User(BaseModel):
     username: str
     hashed_password: str
 
+
 class UsersIn(BaseModel):
     first_name: str
     last_name: str
@@ -23,16 +27,19 @@ class UsersIn(BaseModel):
     username: str
     password: str
 
+
 class UsersOut(BaseModel):
     id: int
     first_name: str
     last_name: str
     email: str
     username: str
-    #hashed_password: str
+    # hashed_password: str
+
 
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
+
 
 class Userlogout(BaseModel):
     id: int
@@ -40,12 +47,13 @@ class Userlogout(BaseModel):
     password: str
     token: str
 
+
 class UsersRepo:
     def get_user(self, username: str) -> UsersOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
-                        """
+                    """
                         SELECT id
                             , first_name
                             , last_name
@@ -55,25 +63,25 @@ class UsersRepo:
                         FROM users
                         WHERE username = %s;
                         """,
-                        [username],
-                    )
+                    [username],
+                )
                 record = result.fetchone()
                 if record is None:
                     return None
-                return User (
-                        id=record[0],
-                        first_name=record[1],
-                        last_name=record[2],
-                        email=record[3],
-                        username=record[4],
-                        hashed_password=record[5],
-                    )
+                return User(
+                    id=record[0],
+                    first_name=record[1],
+                    last_name=record[2],
+                    email=record[3],
+                    username=record[4],
+                    hashed_password=record[5],
+                )
 
     def get_user_by_id(self, id: int) -> UsersOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
-                        """
+                    """
                         SELECT id
                             , first_name
                             , last_name
@@ -83,19 +91,19 @@ class UsersRepo:
                         FROM users
                         WHERE id = %s;
                         """,
-                        [id],
-                    )
+                    [id],
+                )
                 record = result.fetchone()
                 if record is None:
                     return None
-                return User (
-                        id=record[0],
-                        first_name=record[1],
-                        last_name=record[2],
-                        email=record[3],
-                        username=record[4],
-                        hashed_password=record[5],
-                    )
+                return User(
+                    id=record[0],
+                    first_name=record[1],
+                    last_name=record[2],
+                    email=record[3],
+                    username=record[4],
+                    hashed_password=record[5],
+                )
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:
@@ -111,44 +119,51 @@ class UsersRepo:
                         """
                     )
                     result = db.fetchall()
-                    return [UsersOut(
-                            id=id ,
+                    return [
+                        UsersOut(
+                            id=id,
                             first_name=first_name,
                             last_name=last_name,
                             email=email,
                             username=username,
-                            hashed_password=hashed_password)
-                            for id, first_name, last_name, email, username, hashed_password in result]
+                            hashed_password=hashed_password,
+                        )
+                        for id, first_name, last_name, email, username, hashed_password in result
+                    ]
         except Exception as e:
             print(e)
             return {"Users list could not be found, try again"}
 
-    def create(self, user: UsersIn, hashed_password: str) -> UsersOutWithPassword:
-            # Connect to the database
-            with pool.connection() as conn:
-                # Get a cursor to run SQL with
-                with conn.cursor() as db:
-                    # Run our INSERT statement
-                    result = db.execute(
-                        """
+    def create(
+        self, user: UsersIn, hashed_password: str
+    ) -> UsersOutWithPassword:
+        # Connect to the database
+        with pool.connection() as conn:
+            # Get a cursor to run SQL with
+            with conn.cursor() as db:
+                # Run our INSERT statement
+                result = db.execute(
+                    """
                         INSERT INTO users
                             (first_name, last_name, email, username, hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
-                        [
-                            user.first_name,
-                            user.last_name,
-                            user.email,
-                            user.username,
-                            hashed_password
-                        ]
-                    )
-                    id = result.fetchone()[0]
-                    old_data = user.dict()
-                    # Return new data
-                    return UsersOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
+                    [
+                        user.first_name,
+                        user.last_name,
+                        user.email,
+                        user.username,
+                        hashed_password,
+                    ],
+                )
+                id = result.fetchone()[0]
+                old_data = user.dict()
+                # Return new data
+                return UsersOutWithPassword(
+                    id=id, **old_data, hashed_password=hashed_password
+                )
 
     def delete_account(self, user_id: int) -> bool:
         with pool.connection() as conn:
@@ -161,11 +176,13 @@ class UsersRepo:
                     [user_id],
                 )
 
-    def update(self, user_id: int , user: UsersIn, hashed_password: str) -> UsersOut:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    db.execute(
-                        """
+    def update(
+        self, user_id: int, user: UsersIn, hashed_password: str
+    ) -> UsersOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
                         UPDATE users
                         SET first_name = %s
                             , last_name = %s
@@ -175,26 +192,24 @@ class UsersRepo:
                         WHERE id = %s
                         RETURNING id, first_name, last_name, email, username, hashed_password
                         """,
-                        [
-                            user.first_name,
-                            user.last_name,
-                            user.email,
-                            user.username,
-                            hashed_password,
-                            user_id
-                        ]
-                    )
-                    record = None
-                    row = db.fetchone()
-                    if row is not None:
-                        record = {}
-                        for i, column in enumerate(db.description):
-                            record[column.name] = row[i]
-                    return record
+                    [
+                        user.first_name,
+                        user.last_name,
+                        user.email,
+                        user.username,
+                        hashed_password,
+                        user_id,
+                    ],
+                )
+                record = None
+                row = db.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(db.description):
+                        record[column.name] = row[i]
+                return record
 
-                    # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
-
-
+                # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
 
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()

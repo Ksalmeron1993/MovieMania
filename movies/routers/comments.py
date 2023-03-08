@@ -7,10 +7,11 @@ router = APIRouter()
 # This is where our comments endpoints will go
 # Our GETs and POSTs
 
+
 @router.post("/movies/comments", response_model=Union[CommentOut, Error])
 def create_comment(
     comment: CommentIn,
-    response: Response, 
+    response: Response,
     repo: CommentRepository = Depends(),
 ) -> Union[CommentOut, Error]:
     response.status_code = 400
@@ -24,7 +25,9 @@ def get_all_comments(
     return repo.get_all_comments()
 
 
-@router.put("/movies/comments/{movie_id}/", response_model=Union[Error, CommentOut])
+@router.put(
+    "/movies/comments/{movie_id}/", response_model=Union[Error, CommentOut]
+)
 def update_comment(
     movie_id: int,
     comment: CommentIn,

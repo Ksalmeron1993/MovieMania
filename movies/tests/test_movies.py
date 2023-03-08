@@ -25,7 +25,6 @@
 # #         return result
 
 
-
 # def test_get_all_users():
 #     # Arrange
 #     app.dependency_overrides[UsersRepo] = EmptyUserQueries

@@ -42,7 +42,7 @@ function MovieDetail(props) {
           `http://localhost:8000/movies/${id}/videos`
         );
         const data = await response.json();
-        setVideos(data.results);
+        setVideos(data.results.slice(0, 3));
       } catch (error) {
         console.error(error);
       }

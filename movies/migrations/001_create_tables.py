@@ -14,7 +14,7 @@ steps = [
         # "Down" SQL statement - Users Table
         """
         DROP TABLE users;
-        """
+        """,
     ],
     [
         # "Up" SQL statement - Movies Table
@@ -32,21 +32,20 @@ steps = [
         # "Down" SQL statement - Movies Table
         """
         DROP TABLE movies;
-        """
+        """,
     ],
-
     [
-    # "Up" SQL statement - Bookmarks table
-    """
+        # "Up" SQL statement - Bookmarks table
+        """
     CREATE TABLE bookmarks (
         id SERIAL PRIMARY KEY,
         user_id INTEGER NOT NULL REFERENCES users(id),
         movie_id INTEGER NOT NULL
     );
     """,
-    # "Down" SQL statement - Bookmarks table
-    """
+        # "Down" SQL statement - Bookmarks table
+        """
     DROP TABLE bookmarks;
-    """
-    ]
+    """,
+    ],
 ]
