@@ -101,4 +101,3 @@ async def get_movie_detail(movie_id: int) -> dict:
         raise HTTPException(status_code=response.status_code, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
