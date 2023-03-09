@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import "../styles/Homepage.css";
 import "../App.css";
-
 
 function HomePage() {
   const [movieName, setmovieName] = useState("");
@@ -12,7 +12,11 @@ function HomePage() {
     e.preventDefault();
 
     try {
-      await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+      await fetch(`http://localhost:8000/movies/${movieName}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setMovies(data);
+        }, console.log(movies));
     } catch (error) {
       console.log(error);
       setMovies([]);
@@ -22,23 +26,26 @@ function HomePage() {
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-      await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+        await fetch(`http://localhost:8000/popular/`)
+          .then((response) => response.json())
+          .then((data) => {
+            setMovies(data);
+          }, console.log(movies));
       } catch (error) {
         console.log(error);
         setMovies([]);
       }
-    }
+    };
 
     getPopularMovies();
-  }, [movies]);//wants dependencies "movies"
+  }, []); //wants dependencies "movies"
 
   return (
-  <div class="home-page">
-    <div class="logo">
-      <img src="../images/moviemania.png" alt="Logo"/>
-      <img className="mascot" src=".mascot.png" alt="Mascot" />
-
-    </div>
+    <div className="home-page">
+      <div className="logo">
+        <img src="../images/moviemania.png" alt="Logo" />
+        <img className="mascot" src=".mascot.png" alt="Mascot" />
+      </div>
       <form className="form" onSubmit={searchMovies}>
         <input
           className="input"
@@ -53,9 +60,9 @@ function HomePage() {
         </button>
       </form>
       <div className="card-list">
-        {movies?.map((movie) =>
+        {movies?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
-        )}
+        ))}
       </div>
     </div>
   );
