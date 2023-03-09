@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 function MovieCard2(props) {
   const [showOverview] = useState(false);
 

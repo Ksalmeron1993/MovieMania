@@ -13,8 +13,8 @@ function Bookmarkedmovies(props) {
   console.log("TOKEN", token);
   const fetchData = useCallback(async () => {
     if (token?.user?.id) {
-      //const url = `http://localhost:8000/users/get/${token.user.id}`;
-      const url = `http://localhost:8000/users/get/${id}`;
+      //const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${token.user.id}`;
+      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${id}`;
       const fetchConfig = {
         method: "GET",
         headers: {
@@ -31,7 +31,7 @@ function Bookmarkedmovies(props) {
   }, [id, token]);
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
-      const url = `http://localhost:8000/bookmarks/get/all/${token.user.id}`;
+      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}`;
       const response = await fetch(url);
       if (response.ok) {
         const bookmark = await response.json();
@@ -56,7 +56,7 @@ function Bookmarkedmovies(props) {
   }, [token]);
   // const getBookmarks = useCallback(async () => {
   //   if (token?.user?.id) {
-  //     const url = `http://localhost:8000/bookmarks/get/all/${token.user.id}`;
+  //     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}`;
   //     const response = await fetch(url);
   //     if (response.ok) {
   //       const bookmark = await response.json();
@@ -81,7 +81,7 @@ function Bookmarkedmovies(props) {
   //   }
   // }, [token]);
   const handleRemoveBookmark = async (movie) => {
-    const url = `http://localhost:8000/bookmarks/delete/${movie.id}`;
+    const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/delete/${movie.id}`;
     const fetchConfig = {
       method: "DELETE",
       headers: {
