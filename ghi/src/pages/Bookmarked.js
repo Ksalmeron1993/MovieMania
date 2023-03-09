@@ -28,7 +28,7 @@ function Bookmarkedmovies(props) {
         return data;
       }
     }
-  }, [id, token]);
+  }, [token]);
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
       const url = `http://localhost:8000/bookmarks/get/all/${token.user.id}`;
