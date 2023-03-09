@@ -1,26 +1,33 @@
-# Module3 Project Gamma
-i'm making a change to the readme
+# Movie Mania
+- Cierra Reese
+- Mark Ipatzi
+- Kevin Salmeron
+- Michael Maloney
+- Uzair Suleman
 
-## Getting started
+Experience movie madness with MOVIE MANIA!
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+Movie Mania is for those who love to watch movies and want to keep track of their favorites. You can search and browse movies, read their summaries, watch trailers, and see what services are allowing you to stream some of your favorite movies. 
 
-## Install Extensions
+---
 
-* Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
-* Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+## Feature Functionality
+- No matter if the user is logged in or logged out everyone will be able to see movies and their details, 
+- Users will be able to sign up for an account
+- Users will be able to log in and logout 
+- After logging in, users will be able to bookmark, view their bookmarks, delete bookmarks, and edit their account details
+- Each user will be able to 
 
-## Deliverables
+---
 
-* [ ] Wire-frame diagrams
-* [ ] API documentation
-* [ ] Project is deployed to Render.com/GitLab-pages
-* [ ] GitLab issue board is setup and in use
-* [ ] Journals
+## Design
 
+- [API_Design] (docs/api-design.md)
+- [Data_Model] (docs/wireframe.md)
+- [GHI] (docs/ghi.md) 
+- [Integrations] (docs/intergrations.md)
+
+---
 ## Project layout
 
 The layout of the project is just like all of the projects
