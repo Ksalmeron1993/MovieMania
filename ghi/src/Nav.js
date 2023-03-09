@@ -30,7 +30,6 @@ function Nav() {
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><Link className="dropdown-item" to="/AccountDetails">Account info</Link></li>
-                <li><Link className="dropdown-item" to="/AccountDetails/edit">Edit Account</Link></li>
                 <li><Link className="dropdown-item" to="/login">login</Link></li>
                 <li><Link className="dropdown-item" to="/signup">Signup</Link></li>
                 <li><Link className="dropdown-item" to="/logout">Logout</Link></li>

@@ -56,6 +56,12 @@ function AccountDetailView () {
       <p>Email: {userData.email}</p>
       <p>Username: {userData.username}</p>
       {/* <p>Password: {userData.password}</p> */}
+      <button
+        className="link-btn"
+        type="submit"
+        onClick={() => navigate("/AccountDetails/edit")}>
+        Edit Account Information
+      </button>
     </div>
   );
 };
