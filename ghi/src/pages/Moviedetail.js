@@ -25,7 +25,7 @@ function MovieDetail(props) {
     async function fetchMovieDetails() {
       try {
         const response = await fetch(
-          `http://localhost:8000/movies/${id}/detail`
+          `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/detail`
         );
         const data = await response.json();
         setMovie(data);
@@ -39,7 +39,7 @@ function MovieDetail(props) {
     async function fetchVideos() {
       try {
         const response = await fetch(
-          `http://localhost:8000/movies/${id}/videos`
+          `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/videos`
         );
         const data = await response.json();
         setVideos(data.results.slice(0, 3));
@@ -53,7 +53,7 @@ function MovieDetail(props) {
     async function fetchWatchProviders() {
       try {
         const response = await fetch(
-          `http://localhost:8000/movies/${id}/watch-providers`
+          `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/watch-providers`
         );
         const data = await response.json();
         setWatchProviders(data.results.US?.flatrate.slice(0, 5) || []);
@@ -76,7 +76,7 @@ function MovieDetail(props) {
       user_id: token.user.id,
     };
     console.log("BOOKMARK DATA", bookmarkData);
-    const url = `http://localhost:8000/movies/bookmarks/${token.user.id}`;
+    const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/bookmarks/${token.user.id}`;
     if (!token.user.id) {
       alert("User ID is undefined.");
       return;

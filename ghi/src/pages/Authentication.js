@@ -8,7 +8,7 @@ export function getToken() {
 }
 
 export async function getTokenInternal() {
-  const url = `http://localhost:8000/token`; // `${process.env.REACT_APP_MOVIE_MANIA_API}/token`
+  const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/token`; // `${process.env.REACT_APP_MOVIE_MANIA_API}/token`
   try {
     const response = await fetch(url, {
       credentials: "include",
@@ -77,7 +77,7 @@ export function useToken() {
 
   async function logout() {
     if (token) {
-      const url = `http://localhost:8000/token`;
+      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/token`;
       await fetch(url, { method: "delete", credentials: "include" });
       internalToken = null;
       setToken(null);
@@ -86,7 +86,7 @@ export function useToken() {
   }
 
   async function login(username, password) {
-    const url = `http://localhost:8000/token`;
+    const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/token`;
     const form = new FormData();
     form.append("username", username);
     form.append("password", password);
@@ -105,7 +105,7 @@ export function useToken() {
   }
 
   async function signup(firstName, lastName, email, username, password ) {
-    const url = `http://localhost:8000/signup`;
+    const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/signup`;
     const response = await fetch(url, {
       // mode: "no-cors",
       method: "post",
@@ -128,7 +128,7 @@ export function useToken() {
   }
 
   async function update(firstName, lastName, email, username, password) {
-    const url = `http://localhost:8000/users/${token.user.id}`;
+    const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/${token.user.id}`;
     const response = await fetch (url, {
       method: "put",
       body: JSON.stringify({

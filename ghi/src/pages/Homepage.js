@@ -12,7 +12,7 @@ function HomePage() {
     e.preventDefault();
 
     try {
-      await fetch(`http://localhost:8000/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
     } catch (error) {
       console.log(error);
       setMovies([]);
@@ -22,7 +22,7 @@ function HomePage() {
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-      await fetch(`http://localhost:8000/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
       } catch (error) {
         console.log(error);
         setMovies([]);

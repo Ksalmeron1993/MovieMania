@@ -15,12 +15,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-origins = [
-    "http://localhost:3000/",
-    "http://localhost/",
-    "http://localhost:8000/",
-    "http://localhost:8080/",
-]
 
 app.include_router(movies.router)
 app.include_router(users.router)
