@@ -1,3 +1,33 @@
-/* decide on how to style pages when finished with project
-/*should be done last i believe as told by instructors
-/*but could still be used prior to style our website just a bit
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+
+.logo {
+  width: 200px; /* adjust to the size of your logo */
+  height: auto; /* adjust to the size of your logo */
+  position: absolute;
+  top: 20px; /* adjust to the desired distance from the top of the page */
+  left: 50%; /* center the logo horizontally */
+  transform: translateX(-50%); /* center the logo horizontally */
+
+}
+
+body {
+  background-image: url('./images/red.png');
+  background-size: small;
+  background-position: fixed;
+  opacity: 0.9;
+}
+
+.mascot {
+  width: 100px; /* adjust the size of the mascot image */
+  height: auto; /* adjust the size of the mascot image */
+  position: absolute;
+  top: 100px; /* adjust the distance from the top of the page */
+  left: 50px; /* adjust the distance from the left of the page */
+}

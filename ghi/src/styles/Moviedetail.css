@@ -1,3 +1,109 @@
-/* decide on how to style pages when finished with project
-/*should be done last i believe as told by instructors
-/*but could still be used prior to style our website just a bit
+/* Set neon red and yellow as the page color scheme */
+body {
+  background-color: #171E26;
+  color: #e03e79;
+}
+/* Align the header items to the right */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+/* Style the header links */
+.header a {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #592035;
+}
+/* Set the layout for the card list to a 4x4 grid */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+/* Apply a hover effect to the search button */
+.button:hover {
+  background-color: #592035;
+  color: #fff;
+}
+/* Apply a hover effect to the movie cards */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* Style the movie card */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.card-content {
+  padding: 20px;
+}
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.card-text {
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+.card-year {
+  font-size: 14px;
+  font-style: italic;
+  margin: 0;
+}
+.card-rating {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10px;
+}
+/* Increase the size of the search bar and search button */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.input {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  width: 400px; /* increase width */
+}
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #592035;
+  color: #fff;
+  width: 200px; /* increase width */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+/* Arrange header items side by side */
+.header div {
+  display: flex;
+}
+/* Add margin to header links */
+.header a:not(:first-child) {
+  margin-left: 30px;
+}
+
+a:hover path { fill: #00B2FF }
