@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useAuthContext } from "./Authentication";
 import { useNavigate } from "react-router-dom";
-import MovieCard2 from "./Moviecard2";
+import MovieCard3 from "./Moviecard3";
 import { useParams } from "react-router-dom";
 function Bookmarkedmovies(props) {
   const [bookmarks, setBookmarks] = useState([]);
@@ -120,7 +120,7 @@ function Bookmarkedmovies(props) {
         {bookmarks.length > 0 ? (
           bookmarks.map((movie) => (
             <div key={movie.id}>
-              <MovieCard2
+              <MovieCard3
                 movie={movie}
                 onClick={() => handleMovieClick(movie.id)}
               />
