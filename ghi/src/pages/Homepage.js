@@ -33,8 +33,8 @@ function HomePage() {
   }, [movies]);//wants dependencies "movies"
 
   return (
-  <div class="home-page">
-    <div class="logo">
+  <div className="home-page">
+    <div className="logo">
       <img src="../images/moviemania.png" alt="Logo"/>
       <img className="mascot" src=".mascot.png" alt="Mascot" />
 
