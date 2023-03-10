@@ -17,28 +17,30 @@ function GetToken() {
   useToken();
   return null;
 }
+const domain = /https:\/\/[^/]+/;
+const basename = process.env.PUBLIC_URL.replace(domain,"");
 
 function App() {
   return (
-        <BrowserRouter>
-        <AuthProvider>
-          <GetToken />
-          <Nav />
-            <div className="container">
-              <Routes>
-                <Route path="/Bookmarkedmovies" element={<Bookmarkedmovies />} />
-                <Route path="/" element={<Mainpage/>} />
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/homepage" element={<HomePage />} />
-                <Route path="/AccountDetails" element={<AccountDetailView />} />
-                <Route path="/movies/:id/detail" element={<Moviedetail />} />
-                <Route path="/AccountDetails/edit" element={<AccountEditForm />} />
-              </Routes>
-            </div>
-        </AuthProvider>
-        </BrowserRouter>
+    <BrowserRouter basename={basename}>
+      <AuthProvider>
+        <GetToken />
+        <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="/Bookmarkedmovies" element={<Bookmarkedmovies />} />
+            <Route path="/" element={<Mainpage />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/homepage" element={<HomePage />} />
+            <Route path="/AccountDetails" element={<AccountDetailView />} />
+            <Route path="/movies/:id/detail" element={<Moviedetail />} />
+            <Route path="/AccountDetails/edit" element={<AccountEditForm />} />
+          </Routes>
+        </div>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
