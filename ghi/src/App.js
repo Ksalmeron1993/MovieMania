@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import React, { useEffect, useState } from 'react';
 import HomePage from "./pages/Homepage.js";
 import Mainpage from "./pages/Mainpage.js";
 import Nav from "./Nav.js";

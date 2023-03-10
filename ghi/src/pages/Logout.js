@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import { useToken, useAuthContext } from "./Authentication";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +12,7 @@ function Logout() {
     if (error) {
       isLoggedIn(false);
     } else {
-      navigate("/"); // change navigate to mainpage
+      navigate("/");
     }
   };
 

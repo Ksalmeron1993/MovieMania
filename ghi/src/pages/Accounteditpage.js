@@ -102,11 +102,6 @@ function AccountEditForm() {
         />
       </div>
       <button className="btn btn-primary">Save Changes</button>
-      {/* {submitted && (
-        <div className="success-message">
-          Success! Your account has been updated.
-        </div>
-      )} */}
     </form>
   );
 }

@@ -44,7 +44,7 @@ Worked on deployment pt 2 with mike but had to study up on deploymnet some more 
 Worked on pt 3 of deployment with Mike. Worked on some issues with gitlab and caprover. Fully deployed but then ran into issues and wrote rosheen so hopefully we can get that blocker out of the way as all we have left now are some final merges.
 
 ### Mar 9th
-Worked on the readme with Mark. Worked on deployment issues with Mike. Had issues with caprover and had all 3 instructors helping us (aparently there was an outtage or soemthign wrong with aws so our tables werent going through but sometimes they did it was very inconsistent). All we have left now is cleaning up the code and solving some other issues with deployment. 
+Worked on the readme with Mark. Worked on deployment issues with Mike. Had issues with caprover and had all 3 instructors helping us (aparently there was an outtage or soemthign wrong with aws so our tables werent going through but sometimes they did it was very inconsistent). All we have left now is cleaning up the code and solving some other issues with deployment.
 
 ### Mar 10th
-Done!
+Worked on deployment issues with Rosheen and James such as a CORB and 404 issue. Had a navbar.css issues come up but Rosheen said that it wouldnt affect our grade as its obviously showing the css so the 404 error is strange since it is getting it. Fixed the login stuff which made sense as to why we couldnt bookmark. Done!

@@ -4,7 +4,6 @@ import os
 from authenticator import authenticator
 from routers import movies, users, bookmarks
 
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,

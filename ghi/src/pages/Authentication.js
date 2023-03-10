@@ -8,15 +8,13 @@ export function getToken() {
 }
 
 export async function getTokenInternal() {
-  const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/token`; // `${process.env.REACT_APP_MOVIE_MANIA_API}/token`
+  const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/token`;
   try {
     const response = await fetch(url, {
       credentials: "include",
     });
     if (response.ok) {
       const data = await response.json();
-      // internalToken = data.access_token
-      // return internalToken
       return data;
     }
   } catch (e) {}
@@ -107,7 +105,6 @@ export function useToken() {
   async function signup(firstName, lastName, email, username, password) {
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/signup`;
     const response = await fetch(url, {
-      // mode: "no-cors",
       method: "post",
       body: JSON.stringify({
         first_name: firstName,
@@ -143,13 +140,6 @@ export function useToken() {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(response)
-    // if (response.ok) {
-    //   const updatedToken = await getTokenInternal();
-    //   setToken(updatedToken);
-    //   return true;
-    // }
-    // return false;
     if (response.ok) {
       console.log("update", "successful");
       await login(username, password);

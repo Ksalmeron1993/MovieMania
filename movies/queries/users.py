@@ -34,7 +34,6 @@ class UsersOut(BaseModel):
     last_name: str
     email: str
     username: str
-    # hashed_password: str
 
 
 class UsersOutWithPassword(UsersOut):
@@ -107,11 +106,8 @@ class UsersRepo:
 
     def get_all_users(self) -> Union[Error, List[UsersOut]]:
         try:
-            # Connect to the database
             with pool.connection() as conn:
-                # Get a cursor to run SQL with
                 with conn.cursor() as db:
-                    # Execute the SELECT statement
                     db.execute(
                         """
                         SELECT id,
@@ -147,11 +143,8 @@ class UsersRepo:
     def create(
         self, user: UsersIn, hashed_password: str
     ) -> UsersOutWithPassword:
-        # Connect to the database
         with pool.connection() as conn:
-            # Get a cursor to run SQL with
             with conn.cursor() as db:
-                # Run our INSERT statement
                 result = db.execute(
                     """
                         INSERT INTO users
@@ -173,7 +166,6 @@ class UsersRepo:
                 )
                 id = result.fetchone()[0]
                 old_data = user.dict()
-                # Return new data
                 return UsersOutWithPassword(
                     id=id, **old_data, hashed_password=hashed_password
                 )

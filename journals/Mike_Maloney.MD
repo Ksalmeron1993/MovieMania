@@ -43,3 +43,7 @@
 
 ### Thursday 03/09
 - Did a little bit of styling, but mostly worked on deployment and the many absurd/confusing errors we are getting.   I am le lost.
+
+### Friday 03/10
+
+-Collaborated with Rosheen to resolve deployment problems. While troubleshooting, we encountered an issue with nabar.css. Rosheen assured me that this error would not impact our grade since the CSS was visibly displayed. However, the 404 error was puzzling since the CSS was being accessed. We managed to fix the login functionality, which also resolved the issue with our bookmarks.

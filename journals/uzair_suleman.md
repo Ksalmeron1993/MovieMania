@@ -51,3 +51,6 @@ spent majority of the day trying to get the movie poster , to show up for the mo
 
 ### 03/09
 - Fixed homepage search issue
+
+### 03/10
+-I revised my unit test and provided assistance with resolving a CORB issue. Additionally, I collaborated with my team to troubleshoot and resolve any remaining concerns. Through our collective efforts, we successfully delivered a high-quality project that exceeded our expectations.

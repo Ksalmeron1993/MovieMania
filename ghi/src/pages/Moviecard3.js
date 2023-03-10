@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 function MovieCard3(props) {
   const [showOverview] = useState(false);
   const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.movie.poster_path}`;
-  console.log(props.movie);
 
   return (
     <div className="movie">

@@ -12,7 +12,7 @@ Movie Mania is for those who love to watch movies and want to keep track of thei
 ---
 
 ## Feature Functionality
-- No matter if the user is logged in or logged out everyone will be able to see movies and their details,
+- No matter if the user is logged in or logged out everyone will be able to see movies and their details
 - Users will be able to sign up for an account
 - Users will be able to log in and logout
 - After logging in, users will be able to bookmark, view their bookmarks, delete bookmarks, and edit their account details

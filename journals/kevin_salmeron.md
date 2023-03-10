@@ -40,26 +40,34 @@ Mark and I worked on creating a Bookmark database in order for us to be able to 
 ### Tuesday February 28th 2023
 -Mark and I continued working on routers and queries for our bookmarked movies. We are working on getting all CRUD methods working on our localhost 8082 . We will continue to work on this tomorrow.
 
-### Wednesday February 29th 2023
+### Wednesday March 1st 2023
 Completed all bookmark CRUD method calls through fast api
 
-### Thusrday March 1st  2023
+### Thusrday March 2nd  2023
 Started working on the front end for our bookmarks. Logged in users are able to bookmark/favorite a movie that they are interested in watching. Bookmarks are made through the movie detail page, once they click on a 'create book' button it fetches the information for the movie and displays a bookmark with a bookmark ID on the users account. We are working through errors to implement this front idea.
 
-### Friday March 2nd 2023
+### Friday March 3rd 2023
 Started experiencing a lot of errors for the bookmark front end page. we were told by the instructors that this would be one of our toughest tasks for the project, now I am seeing why. All day it's been a never ending debugging day. From 422 , 401, 500 errors all related with our bookmark feature.
 
-### Saturday March 3rd 2023
+### Saturday March 4th 2023
 Debugging day
 
-### Sunday March 4th 2023
+### Sunday March 5th 2023
 practice exam study day
 
-### Monday March 5th 2023
+### Monday March 6th 2023
 bookmark front end day
+I have been working with SEIRS all day trying to get our bookmarked movies to show on the client side.Dealing with endless amounts of 422's in relation to users and our 3rd party API.
 
-### Tuesday March 6th 2023
-bookmark day
+### Tuesday March 7th 2023
+bookmark day ,working on similar issues as yesterday.
 
-### Wednesday March 7th 2023
-bookmark day , have been stuck on this for a while now. I cannot get the picture to populate into my bookmarks page. Today I also worked on fixing pipe line issues with the rest of the team. Mike and Cierra were walking the rest of the group through pipeline and deployment issues.
+### Wednesday March 8th 2023
+bookmark day , I have been stuck on this for a while now. I cannot get the picture to populate into my bookmarks page. Today I also worked on fixing pipe line issues with the rest of the team. Mike and Cierra were walking the rest of the group through pipeline and deployment issues.
+
+### Thursday, March 9th 2023
+I figured out bookmarks and pushed all of my working code.We were told this would be a hard task and it was definetely very challenging for me, but I learned so much throughout this whole process. During the evening I helped Mark finish our teams read me document and I finished my unit test. In the nightime we had a team meeting because we had some unsual deployment issues.I was not part of the deployment so I was really lost but I was there for support mainly and to listen and learn more about deployment.
+
+### Friday March 10th
+While half of the group was working on the deployment issue , Mark and I were cleaning up our code and
+finsihing up the small details.

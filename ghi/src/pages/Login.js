@@ -26,9 +26,8 @@ function Login() {
     if (error) {
       isLoggedIn(false);
     } else {
-      navigate("/homepage"); // change navigate to homepage
+      navigate("/homepage");
     }
-
     await login(username, password);
     console.log("You logged in!!");
   };

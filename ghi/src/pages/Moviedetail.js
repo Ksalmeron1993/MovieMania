@@ -8,7 +8,6 @@ function MovieDetail(props) {
   const [videos, setVideos] = useState([]);
   const [watchProviders, setWatchProviders] = useState([]);
   const { id } = useParams();
-  console.log("movie id", id);
   const [movie, setMovie] = useState({
     title: "",
     overview: "",
@@ -20,7 +19,6 @@ function MovieDetail(props) {
     genres: [],
   });
   const { token } = useAuthContext();
-  console.log("TOKEN", token);
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
@@ -46,6 +44,7 @@ function MovieDetail(props) {
       } catch (error) {
         console.error(error);
       }
+
     }
     fetchVideos();
   }, [id]);
@@ -60,6 +59,7 @@ function MovieDetail(props) {
       } catch (error) {
         console.error(error);
       }
+
     }
     fetchWatchProviders();
   }, [id]);
@@ -81,7 +81,6 @@ function MovieDetail(props) {
       alert("User ID is undefined.");
       return;
     }
-    console.log("URL", url);
     const fetchConfig = {
       method: "POST",
       headers: {
@@ -90,14 +89,13 @@ function MovieDetail(props) {
       },
       body: JSON.stringify(bookmarkData),
     };
-    console.log("FETCHCONFIG", fetchConfig);
-    const response = await fetch(url, fetchConfig);
-    if (response.ok) {
-      // alert("Movie bookmarked!");
-      // navigate(``)
-    } else {
-      alert("Error adding movie to bookmarks.");
-    }
+    await fetch(url, fetchConfig);
+    // if (response.ok) {
+    //   // alert("Movie bookmarked!");
+    //   // navigate(``)
+    // } else {
+    //   alert("Error adding movie to bookmarks.");
+    // }
   };
   useEffect(() => {
     console.log(id);
@@ -107,9 +105,6 @@ function MovieDetail(props) {
   }, [movie]);
   return (
     <div className="movie-detail-container">
-      {/* <div className="movie-detail-card">
-      <MovieCard movie={movie} />
-    </div> */}
       <div className="movie-detail-info">
         <h2>{movie.title}</h2>
         <p>{movie.overview}</p>

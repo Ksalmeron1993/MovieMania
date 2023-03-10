@@ -2,29 +2,22 @@ from pydantic import BaseModel
 from typing import List, Union
 from queries.pool import pool
 
-
 class Error(BaseModel):
     message: str
-
 
 class Bookmark(BaseModel):
     id: int
     user_id: int
     movie_id: int
 
-
-# what data do we need for submitting a movie
-# data coming IN & and out of our endpoints in fastAPI
 class BookmarkIn(BaseModel):
     user_id: int
     movie_id: int
-
 
 class BookmarkOut(BaseModel):
     id: int
     user_id: int
     movie_id: int
-
 
 class BookmarkRepository:
     def get_bookmark_by_id(self, id: int) -> BookmarkOut:
@@ -51,11 +44,8 @@ class BookmarkRepository:
 
     def get_all_bookmarks(self) -> Union[Error, List[BookmarkOut]]:
         try:
-            # Connect to the database
             with pool.connection() as conn:
-                # Get a cursor to run SQL with
                 with conn.cursor() as db:
-                    # Execute the SELECT statement
                     db.execute(
                         """
                         SELECT id, user_id, movie_id
@@ -75,11 +65,8 @@ class BookmarkRepository:
         self, user_id: int
     ) -> Union[Error, List[BookmarkOut]]:
         try:
-            # Connect to the database
             with pool.connection() as conn:
-                # Get a cursor to run SQL with
                 with conn.cursor() as db:
-                    # Execute the SELECT statement
                     db.execute(
                         """
                             SELECT id

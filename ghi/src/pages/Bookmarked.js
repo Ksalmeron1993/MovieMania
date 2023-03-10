@@ -34,7 +34,6 @@ function Bookmarkedmovies(props) {
       const response = await fetch(url);
       if (response.ok) {
         const bookmark = await response.json();
-        // Fetch movie details for each bookmarked movie
         const movies = await Promise.all(
           bookmark.map(async (b) => {
             const url = `https://api.themoviedb.org/3/movie/${b.movie_id}?api_key=7d055fdafcdf398aab55d81760d1c151`;

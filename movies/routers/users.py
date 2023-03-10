@@ -8,34 +8,27 @@ from fastapi import (
 )
 
 from queries.users import UsersRepo, DuplicateUserError, UsersIn, UsersOut
-
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
 from pydantic import BaseModel
-
 
 class UserForm(BaseModel):
     username: str
     password: str
 
-
 class UserToken(Token):
     user: UsersOut
-
 
 class HttpError(BaseModel):
     detail: str
 
-
 router = APIRouter()
-
 
 @router.get("/protected", response_model=bool, tags=["Users"])
 async def protected(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return True
-
 
 @router.post("/signup")
 async def create_user(
@@ -63,7 +56,6 @@ async def create_user(
     print()
     return UserToken(user=user, **token.dict())
 
-
 @router.put("/users/{id}", response_model=UsersOut)
 def update_a_user(
     id: int,
@@ -79,7 +71,6 @@ def update_a_user(
     else:
         return record
 
-
 @router.delete("/users/delete/{id}", tags=["Users"])
 def delete_a_user(
     id: int,
@@ -88,7 +79,6 @@ def delete_a_user(
     repo.delete_account(id)
     return True
 
-
 @router.get("/users/get/{id}", tags=["Users"])
 def get_one_user(
     id: int,
@@ -96,13 +86,11 @@ def get_one_user(
 ) -> UsersOut:
     return repo.get_user_by_id(id)
 
-
 @router.get("/get/all", tags=["Users"])
 def get_all_users(
     repo: UsersRepo = Depends(),
 ):
     return repo.get_all_users()
-
 
 @router.get("/token", response_model=UserToken | None, tags=["Users"])
 async def get_access_token(

@@ -76,11 +76,12 @@ We all tried again with the help of a SEIR, to diagnose our problem with the pos
 
 ### 3/8
 
-Today I worked on CSS styling for most of the day and later in the day returned with our group to listen to. We ended the day with an error in one of our js files that I have no idea how to fix. We later regrouped to and tried to create a merge. We fixed oour pipeline and were able to run it into main and have it deploy to our servers. Later in the day however, we ran into an issue with our branchs, where a nonexistant file was being committed and preventing us from correction our code. We will fix this issue tomorrow
+Today I worked on CSS styling for most of the day and later in the day returned with our group to listen to. We ended the day with an error in one of our js files that I have no idea how to fix. We later regrouped to and tried to create a merge. We fixed our pipeline and were able to run it into main and have it deploy to our servers. Later in the day however, we ran into an issue with our branchs, where a nonexistant file was being committed and preventing us from correction our code. We will fix this issue tomorrow
 
 
 ### 3/9
--We fixed all our issues!
+-Worked oncreating my unit test and fixing it. Additionally Kevin Cierra and I worked on the projects README.md and made sure we wrote out the proper syntax and conected the links properly so that on gitlab everything looks presentable.
 
 ### 3/10
--DONE!
+Worked with Kevin to clean up the projects code and remove console logs in order to make the code prsentable and also applied further css to the project.
+DONE!!!

@@ -12,7 +12,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/api/launch-details")
 def launch_details():
     return {
