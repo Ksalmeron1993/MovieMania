@@ -13,7 +13,6 @@ function AccountEditForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(first_name, last_name, email, username, password);
     const response = await update(
       first_name,
       last_name,
@@ -21,11 +20,8 @@ function AccountEditForm() {
       username,
       password
     );
-    if (!response) {
-      console.log("Reponse error here");
-    } else {
+    if (response) {
       navigate("/AccountDetails");
-      console.log("response:", response);
     }
   };
 
