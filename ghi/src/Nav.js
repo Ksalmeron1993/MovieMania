@@ -39,16 +39,15 @@ function Nav() {
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
-              <a
+              <div
                 className="nav-link dropdown-toggle"
-                href="1"
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 Account
-              </a>
+              </div>
               <ul
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"

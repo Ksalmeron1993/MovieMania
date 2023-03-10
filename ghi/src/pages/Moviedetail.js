@@ -97,12 +97,12 @@ function MovieDetail(props) {
     //   alert("Error adding movie to bookmarks.");
     // }
   };
-  useEffect(() => {
-    console.log(id);
-  }, [id]);
-  useEffect(() => {
-    console.log(movie);
-  }, [movie]);
+  // useEffect(() => {
+  //   console.log(id);
+  // }, [id]);
+  // useEffect(() => {
+  //   console.log(movie);
+  // }, [movie]);
   return (
     <div className="movie-detail-container">
       <div className="movie-detail-info">

@@ -30,7 +30,7 @@ function Bookmarkedmovies(props) {
   }, [token]);
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
-      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}`;
+      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}/`;
       const response = await fetch(url);
       if (response.ok) {
         const bookmark = await response.json();

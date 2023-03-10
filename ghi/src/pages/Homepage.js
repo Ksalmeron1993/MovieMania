@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import "../styles/Homepage.css";
 import "../App.css";
-import MoviemaniaLogo from "../images/moviemania.png";
+// import MoviemaniaLogo from "../images/moviemania.png";
 
 function HomePage() {
   const [movieName, setmovieName] = useState("");
@@ -40,12 +40,12 @@ function HomePage() {
   }, []);
   return (
     <div className="home-page">
-      <div className="logo">
+      {/* <div className="logo">
         <img
           src={MoviemaniaLogo}
           alt="Logo"
         />
-      </div>
+      </div> */}
       <form className="form" onSubmit={searchMovies}>
         <input
           className="input"
