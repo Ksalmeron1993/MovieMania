@@ -10,6 +10,12 @@ class Bookmark(BaseModel):
     user_id: int
     movie_id: int
 
+<<<<<<< HEAD
+=======
+
+# what data do we need for submitting a movie
+# data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
+>>>>>>> parent of ce2c747 (More cleaning)
 class BookmarkIn(BaseModel):
     user_id: int
     movie_id: int

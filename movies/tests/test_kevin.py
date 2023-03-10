@@ -1,10 +1,15 @@
 from fastapi.testclient import (
     TestClient,
-)
+)  # check fast api documentation for overrides
 from main import app
 from queries.bookmarks import BookmarkRepository
+from authenticator import authenticator
 
 client = TestClient(app)
+
+# class EmptyUserQueries:
+#     def get_all(self):
+#         return []
 
 
 class FakeBookmarkRepo:

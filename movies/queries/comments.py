@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Union
+from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
 
@@ -9,7 +9,7 @@ class Error(BaseModel):
 
 
 # what data do we need for submitting a movie
-# data coming IN & and out of our endpoints in fastAPI
+# data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
 class CommentIn(BaseModel):
     user_id: int
     movie_id: int

@@ -110,12 +110,7 @@ class UsersRepo:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id,
-                        first_name,
-                        last_name,
-                        email,
-                        username,
-                        hashed_password
+                        SELECT id, first_name, last_name, email, username, hashed_password
                         FROM users
                         """
                     )
@@ -129,12 +124,7 @@ class UsersRepo:
                             username=username,
                             hashed_password=hashed_password,
                         )
-                        for id,
-                        first_name,
-                        last_name,
-                        email,
-                        username,
-                        hashed_password in result
+                        for id, first_name, last_name, email, username, hashed_password in result
                     ]
         except Exception as e:
             print(e)
@@ -148,10 +138,7 @@ class UsersRepo:
                 result = db.execute(
                     """
                         INSERT INTO users
-                            (first_name,
-                            last_name, email,
-                            username,
-                            hashed_password)
+                            (first_name, last_name, email, username, hashed_password)
                         VALUES
                             (%s, %s, %s, %s, %s)
                         RETURNING id;
@@ -195,11 +182,7 @@ class UsersRepo:
                             , username = %s
                             , hashed_password = %s
                         WHERE id = %s
-                        RETURNING id,
-                        first_name,
-                        last_name,
-                        email, username,
-                        hashed_password
+                        RETURNING id, first_name, last_name, email, username, hashed_password
                         """,
                     [
                         user.first_name,
@@ -217,6 +200,8 @@ class UsersRepo:
                     for i, column in enumerate(db.description):
                         record[column.name] = row[i]
                 return record
+
+                # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
 
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()
