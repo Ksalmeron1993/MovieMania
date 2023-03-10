@@ -22,10 +22,10 @@ Movie Mania is for those who love to watch movies and want to keep track of thei
 
 ## Design
 
-- [API_Design] (docs/api-design.md)
-- [Data_Model] (docs/datamodel.md)
-- [GHI] (docs/ghi.md)
-- [Integrations] (docs/intergrations.md)
+- [API_Design](/docs/api-design.md)
+- [Data_Model](/docs/datamodel.md)
+- [GHI](/docs/ghi.md)
+- [Integrations](/docs/integrations.md)
 
 ---
 
