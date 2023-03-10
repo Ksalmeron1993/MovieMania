@@ -1,9 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
 import requests
-from queries.movies import Movie, MovieSearchResult
-
-
 
 router = APIRouter()
 

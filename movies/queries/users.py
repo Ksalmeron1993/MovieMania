@@ -29,7 +29,6 @@ class UsersOut(BaseModel):
     last_name: str
     email: str
     username: str
-    #hashed_password: str
 
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
@@ -191,10 +190,6 @@ class UsersRepo:
                         for i, column in enumerate(db.description):
                             record[column.name] = row[i]
                     return record
-
-                    # return UsersOutWithPassword(id=id, hashed_password=hashed_password)
-
-
 
     def Users_in_to_out(self, id: int, user: UsersOut):
         old_data = user.dict()

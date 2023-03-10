@@ -1,21 +1,24 @@
 from pydantic import BaseModel
 from typing import List, Union
 from queries.pool import pool
+
 class Error(BaseModel):
     message: str
+
 class Bookmark(BaseModel):
     id:int
     user_id: int
     movie_id: int
-#what data do we need for submitting a movie
-#data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
+
 class BookmarkIn(BaseModel):
     user_id: int
     movie_id: int
+
 class BookmarkOut(BaseModel):
     id: int
     user_id: int
     movie_id: int
+
 class BookmarkRepository:
     def get_bookmark_by_id(self, id: int) -> BookmarkOut:
         with pool.connection() as conn:
@@ -60,7 +63,7 @@ class BookmarkRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all bookmarked movies"}
-    
+
     def get_all_user_bookmarks(self, user_id: int) -> Union[Error, List[BookmarkOut]]:
         try:
                 # Connect to the database
@@ -87,7 +90,7 @@ class BookmarkRepository:
         except Exception as e:
                 print(e)
                 return {"message": "Could not get all users bookmarked movies"}
-   
+
     def create_a_bookmark(self, bookmark: BookmarkIn, user_id: int) -> Union[BookmarkOut, Error]:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -110,7 +113,7 @@ class BookmarkRepository:
                     user_id=user_id,
                     movie_id=bookmark.movie_id,
                 )
-  
+
     def delete_a_bookmark(self, bookmark_id: int) -> bool:
         with pool.connection() as conn:
             with conn.cursor() as db:

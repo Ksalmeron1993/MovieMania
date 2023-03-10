@@ -47,13 +47,11 @@ function Bookmarkedmovies(props) {
           const movie = movies[i];
           return { ...b, movie };
         });
-        //setBookmarks(bookmark);
         setBookmarks(bookmarkWithMovies);
         console.log(bookmarkWithMovies, "BOOKMARK!!!!");
       }
     }
   }, [token]);
-
   const handleRemoveBookmark = async (movie) => {
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/delete/${movie.id}`;
     const fetchConfig = {

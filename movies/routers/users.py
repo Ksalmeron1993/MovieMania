@@ -37,7 +37,10 @@ router = APIRouter()
 async def protected(
     account_data: dict = Depends(authenticator.get_current_account_data),
     ):
-    return True
+    if "is_admin" in account_data and account_data["is_admin"]:
+        return True
+    else:
+        raise HTTPException(status_code=403, detail="You are not authorized to access this resource")
 
 @router.post("/signup")
 async def create_user(
@@ -53,7 +56,6 @@ async def create_user(
     hashed_password = authenticator.hash_password(info.password)
     print("hashed_password", hashed_password)
 
-    # return "Hello World"
     try:
         user = repo.create(info, hashed_password)
 
@@ -76,19 +78,11 @@ def update_a_user(
 ):
     hashed_password = authenticator.hash_password(user.password)
 
-    # try:
     record = repo.update(id, user, hashed_password)
-
-    # except DuplicateUserError:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail="Cannot create an account with those credentials",
-    #     )
     if record is None:
         response.status_code = 404
     else:
         return record
-
 
 @router.delete("/users/delete/{id}", tags=["Users"])
 def delete_a_user(
@@ -107,7 +101,6 @@ def get_one_user(
 def get_all_users(
     repo:UsersRepo = Depends (), ):
     return repo.get_all_users()
-
 
 @router.get("/token", response_model=UserToken | None, tags=["Users"])
 async def get_access_token(
