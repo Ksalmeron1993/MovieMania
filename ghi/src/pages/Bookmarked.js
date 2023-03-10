@@ -54,32 +54,7 @@ function Bookmarkedmovies(props) {
       }
     }
   }, [token]);
-  // const getBookmarks = useCallback(async () => {
-  //   if (token?.user?.id) {
-  //     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}`;
-  //     const response = await fetch(url);
-  //     if (response.ok) {
-  //       const bookmark = await response.json();
-  //       // Fetch movie details for each bookmarked movie
-  //       const movies = await Promise.all(
-  //         bookmark.map(async (b) => {
-  //           const url = `https://api.themoviedb.org/3/movie/${b.movie_id}?api_key=7d055fdafcdf398aab55d81760d1c151`;
-  //           const url2 = `https://api.themoviedb.org/3/movie/${b.poster_path}?api_key=7d055fdafcdf398aab55d81760d1c151`;
-  //           const movieResponse = await fetch(url);
-  //           const movie = await movieResponse.json();
-  //           return { ...movie, id: b.id, id: b.poster_path };
-  //         })
-  //       );
-  //       const bookmarkWithMovies = bookmark.map((b, i) => {
-  //         const movie = movies[i];
-  //         return { ...b, movie };
-  //       });
-  //       //setBookmarks(bookmark);
-  //       setBookmarks(bookmarkWithMovies);
-  //       console.log(bookmarkWithMovies, "BOOKMARK!!!!");
-  //     }
-  //   }
-  // }, [token]);
+
   const handleRemoveBookmark = async (movie) => {
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/delete/${movie.id}`;
     const fetchConfig = {

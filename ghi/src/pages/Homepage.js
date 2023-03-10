@@ -2,40 +2,39 @@ import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import "../styles/Homepage.css";
 import "../App.css";
-
-
 function HomePage() {
   const [movieName, setmovieName] = useState("");
   const [movies, setMovies] = useState([]);
-
   const searchMovies = async (e) => {
     e.preventDefault();
-
     try {
-      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${movieName}`)
+      await fetch(
+        `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${movieName}`
+      )
         .then((response) => response.json())
-        .then((data) => setMovies(data));
+        .then((data) => {
+          setMovies(data);
+        }, console.log(movies));
     } catch (error) {
       console.log(error);
       setMovies([]);
     }
   };
-
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/popular/`);
-        const data = await response.json();
-        setMovies(data);
+        await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/popular/`)
+          .then((response) => response.json())
+          .then((data) => {
+            setMovies(data);
+          }, console.log(movies));
       } catch (error) {
         console.log(error);
         setMovies([]);
       }
     };
-
     getPopularMovies();
-  }, []);
-
+  }, [movies]); //wants dependencies "movies"
   return (
     <div class="home-page">
       <div class="logo">
@@ -63,5 +62,4 @@ function HomePage() {
     </div>
   );
 }
-
 export default HomePage;

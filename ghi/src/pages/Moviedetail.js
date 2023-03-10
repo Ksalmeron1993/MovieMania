@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
 import "../images/moviemania.png"
-
+import { useNavigate } from "react-router-dom";
 function MovieDetail(props) {
   const [videos, setVideos] = useState([]);
+  const navigate = useNavigate()
   const [watchProviders, setWatchProviders] = useState([]);
   const { id } = useParams();
   console.log("movie id", id);
@@ -94,7 +95,7 @@ function MovieDetail(props) {
     const response = await fetch(url, fetchConfig);
     console.log("response", response);
     if (response.ok) {
-      alert("Movie bookmarked!");
+      navigate('/Bookmarkedmovies')
     } else {
       alert("Error adding movie to bookmarks.");
     }
@@ -105,7 +106,6 @@ function MovieDetail(props) {
   useEffect(() => {
     console.log(movie);
   }, [movie]);
-
   return (
   <div className="movie-detail-container">
     {/* <div className="movie-detail-card">
@@ -165,7 +165,6 @@ function MovieDetail(props) {
            Z"
               fill="#007BFF"
             />
-
             <text
               x="60"
               y="50"
@@ -181,6 +180,5 @@ function MovieDetail(props) {
     </div>
   </div>
 );
-
       }
 export default MovieDetail;
