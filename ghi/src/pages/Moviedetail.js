@@ -1,12 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
 import "../images/moviemania.png"
-import { useNavigate } from "react-router-dom";
+
 function MovieDetail(props) {
   const [videos, setVideos] = useState([]);
-  const navigate = useNavigate()
   const [watchProviders, setWatchProviders] = useState([]);
   const { id } = useParams();
   console.log("movie id", id);
@@ -43,7 +43,7 @@ function MovieDetail(props) {
           `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/videos`
         );
         const data = await response.json();
-        setVideos(data.results.slice(0, 3));
+        setVideos(data.results?.slice(0, 3) || []);
       } catch (error) {
         console.error(error);
       }
@@ -57,7 +57,7 @@ function MovieDetail(props) {
           `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/watch-providers`
         );
         const data = await response.json();
-        setWatchProviders(data.results.US?.flatrate.slice(0, 5) || []);
+        setWatchProviders(data.results.US?.flatrate?.slice(0, 5) || []);
       } catch (error) {
         console.error(error);
       }
@@ -93,9 +93,9 @@ function MovieDetail(props) {
     };
     console.log("FETCHCONFIG", fetchConfig);
     const response = await fetch(url, fetchConfig);
-    console.log("response", response);
     if (response.ok) {
-      navigate('/Bookmarkedmovies')
+      // alert("Movie bookmarked!");
+      // navigate(``)
     } else {
       alert("Error adding movie to bookmarks.");
     }
@@ -155,7 +155,7 @@ function MovieDetail(props) {
           height="120"
           onClick={() => handleBookmark(token)}
         >
-          <a href="1">
+          <a href="#">
             <path
               d="M   0   0
            L 120   0

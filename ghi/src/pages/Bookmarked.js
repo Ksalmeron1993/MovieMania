@@ -13,8 +13,7 @@ function Bookmarkedmovies(props) {
   console.log("TOKEN", token);
   const fetchData = useCallback(async () => {
     if (token?.user?.id) {
-      //const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${token.user.id}`;
-      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${id}`;
+      const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${token.user.id}`;
       const fetchConfig = {
         method: "GET",
         headers: {
@@ -28,7 +27,7 @@ function Bookmarkedmovies(props) {
         return data;
       }
     }
-  }, [id, token]);
+  }, [token]);
   const getBookmarks = useCallback(async () => {
     if (token?.user?.id) {
       const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/bookmarks/get/all/${token.user.id}`;

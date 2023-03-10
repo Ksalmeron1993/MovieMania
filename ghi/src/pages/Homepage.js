@@ -34,10 +34,11 @@ function HomePage() {
       }
     };
     getPopularMovies();
-  }, [movies]); //wants dependencies "movies"
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);  //wants dependencies "movies"
   return (
-    <div class="home-page">
-      <div class="logo">
+    <div className="home-page">
+      <div className="logo">
         <img src="../images/moviemania.png" alt="Logo" />
         <img className="mascot" src=".mascot.png" alt="Mascot" />
       </div>

@@ -13,7 +13,7 @@ function Logout(){
         if (error) {
             isLoggedIn(false)
         } else {
-            navigate("/signup") // change navigate to mainpage
+            navigate("/") // change navigate to mainpage
         }
     }
 

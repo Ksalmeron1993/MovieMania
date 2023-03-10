@@ -10,29 +10,7 @@ function AccountEditForm() {
   const [email, setEmail] = useState("");
   const update = useToken()[4];
   const navigate = useNavigate();
-  // const {token} = useAuthContext();
-  //   const { isLoggedIn } = useAuthContext();
-
-  // const handleFirstNameChange = (e) => {
-  //   const value = e.target.value;
-  //   setFirstName(value);
-  // };
-  // const handleLastNameChange = (e) => {
-  //   const value = e.target.value;
-  //   setLastName(value);
-  // };
-  // const handleUsernameChange = (e) => {
-  //   const value = e.target.value;
-  //   setUsername(value);
-  // };
-  //  const handlePasswordChange = (e) => {
-  //    const value = e.target.value;
-  //    setPassword(value);
-  //  };
-  //  const handleEmail = (e) => {
-  //    const value = e.target.value;
-  //    setEmail(value);
-  //  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(first_name, last_name, email, username, password);
@@ -44,14 +22,13 @@ function AccountEditForm() {
       password
     );
     if (!response) {
-      navigate("/AccountDetails/edit");
       console.log("Reponse error here");
     } else {
-      //   isLoggedIn(false); // change navigate to homepage
+      navigate("/AccountDetails");
       console.log("response:", response);
     }
   };
-  // console.log(response)
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
@@ -97,20 +74,6 @@ function AccountEditForm() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="text"
-          className="form-control"
-          id="password"
-          placeholder="Password"
-        />
-      </div>
-      <div className="mb-3">
         <label htmlFor="username" className="form-label">
           Username
         </label>
@@ -122,6 +85,20 @@ function AccountEditForm() {
           className="form-control"
           id="username"
           placeholder="Username"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
+        <input
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          className="form-control"
+          id="password"
+          placeholder="Password"
         />
       </div>
       <button className="btn btn-primary">Save Changes</button>
