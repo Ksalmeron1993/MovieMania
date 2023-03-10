@@ -40,7 +40,7 @@ function HomePage() {
     <div className="home-page">
       <div className="logo">
         <img src="../images/moviemania.png" alt="Logo" />
-        <img className="mascot" src=".mascot.png" alt="Mascot" />
+        <img className="mascot" src="mascot.png" alt="Mascot" />
       </div>
       <form className="form" onSubmit={searchMovies}>
         <input
