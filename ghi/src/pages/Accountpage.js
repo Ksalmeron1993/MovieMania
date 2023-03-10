@@ -23,8 +23,6 @@ function AccountDetailView() {
         if (response.ok) {
           const data = await response.json();
           setUserData(data);
-        } else {
-          console.log(response);
         }
       };
       fetchUserData();
