@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/Moviedetail.css";
 import { useAuthContext } from "./Authentication";
-import "../images/moviemania.png";
 
 function MovieDetail(props) {
   const [videos, setVideos] = useState([]);
