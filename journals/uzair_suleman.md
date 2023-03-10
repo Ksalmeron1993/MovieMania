@@ -48,3 +48,6 @@
 spent majority of the day trying to get the movie poster , to show up for the movie card in the bookmarks
 ### 03/08
 - Worked on styling with Mark for the home page, created logo and background
+
+### 03/09
+- Fixed homepage search issue

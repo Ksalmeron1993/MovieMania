@@ -12,7 +12,9 @@ function HomePage() {
     e.preventDefault();
 
     try {
-      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${movieName}`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${movieName}`)
+        .then((response) => response.json())
+        .then((data) => setMovies(data));
     } catch (error) {
       console.log(error);
       setMovies([]);
@@ -22,23 +24,24 @@ function HomePage() {
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-      await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/popular/`).then((response) => response.json()).then((data) => {setMovies(data)}, console.log(movies))
+        const response = await fetch(`${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/popular/`);
+        const data = await response.json();
+        setMovies(data);
       } catch (error) {
         console.log(error);
         setMovies([]);
       }
-    }
+    };
 
     getPopularMovies();
-  }, [movies]);//wants dependencies "movies"
+  }, []);
 
   return (
-  <div class="home-page">
-    <div class="logo">
-      <img src="../images/moviemania.png" alt="Logo"/>
-      <img className="mascot" src=".mascot.png" alt="Mascot" />
-
-    </div>
+    <div class="home-page">
+      <div class="logo">
+        <img src="../images/moviemania.png" alt="Logo" />
+        <img className="mascot" src=".mascot.png" alt="Mascot" />
+      </div>
       <form className="form" onSubmit={searchMovies}>
         <input
           className="input"
@@ -53,9 +56,9 @@ function HomePage() {
         </button>
       </form>
       <div className="card-list">
-        {movies?.map((movie) =>
+        {movies?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
-        )}
+        ))}
       </div>
     </div>
   );
