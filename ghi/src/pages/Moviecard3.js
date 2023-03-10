@@ -7,11 +7,6 @@ function MovieCard3(props) {
   const imageUrl = `https://image.tmdb.org/t/p/w500/${props.movie.movie.poster_path}`;
   console.log(props.movie);
 
-  // const handleBookmark = () => {
-  //   props.handleBookmark(props.movie.id);
-  // }
-  //      <button onClick={handleBookmark}>Bookmark Movie</button>
-
   return (
     <div className="movie">
       <div>{/* <p>{props.movie.release_date}</p> */}</div>
