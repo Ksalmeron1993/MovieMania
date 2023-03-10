@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import React, { useEffect, useState } from 'react';
 import HomePage from "./pages/Homepage.js";
-import Mainpage from './pages/Mainpage.js';
-import Nav from './Nav.js';
-import Login from './pages/Login.js';
-import Moviedetail from './pages/Moviedetail.js';
+import Mainpage from "./pages/Mainpage.js";
+import Nav from "./Nav.js";
+import Login from "./pages/Login.js";
+import Moviedetail from "./pages/Moviedetail.js";
 import Logout from "./pages/Logout.js";
 import Signup from "./pages/Signup.js";
 import { AuthProvider, useToken } from "./pages/Authentication.js";
@@ -18,7 +18,7 @@ function GetToken() {
   return null;
 }
 const domain = /https:\/\/[^/]+/;
-const basename = process.env.PUBLIC_URL.replace(domain,"");
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 
 function App() {
   return (

@@ -10,7 +10,7 @@ function AccountEditForm() {
   const [email, setEmail] = useState("");
   const update = useToken()[4];
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(first_name, last_name, email, username, password);
@@ -28,7 +28,7 @@ function AccountEditForm() {
       console.log("response:", response);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">

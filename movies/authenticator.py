@@ -3,13 +3,14 @@ from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
 from queries.users import UsersRepo, UsersOut, UsersOutWithPassword
 
+
 class MyAuthenticator(Authenticator):
     async def get_account_data(
-            self,
-            username: str,
-            users: UsersRepo= Depends(),
+        self,
+        username: str,
+        users: UsersRepo = Depends(),
     ):
-         return users.get_user(username)
+        return users.get_user(username)
 
     def get_account_getter(
         self,

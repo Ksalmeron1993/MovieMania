@@ -35,12 +35,14 @@ function HomePage() {
     };
     getPopularMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);  //wants dependencies "movies"
+  }, []); 
   return (
     <div className="home-page">
       <div className="logo">
-        <img src="../images/moviemania.png" alt="Logo" />
-        <img className="mascot" src="mascot.png" alt="Mascot" />
+        <img
+          src={process.env.PUBLIC_URL + "./images/moviemania.png"}
+          alt="Logo"
+        />
       </div>
       <form className="form" onSubmit={searchMovies}>
         <input

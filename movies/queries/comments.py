@@ -3,26 +3,34 @@ from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
 
+
 class Error(BaseModel):
     message: str
 
+
+# what data do we need for submitting a movie
+# data coming IN & and out of our endpoints in fastAPI - has nothing to do with our database
 class CommentIn(BaseModel):
     user_id: int
-    movie_id : int
+    movie_id: int
     comment_text: str
     comment_date: date
+
 
 class CommentOut(BaseModel):
     id: int
     user_id: int
-    movie_id : int
+    movie_id: int
     comment_text: str
     comment_date: date
 
+
 class CommentRepository:
-    def update_comment(self, user_id: int, comment: CommentIn) -> Union[CommentOut, Error]:
+    def update_comment(
+        self, user_id: int, comment: CommentIn
+    ) -> Union[CommentOut, Error]:
         try:
-            #Connect to the database
+            # Connect to the database
             with pool.connection() as conn:
                 # Get a cursor to run SQL with
                 with conn.cursor() as db:
@@ -40,8 +48,7 @@ class CommentRepository:
                             comment.movie_id,
                             comment.comment_text,
                             comment.comment_date,
-
-                        ]
+                        ],
                     )
                     return self.movie_in_to_out(user_id, comment)
         except Exception as e:
@@ -67,7 +74,7 @@ class CommentRepository:
                             user_id=record[0],
                             movie_id=record[1],
                             comment_text=record[2],
-                            comment_date=record[3]
+                            comment_date=record[3],
                         )
                         for record in db
                     ]
@@ -94,9 +101,8 @@ class CommentRepository:
                             comment.user_id,
                             comment.movie_id,
                             comment.comment_text,
-                            comment.comment_date
-
-                        ]
+                            comment.comment_date,
+                        ],
                     )
                     id = result.fetchone()[0]
                     # Return new data

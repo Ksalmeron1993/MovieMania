@@ -65,16 +65,19 @@ function Bookmarkedmovies(props) {
       setBookmarks(bookmarks.filter((bookmark) => bookmark.id !== movie.id));
     }
   };
-  const handleMovieClick = useCallback(async (movieId) => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
-    console.log("MOVIE ID", movieId);
-    console.log("API KEY", process.env.REACT_APP_MOVIE_API_KEY);
-    const response = await fetch(url);
-    if (response.ok) {
-      const movie = await response.json();
-      setSelectedMovie(movie);
-    }
-  }, [setSelectedMovie]);
+  const handleMovieClick = useCallback(
+    async (movieId) => {
+      const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
+      console.log("MOVIE ID", movieId);
+      console.log("API KEY", process.env.REACT_APP_MOVIE_API_KEY);
+      const response = await fetch(url);
+      if (response.ok) {
+        const movie = await response.json();
+        setSelectedMovie(movie);
+      }
+    },
+    [setSelectedMovie]
+  );
   useEffect(() => {
     if (token === false) {
       navigate("/login");

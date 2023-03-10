@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-let internalToken = null
+let internalToken = null;
 
 export function getToken() {
-  return internalToken
+  return internalToken;
 }
 
 export async function getTokenInternal() {
@@ -14,13 +14,13 @@ export async function getTokenInternal() {
       credentials: "include",
     });
     if (response.ok) {
-      const data = await response.json()
+      const data = await response.json();
       // internalToken = data.access_token
       // return internalToken
-      return data
+      return data;
     }
   } catch (e) {}
-  return false
+  return false;
 }
 
 function handleErrorMessage(error) {
@@ -50,16 +50,16 @@ export const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-export const useAuthContext = () => useContext(AuthContext)
+export const useAuthContext = () => useContext(AuthContext);
 
 export function useToken() {
   const { token, setToken } = useAuthContext();
@@ -104,17 +104,17 @@ export function useToken() {
     return handleErrorMessage(error);
   }
 
-  async function signup(firstName, lastName, email, username, password ) {
+  async function signup(firstName, lastName, email, username, password) {
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/signup`;
     const response = await fetch(url, {
       // mode: "no-cors",
       method: "post",
       body: JSON.stringify({
-        "first_name": firstName,
-        "last_name": lastName,
-        "email": email,
-        "username": username,
-        "password": password
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        username: username,
+        password: password,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +129,7 @@ export function useToken() {
 
   async function update(firstName, lastName, email, username, password) {
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/${token.user.id}`;
-    const response = await fetch (url, {
+    const response = await fetch(url, {
       method: "put",
       body: JSON.stringify({
         first_name: firstName,
@@ -140,7 +140,7 @@ export function useToken() {
       }),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
     });
     // console.log(response)
@@ -151,14 +151,14 @@ export function useToken() {
     // }
     // return false;
     if (response.ok) {
-      console.log("update", "successful")
+      console.log("update", "successful");
       await login(username, password);
       return true;
     }
     return false;
   }
 
-  return [ token, login, logout, signup, update ];
+  return [token, login, logout, signup, update];
 }
 
 export const useUser = (token) => {
@@ -184,4 +184,4 @@ export const useUser = (token) => {
   }, [token]);
 
   return user;
-}
+};

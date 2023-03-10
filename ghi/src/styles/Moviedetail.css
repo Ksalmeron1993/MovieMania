@@ -1,6 +1,6 @@
 /* Set neon red and yellow as the page color scheme */
 body {
-  background-color: #171E26;
+  background-color: #171e26;
   color: #e03e79;
 }
 /* Align the header items to the right */
@@ -106,4 +106,6 @@ body {
   margin-left: 30px;
 }
 
-a:hover path { fill: #00B2FF }
+a:hover path {
+  fill: #00b2ff;
+}

@@ -3,9 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
 }
-
 
 .logo {
   width: 200px; /* adjust to the size of your logo */
@@ -14,11 +12,10 @@
   top: 20px; /* adjust to the desired distance from the top of the page */
   left: 50%; /* center the logo horizontally */
   transform: translateX(-50%); /* center the logo horizontally */
-
 }
 
 body {
-  background-image: url('./images/red.png');
+  background-image: url("./images/red.png");
   background-size: small;
   background-position: fixed;
   opacity: 0.9;
