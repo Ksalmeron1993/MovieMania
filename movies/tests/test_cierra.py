@@ -4,6 +4,7 @@ from queries.users import UsersRepo
 
 client = TestClient(app)
 
+
 class FakeAllUserRepo:
     def get_all_users(self):
         return [
@@ -20,8 +21,10 @@ class FakeAllUserRepo:
                 "last_name": "Tiger",
                 "email": "tigress@tiger.com",
                 "username": "tiger",
-            }
+            },
         ]
+
+
 def test_all_users():
     app.dependency_overrides[UsersRepo] = FakeAllUserRepo
     response = client.get(
@@ -38,9 +41,9 @@ def test_all_users():
         },
         {
             "id": 2,
-                "first_name": "Tigress",
-                "last_name": "Tiger",
-                "email": "tigress@tiger.com",
-                "username": "tiger",
-        }
+            "first_name": "Tigress",
+            "last_name": "Tiger",
+            "email": "tigress@tiger.com",
+            "username": "tiger",
+        },
     ]

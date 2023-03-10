@@ -56,7 +56,8 @@
 #                 MigrationFile(
 #                     name=str(file.stem),
 #                     digest=hash.digest(),
-#                     steps=[MigrationStep(up=s[0], down=s[1]) for s in m.steps],
+#                     steps=[MigrationStep(up=s[0],
+#                       down=s[1]) for s in m.steps],
 #                 )
 #             )
 #     return migrations

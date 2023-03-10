@@ -1,9 +1,11 @@
-from fastapi.testclient import TestClient # check fast api documentation for overrides
+from fastapi.testclient import (
+    TestClient,
+)
 from main import app
 from queries.bookmarks import BookmarkRepository
-from authenticator import authenticator
 
 client = TestClient(app)
+
 
 class FakeUserBookmarkRepo:
     def get_all_user_bookmarks(self, user_id):
@@ -11,6 +13,8 @@ class FakeUserBookmarkRepo:
             "user_id": 1,
             "movie_id": 1,
         }
+
+
 def test_get_all_user_bookmarks():
     app.dependency_overrides[BookmarkRepository] = FakeUserBookmarkRepo
     response = client.get(
