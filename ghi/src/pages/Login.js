@@ -19,17 +19,17 @@ function Login() {
     setPassword(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const error = login(username, password);
+    const error = await login(username, password);
     if (error) {
       isLoggedIn(false);
     } else {
       navigate("/homepage"); // change navigate to homepage
     }
 
-    login(username, password);
+    await login(username, password);
     console.log("You logged in!!");
   };
 
