@@ -16,9 +16,8 @@ function HomePage() {
         .then((response) => response.json())
         .then((data) => {
           setMovies(data);
-        }, console.log(movies));
+        },);
     } catch (error) {
-      console.log(error);
       setMovies([]);
     }
   };
@@ -29,9 +28,8 @@ function HomePage() {
           .then((response) => response.json())
           .then((data) => {
             setMovies(data);
-          }, console.log(movies));
+          },);
       } catch (error) {
-        console.log(error);
         setMovies([]);
       }
     };
