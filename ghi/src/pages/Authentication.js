@@ -141,7 +141,6 @@ export function useToken() {
       },
     });
     if (response.ok) {
-      console.log("update", "successful");
       await login(username, password);
       return true;
     }

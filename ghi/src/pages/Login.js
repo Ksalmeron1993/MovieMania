@@ -29,7 +29,6 @@ function Login() {
       navigate("/homepage");
     }
     await login(username, password);
-    console.log("You logged in!!");
   };
 
   return (
