@@ -24,4 +24,5 @@ class MyAuthenticator(Authenticator):
     def get_users_data_for_cookie(self, users: UsersOut):
         return users.username, UsersOut(**users.dict())
 
+
 authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])

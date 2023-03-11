@@ -2,22 +2,27 @@ from pydantic import BaseModel
 from typing import List, Union
 from queries.pool import pool
 
+
 class Error(BaseModel):
     message: str
+
 
 class Bookmark(BaseModel):
     id: int
     user_id: int
     movie_id: int
 
+
 class BookmarkIn(BaseModel):
     user_id: int
     movie_id: int
+
 
 class BookmarkOut(BaseModel):
     id: int
     user_id: int
     movie_id: int
+
 
 class BookmarkRepository:
     def get_bookmark_by_id(self, id: int) -> BookmarkOut:
