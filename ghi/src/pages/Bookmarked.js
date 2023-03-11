@@ -9,8 +9,6 @@ function Bookmarkedmovies(props) {
   const { id } = useParams();
   const { token } = useAuthContext();
   const navigate = useNavigate();
-  console.log("USERID", id);
-  console.log("TOKEN", token);
   const fetchData = useCallback(async () => {
     if (token?.user?.id) {
       const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/users/get/${token.user.id}`;
@@ -23,7 +21,6 @@ function Bookmarkedmovies(props) {
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
         const data = await response.json();
-        console.log("DATA", data);
         return data;
       }
     }
@@ -47,7 +44,6 @@ function Bookmarkedmovies(props) {
           return { ...b, movie };
         });
         setBookmarks(bookmarkWithMovies);
-        console.log(bookmarkWithMovies, "BOOKMARK!!!!");
       }
     }
   }, [token]);
@@ -67,8 +63,6 @@ function Bookmarkedmovies(props) {
   const handleMovieClick = useCallback(
     async (movieId) => {
       const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
-      console.log("MOVIE ID", movieId);
-      console.log("API KEY", process.env.REACT_APP_MOVIE_API_KEY);
       const response = await fetch(url);
       if (response.ok) {
         const movie = await response.json();
@@ -80,7 +74,6 @@ function Bookmarkedmovies(props) {
   useEffect(() => {
     if (token === false) {
       navigate("/login");
-      console.log("not logged in");
     } else {
       fetchData(token).then(() => {
         getBookmarks();
