@@ -27,7 +27,8 @@ function MovieDetail(props) {
         );
         const data = await response.json();
         setMovie(data);
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error);
       }
     }
@@ -64,18 +65,14 @@ function MovieDetail(props) {
     fetchWatchProviders();
   }, [id]);
   const handleBookmark = async (token) => {
-    console.log("TOKEN", token);
     if (!token) {
       alert("Please log in to bookmark a movie.");
       return;
     }
-    console.log("id:", id);
-    console.log("user_id:", token.user.id);
     const bookmarkData = {
       movie_id: id,
       user_id: token.user.id,
     };
-    console.log("BOOKMARK DATA", bookmarkData);
     const url = `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/bookmarks/${token.user.id}`;
     if (!token.user.id) {
       alert("User ID is undefined.");
@@ -90,19 +87,7 @@ function MovieDetail(props) {
       body: JSON.stringify(bookmarkData),
     };
     await fetch(url, fetchConfig);
-    // if (response.ok) {
-    //   // alert("Movie bookmarked!");
-    //   // navigate(``)
-    // } else {
-    //   alert("Error adding movie to bookmarks.");
-    // }
   };
-  // useEffect(() => {
-  //   console.log(id);
-  // }, [id]);
-  // useEffect(() => {
-  //   console.log(movie);
-  // }, [movie]);
   return (
     <div className="movie-detail-container">
       <div className="movie-detail-info">
