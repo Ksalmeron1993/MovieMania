@@ -27,8 +27,7 @@ function MovieDetail(props) {
         );
         const data = await response.json();
         setMovie(data);
-      }
-      catch (error) {
+      } catch (error) {
         console.error(error);
       }
     }
@@ -41,11 +40,10 @@ function MovieDetail(props) {
           `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/videos`
         );
         const data = await response.json();
-        setVideos(data.results?.slice(0, 3) || []);
+        setVideos(data.results?.slice(0, 2) || []);
       } catch (error) {
         console.error(error);
       }
-
     }
     fetchVideos();
   }, [id]);
@@ -60,7 +58,6 @@ function MovieDetail(props) {
       } catch (error) {
         console.error(error);
       }
-
     }
     fetchWatchProviders();
   }, [id]);
@@ -91,69 +88,78 @@ function MovieDetail(props) {
   return (
     <div className="movie-detail-container">
       <div className="movie-detail-info">
-        <h2>{movie.title}</h2>
-        <p>{movie.overview}</p>
-        {movie.poster_path && (
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-          />
-        )}
-        <p>Release date: {movie.release_date}</p>
-        <div style={{ marginTop: "50px" }}>
-          {" "}
-          {/* move the section down by 50 pixels */}
-          <h3>Videos</h3>
-          {videos.map((video) => (
-            <div key={video.id}>
-              <p>{video.name}</p>
-              <iframe
-                src={`https://www.youtube.com/embed/${video.key}`}
-                title={video.name}
-                width="560"
-                height="315"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h3>Where to Watch</h3>
-          {watchProviders.length > 0 ? (
-            <ul>
-              {watchProviders.map((provider) => (
-                <li key={provider.provider_id}>{provider.provider_name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>Watch providers not available</p>
+        <div className="poster">
+          {movie.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
           )}
         </div>
-        {token && (
-          <svg width="120" height="120" onClick={() => handleBookmark(token)}>
-            <a href="#">
-              <path
-                d="M   0   0
+        <div className="movie-detail-content">
+          <h2>{movie.title}</h2>
+          <p className="description">{movie.overview} </p>
+          <p>Release date: {movie.release_date}</p>
+          <div className="videos">
+            <h3>Videos</h3>
+            {videos.map((video) => (
+              <div key={video.id}>
+                <p>{video.name}</p>
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.key}`}
+                  title={video.name}
+                  width="560"
+                  height="315"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h3>Where to Watch</h3>
+            {watchProviders.length > 0 ? (
+              <ul>
+                {watchProviders.map((provider) => (
+                  <li key={provider.provider_id}>{provider.provider_name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>Watch providers not available</p>
+            )}
+          </div>
+          <div className="bookmark">
+            {token && (
+              <svg
+                width="120"
+                height="120"
+                onClick={() => handleBookmark(token)}
+              >
+                <a href="#">
+                  <path
+                    d="M   0   0
            L 120   0
            L 120 120
            L  60  80
            L   0 120
            Z"
-                fill="#007BFF"
-              />
-              <text
-                x="60"
-                y="50"
-                fill="#FFFFFF"
-                textAnchor="middle"
-                alignmentBaseline="middle"
-              >
-                Bookmark Movie
-              </text>
-            </a>
-          </svg>
-        )}
+                    fill="#007BFF"
+                  />
+                  <text
+                    x="60"
+                    y="50"
+                    fill="#FFFFFF"
+                    textAnchor="middle"
+                    alignmentBaseline="middle"
+                  >
+                    Bookmark
+                  </text>
+                </a>
+              </svg>
+            )}
+          </div>
+          
+        </div>
       </div>
     </div>
   );

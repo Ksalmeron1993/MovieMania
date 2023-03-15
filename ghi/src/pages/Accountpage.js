@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "./Authentication";
+import "../styles/Accountpage.css"
 
 function AccountDetailView() {
   const { user, token } = useAuthContext();

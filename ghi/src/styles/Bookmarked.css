@@ -1,4 +1,30 @@
-/* decide on how to style pages when finished with project
-/*should be done last i believe as told by instructors
-/*but could still be used prior to style our website just a bit
+.movies-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
 
+@keyframes tornado3D {
+  from {
+    transform: translateZ(-500px) rotateY(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.card-list {
+  perspective: 1000px;
+}
+
+.card-list > div {
+  animation: tornado3D 1s;
+}
+
+.movie-bookmarks-title {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 0px black;
+}

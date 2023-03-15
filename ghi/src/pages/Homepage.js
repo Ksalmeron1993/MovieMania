@@ -38,12 +38,12 @@ function HomePage() {
   }, []);
   return (
     <div className="home-page">
-      {/* <div className="logo">
-        <img
-          src={MoviemaniaLogo}
-          alt="Logo"
-        />
-      </div> */}
+    {/* //   <div className="logo"> */}
+    {/* //     <img */}
+    {/* //       src={MoviemaniaLogo} */}
+    {/* //       alt="Logo" */}
+    {/* //     /> */}
+    {/* //   </div> */}
       <form className="form" onSubmit={searchMovies}>
         <input
           className="input"

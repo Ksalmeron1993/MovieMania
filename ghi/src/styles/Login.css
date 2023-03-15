@@ -3,7 +3,7 @@
 }
 
 .shadow {
-  border: 0px solid #be2a01e8;
+  border: 0px solid #000000e8;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -14,4 +14,10 @@
 
 .login-form input {
   margin-bottom: 10px;
+}
+
+.link-btn {
+  border-radius: 0.25rem;
+  position: absolute;
+  right: 920px;
 }

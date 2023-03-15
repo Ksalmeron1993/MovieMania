@@ -35,7 +35,7 @@ function Login() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Hello Movie Maniac! Login! </h1>
+          <h1>Hello Movie Maniac! Sign In! </h1>
           <form onSubmit={handleSubmit} id="user-login">
             <div className="form-floating mb-3">
               <input
@@ -62,12 +62,12 @@ function Login() {
               <label htmlFor="password">Password</label>
             </div>
             <button className="btn btn-primary" type="submit">
-              Login
+              Sign in
             </button>
           </form>
         </div>
         <button className="link-btn" onClick={() => navigate("/signup")}>
-          Don't have an account? Sign up here.
+          Not a Maniac? Sign up!
         </button>
       </div>
     </div>

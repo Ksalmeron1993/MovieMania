@@ -3,6 +3,9 @@ import { useAuthContext } from "./Authentication";
 import { useNavigate } from "react-router-dom";
 import MovieCard3 from "./Moviecard3";
 import { useParams } from "react-router-dom";
+import "../styles/Bookmarked.css"
+
+
 function Bookmarkedmovies(props) {
   const [bookmarks, setBookmarks] = useState([]);
   const [setSelectedMovie] = useState([]);
@@ -82,26 +85,33 @@ function Bookmarkedmovies(props) {
   }, [token, id, navigate, fetchData, getBookmarks]);
   return (
     <div>
-      <h1>Movie Bookmarks</h1>
+      <h1 className="movie-bookmarks-title">Movie Bookmarks</h1>
       <div className="movies-container">
-        {bookmarks.length > 0 ? (
-          bookmarks.map((movie) => (
-            <div key={movie.id}>
-              <MovieCard3
-                movie={movie}
-                onClick={() => handleMovieClick(movie.id)}
-              />
-              <button onClick={() => handleRemoveBookmark(movie)}>
-                Remove Bookmark
-              </button>
-              <p>{movie.movie.title}</p>
-            </div>
-          ))
-        ) : (
-          <p>No bookmarks yet!</p>
-        )}
+        <div className="card-list">
+          {bookmarks.length > 0 ? (
+            bookmarks.map((movie) => (
+              <div key={movie.id}>
+                <MovieCard3
+                  movie={movie}
+                  onClick={() => handleMovieClick(movie.id)}
+                />
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleRemoveBookmark(movie)}
+                >
+                  Remove Bookmark
+                </button>
+                <p>{movie.title}</p>
+              </div>
+            ))
+          ) : (
+            <p>No bookmarks yet!</p>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 export default Bookmarkedmovies;
+

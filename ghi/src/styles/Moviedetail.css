@@ -1,7 +1,8 @@
 /* Set neon red and yellow as the page color scheme */
 body {
-  background-color: #171e26;
-  color: #e03e79;
+  background-color: #ffc800;
+  color: rgb(0, 0, 0);
+
 }
 /* Align the header items to the right */
 .header {
@@ -107,5 +108,59 @@ body {
 }
 
 a:hover path {
-  fill: #00b2ff;
+  fill: #df8817;
+}
+
+svg {
+  position: absolute;
+  top: 890px;
+  right: 1480px;
+  z-index: 9999;
+}
+
+.movie-detail-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.poster {
+  flex: 1;
+  margin-right: 50px;
+}
+
+.movie-detail-content {
+  flex: 2;
+}
+
+.videos {
+  width: 50%;
+}
+
+
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.movie-detail-container > div {
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.videos > div {
+  animation: fadeIn 1.5s;
 }

@@ -19,7 +19,7 @@
 }
 
 .dropdown-item {
-  color: #bc9b9b;
+  color: #ffffff;
 }
 
 .dropdown-item:hover {
@@ -38,3 +38,17 @@
   margin-right: 200px;
   padding: 10px;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  align-items: center;
+  width: 180px; /* adjust the size as per your preference */
+  height: 90px; /* this will maintain the aspect ratio of the image */
+  margin: -50px; /* set the left and right margin to auto to center the image horizontally */
+  margin-top: -20px; /* adjust the value as per your preference */
+}
+

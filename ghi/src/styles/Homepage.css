@@ -28,3 +28,26 @@ body {
   top: 100px; /* adjust the distance from the top of the page */
   left: 50px; /* adjust the distance from the left of the page */
 }
+
+@keyframes tornado3D {
+  from {
+    transform: translateZ(-500px) rotateY(-85deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.card-list {
+  perspective: 1000px;
+}
+
+.card-list > div {
+  animation: tornado3D 0.35s;
+}
+
+.movie {
+  color: black;
+}

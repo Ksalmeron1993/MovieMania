@@ -122,7 +122,7 @@ function Signup() {
           </form>
         </div>
         <button className="link-btn" onClick={() => navigate("/login")}>
-          Already have an account? Login here.
+          Already a Maniac? Sign in!
         </button>
       </div>
     </div>
