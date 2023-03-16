@@ -1,7 +1,7 @@
 /* Set neon red and yellow as the page color scheme */
 body {
   background-color: #ffc800;
-  color: rgb(0, 0, 0);
+  color: rgb(160, 14, 14);
 
 }
 /* Align the header items to the right */
@@ -26,8 +26,8 @@ body {
 }
 /* Apply a hover effect to the search button */
 .button:hover {
-  background-color: #592035;
-  color: #fff;
+  background-color: #ffff;
+  color: #8c1414;
 }
 /* Apply a hover effect to the movie cards */
 .card:hover {
@@ -92,8 +92,8 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #592035;
-  color: #fff;
+  background-color: #8c1414;
+  color: #ffff;
   width: 200px; /* increase width */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -163,4 +163,36 @@ svg {
 
 .videos > div {
   animation: fadeIn 1.5s;
+}
+
+.movie-detail-container {
+  font-size: 18px;
+
+  color: white;
+  -webkit-text-stroke: 1px black;
+
+}
+
+.movie-detail-content h2 {
+  font-size: 60px;
+  color: white;
+  -webkit-text-stroke: 1.5px black;
+}
+
+.movie-detail-content p {
+  font-size: 18px;
+  color: white;
+  -webkit-text-stroke: .3px black;
+}
+
+.movie-detail-content .videos h3 {
+  font-size: 24px;
+  color: white;
+  -webkit-text-stroke: .3px black;
+}
+
+.movie-detail-content .videos p {
+  font-size: 18px;
+  color: white;
+  -webkit-text-stroke: .3px black;
 }

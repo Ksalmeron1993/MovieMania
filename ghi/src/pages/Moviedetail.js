@@ -8,6 +8,7 @@ function MovieDetail(props) {
   const [videos, setVideos] = useState([]);
   const [watchProviders, setWatchProviders] = useState([]);
   const { id } = useParams();
+   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({
     title: "",
     overview: "",
@@ -61,6 +62,21 @@ function MovieDetail(props) {
     }
     fetchWatchProviders();
   }, [id]);
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_MOVIES_SERVICE_API_HOST}/movies/${id}/reviews`
+        );
+        const data = await response.json();
+        setReviews(data.results?.slice(0, 2) || []);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchReviews();
+  }, [id]);
+
   const handleBookmark = async (token) => {
     if (!token) {
       alert("Please log in to bookmark a movie.");
@@ -101,7 +117,7 @@ function MovieDetail(props) {
           <p className="description">{movie.overview} </p>
           <p>Release date: {movie.release_date}</p>
           <div className="videos">
-            <h3>Videos</h3>
+            <h3>Trailers</h3>
             {videos.map((video) => (
               <div key={video.id}>
                 <p>{video.name}</p>
@@ -129,6 +145,19 @@ function MovieDetail(props) {
             )}
           </div>
           <div className="bookmark">
+            {reviews.length > 0 && (
+              <div>
+                <h3>Reviews</h3>
+                <ul>
+                  {reviews.slice(0, 3).map((review) => (
+                    <li key={review.id}>
+                      <p>Author: {review.author}</p>
+                      <p>Content: {review.content}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {token && (
               <svg
                 width="120"
@@ -158,7 +187,6 @@ function MovieDetail(props) {
               </svg>
             )}
           </div>
-          
         </div>
       </div>
     </div>

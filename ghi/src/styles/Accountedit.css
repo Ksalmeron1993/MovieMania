@@ -1,0 +1,9 @@
+.form-label {
+    font-size: 50px;
+    color: #ffff;
+    -webkit-text-stroke: 1px black;
+}
+
+.form-control {
+    color: #8c1414;
+}

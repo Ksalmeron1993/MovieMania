@@ -85,7 +85,7 @@ function Bookmarkedmovies(props) {
   }, [token, id, navigate, fetchData, getBookmarks]);
   return (
     <div>
-      <h1 className="movie-bookmarks-title">Movie Bookmarks</h1>
+      <h1 className="movie-bookmarks-title">My Bookmarks</h1>
       <div className="movies-container">
         <div className="card-list">
           {bookmarks.length > 0 ? (
@@ -106,12 +106,12 @@ function Bookmarkedmovies(props) {
               </div>
             ))
           ) : (
-            <p>No bookmarks yet!</p>
+            <p className="no-bookmarks"> No Bookmarks Yet!</p>
           )}
         </div>
       </div>
     </div>
   );
 }
-export default Bookmarkedmovies;
 
+export default Bookmarkedmovies;

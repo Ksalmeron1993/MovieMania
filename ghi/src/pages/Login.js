@@ -35,7 +35,9 @@ function Login() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
+          <div className="text-center">
           <h1>Hello Movie Maniac! Sign In! </h1>
+          </div>
           <form onSubmit={handleSubmit} id="user-login">
             <div className="form-floating mb-3">
               <input
@@ -49,7 +51,7 @@ function Login() {
               />
               <label htmlFor="username">Username</label>
             </div>
-            <div>
+            <div className="password">
               <input
                 onChange={handlePasswordChange}
                 placeholder="********"

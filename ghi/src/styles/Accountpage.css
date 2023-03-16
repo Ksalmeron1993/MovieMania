@@ -1,9 +1,17 @@
-.container {
-   color:  #ffb07b ;
+.account-detail {
+   color: #ffff ;
 
 }
 
 .link-btn {
 position: absolute;
   right: 875px;
+}
+.account-detail{
+  font-size: 60px;
+}
+
+.text-center {
+  font-size:30px;
+  color: rgb(255, 255, 255);
 }

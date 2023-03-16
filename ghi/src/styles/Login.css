@@ -21,3 +21,17 @@
   position: absolute;
   right: 920px;
 }
+
+.text-end {
+  font-size: 50px;
+  color: #ffff;
+  padding-left: 70px;
+  text-align: center;
+}
+
+.text-center {
+    color: #ffff;
+}
+.password {
+  color: #ffff;
+}

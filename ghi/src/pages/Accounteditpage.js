@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "./Authentication";
+import "../styles/Accountedit.css"
 
 function AccountEditForm() {
   const [first_name, setFirstName] = useState("");

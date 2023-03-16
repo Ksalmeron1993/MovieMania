@@ -1,1 +1,21 @@
+.sign-up{
+    font-size: 50px;
+    color: #ffff;
+    -webkit-text-stroke: 1px black;
+}
+
+.text-end{
+  color: #ffff;
+  padding-left: 70px;
+  text-align: center;
+  -webkit-text-stroke: 5px #0000;
+}
+
+.text-center{
+    color: #ffff;
+    -webkit-text-stroke: 15px #0000;
+}
+.password{
+  color: #ffff;
+}
 

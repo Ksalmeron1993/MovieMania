@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "./Authentication.js";
 import { useAuthContext } from "./Authentication";
+import "../styles/Signup.css"
 
 function Signup() {
   const [first_name, setFirstName] = useState("");
@@ -54,7 +55,9 @@ function Signup() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Become a Movie Maniac! Sign up!</h1>
+          <div className="text-center">
+          <h1  className="sign-up">Become a Movie Maniac! Sign up!</h1>
+          </div>
           <form onSubmit={handleSubmit} id="create-user">
             <div className="form-floating mb-3">
               <input
@@ -104,7 +107,7 @@ function Signup() {
               />
               <label htmlFor="username">Username</label>
             </div>
-            <div>
+            <div className="password">
               <input
                 onChange={handlePasswordChange}
                 placeholder="********"

@@ -1,14 +1,29 @@
-/* .btn-outline-warning{
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: var(--bd-violet);
-  --bs-btn-border-color: var(--bd-violet);
-  --bs-btn-border-radius: .5rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color($bd-violet, 10%)};
-  --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
-  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-  --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
-  --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
- } */
+.btn-color {
+  background-color: #8c1414; /* change this to your desired color */
+  color: #ffff
+}
+
+.btn-hover:hover {
+  background-color: #ffff; /* change this to your desired hover color */
+  color: #8c1414; /* change this to your desired text color */
+}
+
+.btn-color2 {
+  background-color: #ffff; /* change this to your desired color */
+  color: #8c1414
+}
+
+.btn-hover2:hover {
+  background-color: #8c1414; /* change this to your desired color */
+  color:  #ffff/* change this to your desired text color */
+}
+
+.text-end{
+  font-size: 18px;
+
+  padding-left: 50px
+}
+.text-center{
+  color: #fff;
+  -webkit-text-stroke: 1.5px #0000;
+}

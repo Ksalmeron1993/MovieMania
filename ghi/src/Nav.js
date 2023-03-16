@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import "./navbar.css";
-import MoviemaniaLogo from "../src/images/moviemania.png";
+import moviemania from "../src/images/moviemania.png";
 
 function Nav() {
   return (
@@ -18,10 +18,10 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="logo">
-          <img class="Logo" src={MoviemaniaLogo} alt="Logo" />
+          <img class="Logo" src={moviemania} alt="Logo" />
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 home-bookm">
             <li className="nav-item">
               <NavLink
                 className="nav-link active"
@@ -44,7 +44,7 @@ function Nav() {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <div
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle account-dd"
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
