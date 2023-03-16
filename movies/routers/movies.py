@@ -117,8 +117,10 @@ async def get_movie_detail(movie_id: int) -> dict:
 @router.get("/movies/{movie_id}/reviews")
 async def get_movie_reviews(movie_id: int):
     try:
-        url = f"https://api.themoviedb.org/3/movie/{movie_id}/reviews"
-        "?api_key=7d055fdafcdf398aab55d81760d1c151"
+        url = (
+            f"https://api.themoviedb.org/3/movie/{movie_id}/reviews"
+            "?api_key=7d055fdafcdf398aab55d81760d1c151"
+        )
         response = requests.get(url)
 
         if response.status_code < 200 or response.status_code >= 300:
