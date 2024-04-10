@@ -31,11 +31,58 @@ Movie Mania is for those who love to watch movies and want to keep track of thei
 
 ## Running the app
 
-- Follow these steps to become a Movie Maniac and join our Movie Mania!
-1. Clone the repository down to your local machine
-2. CD into the repository folder locally
-3. CD into the new project directory
-4. Run docker volume create pg-admin
-5. Run docker volume create postgres-data
-6. Run docker compose build
-7. Run docker compose up
+Thank you for your interest in running our Movie Mania application locally! Follow these simple steps to get started:
+
+### Prerequisites
+- Before running the application, make sure you have the following tools installed on your machine:
+
+[Docker
+Docker Compose
+Steps](https://www.docker.com/products/docker-desktop/)
+
+
+## Clone the Repository:
+
+#### Copy code:
+```
+git clone https://github.com/Ksalmeron1993/MovieMania.git
+```
+Navigate to the Project Directory:
+#### Copy code:
+```
+cd <repository-folder>
+```
+Set Up Docker Volumes:
+We'll need to create Docker volumes for PostgreSQL and pgAdmin. Run the following commands:
+#### Copy code:
+```
+docker volume create pg-admin
+docker volume create postgres-data
+```
+Build the Docker Containers:
+Build the Docker containers using Docker Compose:
+#### Copy code:
+```
+docker-compose build
+docker-compose up
+```
+This command will start all necessary services, including the web server and database.
+
+### Access the Application:
+Once the application is up and running, you can access it in your web browser at http://localhost:8000 or http://localhost:3000
+
+### Explore the Application:
+Feel free to explore the features of our Movie Mania application! You can view, search, and interact with movie data seamlessly.
+
+### Shut Down the Application:
+To stop the application and its services, press Ctrl + Z in the terminal where you ran docker-compose up. Then, run:
+#### Copy code:
+```
+docker-compose down
+```
+
+### Additional Notes
+If you encounter any issues during setup or while running the application, please don't hesitate to reach out to us for assistance.
+Remember to clean up Docker volumes and containers when you're done experimenting with the application.
+Enjoy your Movie Mania experience!
+
